@@ -8,7 +8,8 @@ export class HandleErrorService {
     constructor(private messageService: MessageService) {}
 
     handleError(erro) {
-        if(!erro || !erro.mensagem || !erro.mensagens) {
+        console.log(erro)
+        if(!erro || !erro.error || !erro.messages) {
             this.messageService.add({severity: 'error', summary: "Erro inesperado!", life: 5000});
             return;
         };

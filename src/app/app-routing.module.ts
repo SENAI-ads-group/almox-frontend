@@ -9,7 +9,7 @@ const routes: Routes = [
             import("./modules/core/core.module").then(
                 module => module.CoreModule
             ),
-    },
+    }
 ];
 
 @NgModule({

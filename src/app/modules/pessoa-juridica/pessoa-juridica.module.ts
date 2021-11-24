@@ -7,5 +7,8 @@ import { PjFormSectionComponent } from './components/pj-form-section/pj-form-sec
 @NgModule({
     declarations: [PjFormSectionComponent],
     imports: [CommonModule, PrimengModule],
+    exports:[PjFormSectionComponent]
 })
-export class PessoaJuridicaModule {}
+export class PessoaJuridicaModule {
+
+}

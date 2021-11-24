@@ -1,0 +1,17 @@
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-3">
+        <label for="nome">Descrição</label>
+        <input
+            id="descricao"
+            type="text"
+            [(ngModel)]="filtro.descricao"
+            pInputText
+        />
+    </div>
+</div>
+<div class="p-d-flex p-jc-center">
+    <div class="flex align-items-center justify-content-center">
+        <limpar-button (click)="onLimpar()"></limpar-button>
+        <pesquisar-button (click)="onBuscar()"></pesquisar-button>
+    </div>
+</div>

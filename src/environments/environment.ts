@@ -7,5 +7,8 @@ export const environment = {
   production: false,
   api: {
     baseUrl: 'http://localhost:8080'
-  }
+  },
+  auth: {
+    tokenLocalStorage: 'almox_access_token'
+    }
 };

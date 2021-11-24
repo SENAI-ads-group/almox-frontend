@@ -8,18 +8,18 @@
             </div>
             <div class="p-col-12">
                 <span class="p-float-label">
-                    <input type="text" pInputText>
+                    <input type="text" pInputText [(ngModel)]="username">
                     <label>Email</label>
                 </span>
             </div>
             <div class="p-col-12">
                 <span class="p-float-label">
-                    <input type="password" pInputText>
+                    <input type="password" pInputText [(ngModel)]="password">
                     <label>Senha</label>
                 </span>
             </div>
             <div class="p-col-12 button-container">
-                <button pButton type="button" label="Entrar" icon="pi pi-user"></button>
+                <button pButton type="button" label="Entrar" icon="pi pi-user" (click)="login()"></button>
             </div>
         </div>
     </div>
