@@ -1,0 +1,47 @@
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-8">
+        <label for="produto">Produto</label>
+        <input-button
+            id="produto"
+            name="produto"
+            (onClick)="abrirDialogProduto()"
+            (remover)="this.item.produto = null"
+            [value]="(item.produto || {}).descricao"
+            placeholder="Selecione um Produto"
+        >
+        </input-button>
+        <small class="p-invalid p-error" *ngIf="!item.produto">
+            É necessário selecionar o produto
+        </small>
+    </div>
+    <div class="p-field p-col-4">
+        <label for="quantidade">Quantidade</label>
+        <input
+            #quantidadeControl
+            type="text"
+            id="quantidade"
+            name="quantidade"
+            [(ngModel)]="item.quantidade"
+            pInputText
+            required
+        />
+        <small class="p-invalid p-error" *ngIf="!quantidadeControl.valid && !item.quantidade">
+            É necessário informar a quantidade
+        </small>
+        <small class="p-invalid p-error" *ngIf="item.quantidade && !(item.quantidade > 0)">
+            Quantidade inválida
+        </small>
+    </div>
+</div>
+<div class="p-grid p-justify-end">
+    <div class="p-col-2">
+        <button
+            type="button"
+            pButton
+            label="Salvar"
+            class="p-mr-2 p-mb-2"
+            icon="pi pi-save"
+            (click)="formulario.valid ? submit.emit(item) : null"
+        ></button>
+    </div>
+</div>

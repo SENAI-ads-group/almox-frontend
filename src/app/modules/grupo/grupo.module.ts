@@ -4,16 +4,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { GrupoRoutingModule } from './grupo-routing.module';
-import { GrupoListaComponent } from './grupo-lista/grupo-lista.component';
-import { GrupoFormComponent } from './grupo-form/grupo-form.component';
-import { GrupoFiltroComponent } from './grupo-filtro/grupo-filtro.component';
+import { GrupoBuscaComponent } from './busca/grupo-busca.component';
+import { GrupoFormComponent } from './form/grupo-form.component';
+import { GrupoFiltroBuscaComponent } from './filtro-busca/grupo-filtro-busca.component';
 
 
 @NgModule({
   declarations: [
-    GrupoListaComponent,
+    GrupoBuscaComponent,
     GrupoFormComponent,
-    GrupoFiltroComponent
+    GrupoFiltroBuscaComponent
   ],
   imports: [
     CommonModule,

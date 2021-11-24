@@ -8,7 +8,6 @@ import { UsuarioListaComponent } from './components/usuario-lista/usuario-lista.
 const routes: Routes = [
     { path: "", component: UsuarioListaComponent },
     { path: "novo", component: UsuarioFormComponent },
-    { path: "visualizar/:id", component: UsuarioFormComponent },
     { path: "editar/:id", component: UsuarioFormComponent }
 ];
 

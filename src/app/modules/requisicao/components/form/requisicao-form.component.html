@@ -1,0 +1,31 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <div class="p-d-flex p-jc-between">
+            <titulo-pagina-crud
+                entidade="{{ NOME_PAGINA }}"
+                acao="{{ editandoRegistroExistente ? 'Editar' : 'Novo' }}"
+            ></titulo-pagina-crud>
+            <div>
+                <button
+                    pButton
+                    pRipple
+                    label="Consultar"
+                    class="p-mb-3 p-mr-1 p-shadow-4 p-button-secondary"
+                    icon="pi pi-list"
+                    routerLink="/requisicoes"
+                ></button>
+            </div>
+        </div>
+
+        <form #formulario="ngForm" (ngSubmit)="onSubmit(formulario)">
+            <requisicao-form-section> </requisicao-form-section>
+
+            <div class="p-grid p-justify-end">
+                <limpar-button (click)="onLimpar()"></limpar-button>
+                <submit-button></submit-button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<p-toast></p-toast>

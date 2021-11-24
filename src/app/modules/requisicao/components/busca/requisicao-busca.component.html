@@ -1,0 +1,31 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <div class="p-d-flex p-jc-between">
+            <titulo-pagina-crud
+                entidade="{{ NOME_PAGINA }}"
+                acao="Consultar"
+            ></titulo-pagina-crud>
+            <div>
+                <novo-button></novo-button>
+            </div>
+        </div>
+
+        <div class="card">
+            <requisicao-filtro
+                #filtroComponent
+                (buscar)="onBuscar($event.filtro)"
+            ></requisicao-filtro>
+
+            <tabela-crud
+                [colunas]="colunas"
+                [dados]="registros$ | async"
+                (visualizar)="onVisualizar($event)"
+                (editar)="onEditar($event)"
+                (excluir)="onExcluir($event)"
+            ></tabela-crud>
+        </div>
+    </div>
+</div>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<p-toast></p-toast>

@@ -1,0 +1,23 @@
+<step
+    exibirBotaoAnterior="true"
+    titulo="Itens"
+    subtitulo="Selecione os produtos"
+    (anterior)="stepAnterior()"
+>
+    <div class="card" *ngIf="registroNoFormulario">
+        <item-requisicao-form
+            (submit)="onFormularioSubmit($event)"
+            [item]="registroNoFormulario.item"
+        >
+        </item-requisicao-form>
+    </div>
+    <div class="card">
+        <div class="p-fluid">
+            <item-requisicao-lista
+                [itens]="registros"
+                (editar)="handleEditar($event)"
+                (excluir)="handleExcluir($event)"
+            ></item-requisicao-lista>
+        </div>
+    </div>
+</step>

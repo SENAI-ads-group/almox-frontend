@@ -80,6 +80,7 @@ import { TreeModule } from "primeng/tree";
 import { TreeTableModule } from "primeng/treetable";
 import { VirtualScrollerModule } from "primeng/virtualscroller";
 import { TriStateCheckboxModule } from "primeng/tristatecheckbox";
+import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
 
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -116,6 +117,7 @@ FullCalendarModule.registerPlugins([
         DialogModule,
         DividerModule,
         DropdownModule,
+        DynamicDialogModule,
         FieldsetModule,
         FileUploadModule,
         FullCalendarModule,
@@ -173,5 +175,8 @@ FullCalendarModule.registerPlugins([
         VirtualScrollerModule,
         TriStateCheckboxModule,
     ],
+    providers:[
+        DialogService
+    ]
 })
 export class PrimengModule {}

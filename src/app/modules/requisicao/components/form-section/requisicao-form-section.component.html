@@ -1,0 +1,12 @@
+<p-card styleClass="p-mb-4 p-p-0 p-shadow-3">
+    <ng-template pTemplate="title">Informações Básicas</ng-template>
+    <ng-template pTemplate="subtitle"
+        >Informe os dados departamento</ng-template
+    >
+    <p-steps [model]="itensStep" [readonly]="true"></p-steps>
+    <div class="p-fluid p-formgrid p-grid">
+        <div class="p-col-12">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</p-card>

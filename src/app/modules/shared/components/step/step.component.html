@@ -1,0 +1,35 @@
+<div>
+    <p-card>
+        <ng-template pTemplate="title">
+            {{ titulo }}
+        </ng-template>
+        <ng-template pTemplate="subtitle">
+            {{ subtitulo }}
+        </ng-template>
+        <ng-template pTemplate="content">
+            <ng-content></ng-content>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div class="p-d-flex p-jc-between">
+                <div>
+                    <p-button
+                        *ngIf="exibirBotaoAnterior"
+                        label="Anterior"
+                        (onClick)="onAnterior()"
+                        icon="pi pi-angle-left"
+                        iconPos="right"
+                    ></p-button>
+                </div>
+                <div>
+                    <p-button
+                        *ngIf="exibirBotaoProximo"
+                        label="Próximo"
+                        (onClick)="onProximo()"
+                        icon="pi pi-angle-right"
+                        iconPos="right"
+                    ></p-button>
+                </div>
+            </div>
+        </ng-template>
+    </p-card>
+</div>
