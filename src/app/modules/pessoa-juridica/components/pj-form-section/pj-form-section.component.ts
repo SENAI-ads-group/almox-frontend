@@ -1,4 +1,4 @@
-import { ContatoFormSectionComponent } from './../../../contato/contato-form-section/contato-form-section/contato-form-section.component';
+import { ContatoFormSectionComponent } from '../../../contato/form-section/contato-form-section/contato-form-section.component';
 import { PessoaJurica } from "./../../../../model/pessoa-juridica";
 import { Component, Input, OnInit } from "@angular/core";
 import { ControlContainer, NgForm } from "@angular/forms";

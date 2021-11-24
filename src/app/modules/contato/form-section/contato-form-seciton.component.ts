@@ -1,4 +1,4 @@
-import { Contato } from './../../../../model/contato';
+import { Contato } from '../../../model/contato';
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 

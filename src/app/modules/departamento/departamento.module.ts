@@ -4,17 +4,17 @@ import { NgModule } from '@angular/core';
 import { AuditoriaModule } from './../auditoria/auditoria.module';
 import { PrimengModule } from './../primeng/primeng.module';
 import { SharedModule } from './../shared/shared.module';
-import { DepartamentoFiltroComponent } from './components/departamento-filtro/departamento-filtro.component';
+import { DepartamentoFiltroComponent } from './components/filtro-busca/departamento-filtro-busca.component';
 import {
     DepartamentoFormSectionComponent,
-} from './components/departamento-form-section/departamento-form-section.component';
-import { DepartamentoFormComponent } from './components/departamento-form/departamento-form.component';
-import { DepartamentoListaComponent } from './components/departamento-lista/departamento-lista.component';
+} from './components/form-section/departamento-form-section.component';
+import { DepartamentoFormComponent } from './components/form/departamento-form.component';
+import { DepartamentoBuscaComponent } from './components/busca/departamento-busca.component';
 import { DepartamentoRoutingModule } from './departamento-routing.module';
 
 @NgModule({
     declarations: [
-        DepartamentoListaComponent,
+        DepartamentoBuscaComponent,
         DepartamentoFiltroComponent,
         DepartamentoFormComponent,
         DepartamentoFormSectionComponent,

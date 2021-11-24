@@ -47,15 +47,6 @@
             <td>
                 <div style="vertical-align: middle; text-align: center">
                     <button
-                        *ngIf="exibirAcaoVisualizar(rowData)"
-                        pButton
-                        pRipple
-                        class="p-mr-2 p-mb-2 p-button-sm p-button-icon-only p-button-primary-alt"
-                        pTooltip="Visualizar"
-                        tooltipPosition="bottom"
-                        (click)="handleOnVisualizar(rowData)"
-                    ><i class="fa fa-fw fa-eye" style="font-size: 1.1rem; font-weight: 550; line-height: 1.5rem;"></i></button>
-                    <button
                         *ngIf="exibirAcaoEditar(rowData)"
                         pButton
                         pRipple

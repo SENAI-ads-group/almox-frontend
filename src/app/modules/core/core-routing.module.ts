@@ -1,8 +1,6 @@
-import { ItemRequisicaoModule } from "./../item-requisicao/item_requisicao.module";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AuthguardService } from "src/app/config/auth/authguard.service";
-
+import { Authguard } from "src/app/modules/autenticacao/auth.guard";
 import { LoginComponent } from "./login/login.component";
 import { MainComponent } from "./main/main.component";
 
@@ -51,7 +49,7 @@ const routes: Routes = [
 {
                 path: "item-requisicao",
                 loadChildren: () =>
-                    import("../item-requisicao/item_requisicao.module").then(
+                    import("../item-requisicao/item-requisicao.module").then(
                         module => module.ItemRequisicaoModule
                     ),
             },
@@ -71,7 +69,7 @@ const routes: Routes = [
                     ),
             },
         ],
-        canActivate: [AuthguardService],
+        canActivate: [Authguard],
     },
     {
         path: "login",
