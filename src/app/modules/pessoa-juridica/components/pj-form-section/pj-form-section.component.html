@@ -9,7 +9,7 @@
 
     <div class="p-field p-col-4">
         <label for="cnpj">CNPJ</label>
-        <p-inputMask mask= "00.000.000/0000-00" placeholder="00.000.000/0000-00" #cnpjControl="ngModel" type="number" id="cnpj" name="cnpj" [(ngModel)]="pessoa.cnpj" required autofocus [readonly]="modoVisualizacao" ></p-inputMask>
+        <p-inputMask mask= "00.000.000/0000-00" placeholder="00.000.000/0000-00" #cnpjControl="ngModel" type="text" id="cnpj" name="cnpj" [(ngModel)]="pessoa.cnpj" required autofocus [readonly]="modoVisualizacao" ></p-inputMask>
         <small class="p-invalid p-error" *ngIf="formulario.submitted && !cnpjControl.valid">
             O Cnpj é necessário.
         </small>

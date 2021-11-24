@@ -5,7 +5,7 @@
         <input #email1Control="ngModel" type="text" id="email1" name="email1" [(ngModel)]="contato.email1" pInputText required autofocus [readonly]="modoVisualizacao" />
         <small class="p-invalid p-error" *ngIf="formulario.submitted && !email1Control.valid">
 
-  
+
             Informe um e-mail.
         </small>
     </div>
@@ -23,7 +23,7 @@
                 mask = "(99) 99999-9999"
                 placeholder="(99) 99999-9999"
                     #telefone1Control="ngModel"
-                    type="number"
+                    type="text"
                     id="telefone1"
                     name="telefone1"
                     [(ngModel)]="contato.telefone1"
@@ -59,7 +59,7 @@
                 mask = "(99) 99999-9999"
                 placeholder="(99) 99999-9999"
                     #telefone2Control="ngModel"
-                    type="number"
+                    type="text"
                     id="telefone2"
                     name="telefone2"
                     [(ngModel)]="contato.telefone2"
@@ -93,7 +93,7 @@
                 <label for="logradouro">Logradouro</label>
                 <input #logradouroControl="ngModel" type="text" id="logradouro" name="logradouro" [(ngModel)]="contato.logradouro" pInputText required autofocus [readonly]="modoVisualizacao" />
                 <small class="p-invalid p-error" *ngIf="formulario.submitted && !logradouroControl.valid">
-    
+
                     Informe o Logradouro.
                 </small>
             </div>
@@ -110,7 +110,7 @@
                 <label for="numero">Número</label>
                 <input
                     #numeroControl="ngModel"
-                    type="number"
+                    type="text"
                     id="numero"
                     name="numero"
                     [(ngModel)]="contato.numero"
@@ -133,7 +133,7 @@
                 mask= "99999-999"
                 placeholder= "99999-999"
                     #cepControl="ngModel"
-                    type="number"
+                    type="text"
                     id="cep"
                     name="cep"
                     [(ngModel)]="contato.cep"
