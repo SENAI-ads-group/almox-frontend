@@ -1,9 +1,9 @@
 import { ControlContainer, NgForm } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
-import { ProdutoModalListaComponent } from "src/app/modules/produto/components/produto-modal-lista/produto-modal-lista.component";
 
 import { ItemRequisicao } from "../../../../model/item-requisicao";
+import { ProdutoModalListaComponent } from 'src/app/modules/produto/components/modal-listagem/produto-modal-lista.component';
 
 @Component({
     selector: "item-requisicao-form",

@@ -7,6 +7,7 @@ import { CoreRoutingModule } from './core-routing.module';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { RodapeComponent } from './rodape/rodape.component';
+import { TituloPaginaComponent } from './titulo-pagina/titulo-pagina.component';
 
 @NgModule({
     declarations: [
@@ -14,6 +15,7 @@ import { RodapeComponent } from './rodape/rodape.component';
         BarraSuperiorComponent,
         MainComponent,
         RodapeComponent,
+        TituloPaginaComponent,
     ],
     imports: [CommonModule, CoreRoutingModule, PrimengModule],
 })

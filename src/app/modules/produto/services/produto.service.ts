@@ -11,6 +11,6 @@ import { CrudService } from '../../shared/services/crud.service';
 })
 export class ProdutoService extends CrudService<Produto, number> {
     constructor(protected _http: HttpClient) {
-        super(_http, `${environment.api.baseUrl}/usuarios`);
+        super(_http, `${environment.api.baseUrl}/produtos`);
     }
 }

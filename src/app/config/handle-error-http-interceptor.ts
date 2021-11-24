@@ -61,6 +61,14 @@ export class HandleErrorHttpInterceptor implements HttpInterceptor {
         this.genericHandleError(errorResponse);
     };
 
+    private handleError501 = (errorResponse: HttpErrorResponse) => {
+        this.messageService.add({
+            key: "notification",
+            severity: "error",
+            summary: "Esta operação não está disponível no momento",
+        });
+    };
+
     private genericHandleError = (errorResponse: HttpErrorResponse) => {
         const { error } = errorResponse;
         this.messageService.addAll(error.messages.map((msg : string) => {

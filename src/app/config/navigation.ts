@@ -20,6 +20,18 @@ export const Navigation: MenuItem[] = [
                 icon: "pi pi-tags",
                 routerLink: "/departamentos",
             },
+            {
+                label: "Fabricantes",
+                icon: "fa fa-industry",
+                routerLink: "/fabricantes",
+
+            },
+            {
+                label: "Fornecedores",
+                icon: "fa fa-clipboard",
+                routerLink: "/fornecedores",
+
+            },
         ],
     },
     {
@@ -30,18 +42,6 @@ export const Navigation: MenuItem[] = [
                 label: "Requisições",
                 icon: "fa fa-th",
                 routerLink: "/requisicoes",
-            },
-            {
-                label: "Fabricante",
-                icon: "fa fa-industry",
-                routerLink: "/fabricantes",
-
-            },
-            {
-                label: "Fornecedor",
-                icon: "fa fa-clipboard",
-                routerLink: "/fornecedores",
-
             },
         ],
     },

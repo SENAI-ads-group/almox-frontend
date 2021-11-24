@@ -8,6 +8,4 @@ export interface Fabricante extends PessoaJurica {
     rg?:string;
     cnpj?:string;
     contato?:Contato;
-
-
 }
