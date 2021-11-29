@@ -5,6 +5,7 @@ export interface Requisicao {
     id?: number;
     dataRequisicao?: Date;
     requisitante?: Usuario;
+    almoxarife?: Usuario;
     departamento?: Departamento;
     status?: any;
     itens?: ItemRequisicao[];

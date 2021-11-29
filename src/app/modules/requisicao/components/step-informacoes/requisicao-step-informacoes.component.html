@@ -7,17 +7,12 @@
     <form #formulario="ngForm" (ngSubmit)="onSubmit()">
         <div class="p-fluid p-formgrid p-grid">
             <div class="p-field p-col-4">
-                <label for="criadoPor">Data de Requisição</label>
-                <input
-                    #requisitanteControl
-                    type="text"
-                    id="dataRequisicao"
-                    name="dataRequisicao"
-                    (ngModelChange)="dados.dataRequisicao = $event"
-                    [ngModel]="dados.dataRequisicao | date: 'dd/MM/yyyy'"
-                    pInputText
-                    readonly
-                />
+                <label for="dataRequisicao">Data de Requisição</label>
+                <p-calendar
+                    [(ngModel)]="dados.dataRequisicao"
+                    [showIcon]="true"
+                    inputId="dataRequisicao"
+                ></p-calendar>
             </div>
             <div class="p-field p-col-4">
                 <label>Departamento</label>

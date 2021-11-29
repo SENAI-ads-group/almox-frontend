@@ -15,17 +15,16 @@
                 #filtroComponent
                 [grupos]="grupos$ | async"
                 [departamentos]="departamentos$ | async"
-                (buscar)="buscar($event.filtro)"
+                (buscar)="onBuscar($event.filtro)"
             ></produto-filtro>
             <tabela-crud
                 [colunas]="colunas"
-                [dados]="produtos"
+                [dados]="produtos$ | async"
                 [exibirAcaoEditar]="exibirAcaoEditar"
                 [exibirAcaoExcluir]="exibirAcaoExcluir"
                 (selecionadosChange)="selecionados = $event"
-                (visualizar)="visualizar($event)"
-                (editar)="editar($event)"
-                (excluir)="excluir($event)"
+                (editar)="onEditar($event)"
+                (excluir)="onExcluir($event)"
             ></tabela-crud>
         </div>
     </div>

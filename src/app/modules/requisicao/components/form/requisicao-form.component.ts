@@ -1,4 +1,4 @@
-import { RequisicaoStepMergeService } from '../../services/requisicao-step-merge.service';
+import { RequisicaoStepMergeService } from "../../services/requisicao-step-merge.service";
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -11,6 +11,7 @@ import { HandleErrorService } from "../../../shared/services/handle-error.servic
 import { UsuarioService } from "../../../usuario/services/usuario.service";
 import { RequisicaoService } from "../../services/requisicao.service";
 import { PaginaFormularioCrud } from "../../../shared/PaginaFormularioCrud";
+import { MenuItem } from "primeng/api";
 
 @Component({
     selector: "departamento-form",
@@ -22,6 +23,7 @@ export class RequisicaoFormComponent
     NOME_PAGINA = "Requisições";
     editandoRegistroExistente: boolean;
     registro: Requisicao = {};
+    itensStep: MenuItem[];
 
     constructor(
         private requisicaoService: RequisicaoService,
@@ -32,6 +34,17 @@ export class RequisicaoFormComponent
     ) {}
 
     ngOnInit(): void {
+        this.itensStep = [
+            {
+                label: "Informações",
+                routerLink: "informacoes",
+            },
+            {
+                label: "Itens",
+                routerLink: "itens",
+            },
+        ];
+
         this.activatedRoute.params.subscribe(params => {
             const id: number = params["id"];
             if (id) {
@@ -47,16 +60,15 @@ export class RequisicaoFormComponent
 
     onSubmit(formulario: NgForm): void {
         this.registro = this.stepMergeService.state;
-        console.log(this.registro)
 
         const httpSubscriber = this.editandoRegistroExistente
             ? this.requisicaoService.atualizar(this.registro.id, this.registro)
             : this.requisicaoService.criar(this.registro);
-        httpSubscriber.subscribe(
-            () => this.router.navigate(["/requisicoes/"])
-        );
+        httpSubscriber.subscribe(() => {
+            this.stepMergeService.state = {};
+            this.router.navigate(["/requisicoes/"]);
+        });
     }
 
-    onLimpar(): void {
-    }
+    onLimpar(): void {}
 }

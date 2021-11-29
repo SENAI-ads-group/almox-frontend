@@ -20,7 +20,7 @@ import { RequisicaoService } from "../../services/requisicao.service";
 export class RequisicaoBuscaComponent
     implements OnInit, PaginaBuscaCrud<Requisicao>
 {
-    NOME_PAGINA = "Requisições"
+    NOME_PAGINA = "Requisições";
     registros$: Observable<Requisicao[]>;
     enums$: Observable<any>;
     colunas: any[];
@@ -28,7 +28,6 @@ export class RequisicaoBuscaComponent
     constructor(
         private confirmationService: ConfirmationService,
         private messageService: MessageService,
-        private handleErrorService: HandleErrorService,
         private commonService: CommonService,
         private requisicaoService: RequisicaoService,
         private router: Router
@@ -43,7 +42,7 @@ export class RequisicaoBuscaComponent
                 TipoColuna.DATA_HORA
             ),
             criarConfiguracaoColuna(
-                "requisitante.nome",
+                "requisitante.login",
                 "Requisitante",
                 TipoColuna.TEXTO
             ),
@@ -69,9 +68,11 @@ export class RequisicaoBuscaComponent
     onVisualizar(registro: Requisicao) {
         this.router.navigate([`requisicoes/visualizar/${registro.id}`]);
     }
+
     onEditar(registro: Requisicao) {
         this.router.navigate([`requisicoes/editar/${registro.id}`]);
     }
+
     onExcluir(registro: Requisicao) {
         this.confirmationService.confirm({
             message: `Você têm certeza que deseja excluir a requisição ${registro} ?`,

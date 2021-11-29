@@ -7,7 +7,6 @@ import { ProdutoBuscaComponent } from './components/busca/produto-busca.componen
 const routes: Routes = [
     { path: "", component: ProdutoBuscaComponent },
     { path: "novo", component: ProdutoFormComponent },
-    { path: "visualizar/:id", component: ProdutoFormComponent },
     { path: "editar/:id", component: ProdutoFormComponent },
 ];
 

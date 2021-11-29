@@ -1,11 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 
 @Component({
-  selector: 'fornecedor-filtro',
-  templateUrl: './fornecedor-filtro.component.html',
-
+    selector: "fornecedor-filtro-busca",
+    templateUrl: "./fornecedor-filtro-busca.component.html",
 })
-export class FornecedorFiltroComponent implements OnInit {
+export class FornecedorFiltroBuscaComponent {
     @Output("buscar")
     buscarEvent: EventEmitter<any> = new EventEmitter();
 
@@ -15,17 +14,17 @@ export class FornecedorFiltroComponent implements OnInit {
         email: "",
     };
 
-  constructor() { }
+    constructor() {}
 
-  ngOnInit(): void {}
-    handleLimpar() {
+    onLimpar() {
         this.filtro = {
             cnpj: "",
             razaoSocial: "",
             email: "",
         };
     }
-    handleBuscar() {
+
+    onBuscar() {
         this.buscarEvent.emit({ filtro: this.filtro });
     }
 }

@@ -19,21 +19,7 @@
 </div>
 <div class="p-d-flex p-jc-center">
     <div class="flex align-items-center justify-content-center">
-        <button
-            pButton
-            pRipple
-            label="Limpar"
-            (click)="limparFiltros()"
-            class="p-button-outlined p-button-secondary p-mr-2 p-mb-3"
-        ></button>
-        <button
-            pButton
-            pRipple
-            label="Buscar"
-            (click)="buscar()"
-            icon="pi pi-search"
-            class="p-button-outlined p-mb-3"
-        ></button>
+        <limpar-button (click)="limparFiltros()"></limpar-button>
+        <pesquisar-button (click)="buscar()"></pesquisar-button>
     </div>
 </div>
-

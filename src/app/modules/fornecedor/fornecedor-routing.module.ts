@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { FornecedorFormComponent } from './components/fornecedor-form/fornecedor-form/fornecedor-form.component';
-import { FornecedorListaComponent } from './components/fornecedor-lista/fornecedor-lista/fornecedor-lista.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+
+import { FornecedorBuscaComponent } from "./components/busca/fornecedor-busca.component";
+import { FornecedorFormComponent } from "./components/form/fornecedor-form.component";
+
 const routes: Routes = [
-    { path: "", component: FornecedorListaComponent },
+    { path: "", component: FornecedorBuscaComponent },
     { path: "novo", component: FornecedorFormComponent },
     { path: "visualizar/:id", component: FornecedorFormComponent },
-    { path: "editar/:id", component: FornecedorFormComponent }
-
+    { path: "editar/:id", component: FornecedorFormComponent },
 ];
 
-
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class FornecedorRoutingModule { }
+export class FornecedorRoutingModule {}

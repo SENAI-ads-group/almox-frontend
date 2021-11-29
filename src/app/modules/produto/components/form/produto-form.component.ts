@@ -1,19 +1,19 @@
-import { Component, OnInit } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { Router } from "@angular/router";
-import { Observable } from "rxjs";
-import { Fornecedor } from "src/app/model/fornecedor";
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Fornecedor } from 'src/app/model/fornecedor';
 
-import { CommonService } from "../../../shared/services/common.service";
-import { Departamento } from "./../../../../model/departamento";
-import { Fabricante } from "./../../../../model/fabricante";
-import { Grupo } from "./../../../../model/grupo";
-import { Produto } from "./../../../../model/produto";
-import { DepartamentoService } from "./../../../departamento/services/departamento.service";
-import { FabricanteService } from "./../../../fabricante/services/fabricante.service";
-import { FornecedorService } from "./../../../fornecedor/services/fornecedor.service";
-import { GrupoService } from "./../../../grupo/grupo.service";
-import { ProdutoService } from "./../../services/produto.service";
+import { CommonService } from '../../../shared/services/common.service';
+import { Departamento } from './../../../../model/departamento';
+import { Fabricante } from './../../../../model/fabricante';
+import { Grupo } from './../../../../model/grupo';
+import { Produto } from './../../../../model/produto';
+import { DepartamentoService } from './../../../departamento/services/departamento.service';
+import { FabricanteService } from './../../../fabricante/services/fabricante.service';
+import { FornecedorService } from './../../../fornecedor/services/fornecedor.service';
+import { GrupoService } from './../../../grupo/grupo.service';
+import { ProdutoService } from './../../services/produto.service';
 
 @Component({
     selector: "produto-form",
@@ -35,7 +35,8 @@ export class ProdutoFormComponent implements OnInit {
         private departamentoService: DepartamentoService,
         private fabricanteService: FabricanteService,
         private fornecedorService: FornecedorService,
-        private router: Router
+        private router: Router,
+        private activatedRoute: ActivatedRoute
     ) {}
 
     ngOnInit(): void {
@@ -44,6 +45,16 @@ export class ProdutoFormComponent implements OnInit {
         this.fabricantes$ = this.fabricanteService.buscarTodos();
         this.fornecedores$ = this.fornecedorService.buscarTodos();
         this.departamentos$ = this.departamentoService.buscarTodos();
+
+        this.activatedRoute.params.subscribe(params => {
+            const id: number = params["id"];
+            if (id) {
+                this.editandoRegistroExistente = true;
+                this.produtoService
+                    .buscarPorId(id)
+                    .subscribe(produto => (this.produto = produto));
+            }
+        });
     }
 
     onSubmit(formulario: NgForm): void {

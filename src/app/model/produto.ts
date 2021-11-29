@@ -10,7 +10,7 @@ export interface Produto extends Auditavel {
     descricao?: string;
     codigoBarras?: string;
     unidadeMedida?: any;
-    palavrasChaves?: string[];
+    palavrasChave?: string[];
     possuiLoteValidade?: boolean;
     custoMedio?: number;
     fabricante?: Fabricante;

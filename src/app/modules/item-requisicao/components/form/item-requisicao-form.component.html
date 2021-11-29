@@ -6,7 +6,7 @@
             name="produto"
             (onClick)="abrirDialogProduto()"
             (remover)="this.item.produto = null"
-            [value]="(item.produto || {}).descricao"
+            [value]="(item.produto || {}).descricao || ''"
             placeholder="Selecione um Produto"
         >
         </input-button>

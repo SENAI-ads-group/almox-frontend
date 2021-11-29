@@ -23,7 +23,7 @@ export class ItemRequisicaoFormComponent {
         this.dialogRefProduto = this.dialogService.open(
             ProdutoModalListaComponent,
             {
-                header: "Escolha um Produto",
+                header: "Selecione um produto clicando duas vezes sobre o mesmo",
                 width: "70%",
                 contentStyle: { "max-height": "500px", overflow: "auto" },
                 baseZIndex: 10000,

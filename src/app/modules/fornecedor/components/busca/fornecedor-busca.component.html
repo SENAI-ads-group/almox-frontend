@@ -18,19 +18,19 @@
         </div>
 
         <div class="card">
-            <fornecedor-filtro
+            <fornecedor-filtro-busca
                 #filtroComponent
-                (buscar)="handleBuscar($event.filtro)"
-            ></fornecedor-filtro>
+                (buscar)="onBuscar($event.filtro)"
+            ></fornecedor-filtro-busca>
             <tabela-crud
                 [colunas]="colunas"
                 [dados]="fornecedores"
-                [exibirAcaoEditar]="handleExibirAcaoEditar"
-                [exibirAcaoExcluir]="handleExibirAcaoExcluir"
+                [exibirAcaoEditar]="onExibirAcaoEditar"
+                [exibirAcaoExcluir]="onExibirAcaoExcluir"
                 (selecionadosChange)="selecionados = $event"
-                (visualizar)="handleVisualizar($event)"
-                (editar)="handleEditar($event)"
-                (excluir)="handleExcluir($event)"
+                (visualizar)="onVisualizar($event)"
+                (editar)="onEditar($event)"
+                (excluir)="onExcluir($event)"
             ></tabela-crud>
         </div>
     </div>

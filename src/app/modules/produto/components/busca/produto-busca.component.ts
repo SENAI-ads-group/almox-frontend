@@ -6,15 +6,15 @@ import { Departamento } from 'src/app/model/departamento';
 import { Grupo } from 'src/app/model/grupo';
 import { DepartamentoService } from 'src/app/modules/departamento/services/departamento.service';
 
+import { Produto } from '../../../../model/produto';
+import { GrupoService } from '../../../grupo/grupo.service';
 import {
     criarConfiguracaoColuna,
     criarConfiguracaoColunaStatusAuditavel,
     TipoColuna,
 } from '../../../shared/components/tabela-crud/coluna';
 import { CommonService } from '../../../shared/services/common.service';
-import { HandleErrorService } from '../../../shared/services/handle-error.service';
-import { Produto } from '../../../../model/produto';
-import { GrupoService } from '../../../grupo/grupo.service';
+import { ProdutoService } from './../../services/produto.service';
 
 @Component({
     selector: "produto-lista",
@@ -23,7 +23,7 @@ import { GrupoService } from '../../../grupo/grupo.service';
 export class ProdutoBuscaComponent implements OnInit {
     TITULO_PAGINA = "Produtos";
 
-    produtos: Produto[];
+    produtos$: Observable<Produto[]>;
     selecionados: Produto[];
     enums$: Observable<any>;
     grupos$: Observable<Grupo[]>
@@ -33,9 +33,9 @@ export class ProdutoBuscaComponent implements OnInit {
 
     constructor(
         private messageService: MessageService,
-        private handleErrorService: HandleErrorService,
         private confirmationService: ConfirmationService,
         private commonService: CommonService,
+        private produtoService: ProdutoService,
         private grupoService: GrupoService,
         private departamentoService: DepartamentoService,
         private router: Router
@@ -51,7 +51,7 @@ export class ProdutoBuscaComponent implements OnInit {
                 TipoColuna.TEXTO
             ),
             criarConfiguracaoColuna(
-                "fabricante.nome",
+                "fabricante.razaoSocial",
                 "Fabricante",
                 TipoColuna.TEXTO
             ),
@@ -71,26 +71,14 @@ export class ProdutoBuscaComponent implements OnInit {
         this.departamentos$ = this.departamentoService.buscarTodos();
     }
 
-    buscar(filtro: any): void {}
-
-    visualizar = (produto: Produto) =>
-        this.router.navigate([`visualizar/${produto.id}`]);
-
-    editar = (produto: Produto) =>
-        this.router.navigate([`editar/${produto.id}`]);
-
-    excluirSelecionados(): void {
-        this.confirmationService.confirm({
-            message: "Tem certeza que deseja excluir os produtos selecionados?",
-            header: "Confirmação",
-            icon: "pi pi-exclamation-triangle",
-            rejectLabel: "Não",
-            acceptLabel: "Sim",
-            accept: () => {},
-        });
+    onBuscar(filtro: any): void {
+        this.produtos$ = this.produtoService.buscarTodosFiltrado(filtro);
     }
 
-    excluir(produto: Produto) {
+    onEditar = (produto: Produto) =>
+        this.router.navigate([`produtos/editar/${produto.id}`]);
+
+    onExcluir(produto: Produto) {
         this.confirmationService.confirm({
             message: `Você têm certeza que deseja excluir o produto ${produto.descricao} ?`,
             header: "Confirmação",

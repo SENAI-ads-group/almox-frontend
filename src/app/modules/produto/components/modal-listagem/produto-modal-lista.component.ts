@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { ProdutoService } from "./../../services/produto.service";
 import { Component, OnInit } from "@angular/core";
 import { Produto } from "src/app/model/produto";
@@ -8,7 +9,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
     templateUrl: "./produto-modal-lista.component.html",
 })
 export class ProdutoModalListaComponent implements OnInit {
-    produtos: Produto[];
+    produtos$ : Observable<Produto[]>;
 
     constructor(
         private produtoService: ProdutoService,
@@ -17,25 +18,11 @@ export class ProdutoModalListaComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-this.produtos = [
-    {   id: 1,
-        descricao: "escova de dente",
-        codigoBarras: "1HHY212JEENNXXIYUY",
-        unidadeMedida: {descricao: "MG"},
-        grupo: {descricao: "Utensílios"},
-    },
-
-    {   id: 2,
-        descricao: "escova de cabelo",
-        codigoBarras: "1HHY212JEENNX44242Y",
-        unidadeMedida: {descricao: "MG"},
-        grupo: {descricao: "Utensílios"},
-    }
-]
-        //this.produtoService.buscarTodos().subscribe(registros => this.produtos = registros);
+        this.produtos$ = this.produtoService.buscarTodos();
     }
 
-    selecionarProduto(produto: Produto): void {
-        this.dynamicDialogRef.close(produto);
+    onSelecionar(event: MouseEvent, produtoSelecionado: Produto) {
+        this.dynamicDialogRef.close(produtoSelecionado);
     }
+
 }

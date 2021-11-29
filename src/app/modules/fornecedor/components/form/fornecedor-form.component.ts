@@ -1,21 +1,21 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
-import { Fabricante } from 'src/app/model/fabricante';
-import { CommonService } from 'src/app/modules/shared/services/common.service';
-import { HandleErrorService } from 'src/app/modules/shared/services/handle-error.service';
-import { Mensagens } from 'src/app/utils/Mensagens';
-import { rotaEstaEmModoVisualizacao } from 'src/app/utils/RouterUtil';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { MessageService } from "primeng/api";
+import { Fornecedor } from "src/app/model/fornecedor";
+import { CommonService } from "src/app/modules/shared/services/common.service";
+import { HandleErrorService } from "src/app/modules/shared/services/handle-error.service";
+import { Mensagens } from "src/app/utils/Mensagens";
+import { rotaEstaEmModoVisualizacao } from "src/app/utils/RouterUtil";
 
-import { FabricanteService } from '../../services/fabricante.service';
+import { FornecedorService } from "../../services/fornecedor.service";
 
 @Component({
-    selector: "fabricante-form",
-    templateUrl: "./fabricante-form.component.html",
+    selector: "fornecedor-form",
+    templateUrl: "./fornecedor-form.component.html",
 })
-export class FabricanteFormComponent implements OnInit {
-    fabricante: Fabricante = { contato: {} };
+export class FornecedorFormComponent implements OnInit {
+    fornecedor: Fornecedor = { contato: {} };
 
     tiposEndereco: any[];
     tiposTelefone: any[];
@@ -25,7 +25,7 @@ export class FabricanteFormComponent implements OnInit {
     @ViewChild("formulario") formulario: NgForm;
 
     constructor(
-        private fabricanteService: FabricanteService,
+        private fornecedorService: FornecedorService,
         private handleErrorService: HandleErrorService,
         private messageService: MessageService,
         private commonService: CommonService,
@@ -38,9 +38,9 @@ export class FabricanteFormComponent implements OnInit {
             const id: number = params["id"];
             if (id) {
                 this.editandoRegistroExistente = true;
-                this.fabricanteService.buscarPorId(id).subscribe(fabricante => {
-                    console.log(fabricante);
-                    this.fabricante = fabricante;
+                this.fornecedorService.buscarPorId(id).subscribe(fornecedor => {
+                    console.log(fornecedor);
+                    this.fornecedor = fornecedor;
                 });
             }
         });
@@ -56,15 +56,14 @@ export class FabricanteFormComponent implements OnInit {
     }
 
     onSubmit(formulario: NgForm): void {
-        console.log('opa')
         if (!formulario.valid) return;
 
         const httpSubscriber = this.editandoRegistroExistente
-            ? this.fabricanteService.atualizar(
-                  this.fabricante.id,
-                  this.fabricante
+            ? this.fornecedorService.atualizar(
+                  this.fornecedor.id,
+                  this.fornecedor
               )
-            : this.fabricanteService.criar(this.fabricante);
+            : this.fornecedorService.criar(this.fornecedor);
 
         httpSubscriber.subscribe(() => {
             this.messageService.add(Mensagens.SUCESSO_REGISTRO_SALVO);
@@ -73,9 +72,9 @@ export class FabricanteFormComponent implements OnInit {
     }
 
     limpar(): void {
-        this.fabricante;
+        this.fornecedor;
     }
 
     habilitarModoEdicao = () =>
-        this.router.navigate([`fabricantes/editar/${this.fabricante.id}`]);
+        this.router.navigate([`fornecedores/editar/${this.fornecedor.id}`]);
 }

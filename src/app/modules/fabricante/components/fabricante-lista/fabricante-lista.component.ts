@@ -28,7 +28,7 @@ export class FabricanteListaComponent implements OnInit {
     ngOnInit(): void {
         this.colunas = [
             criarConfiguracaoColuna("id", "#", TipoColuna.TEXTO),
-            criarConfiguracaoColuna("cnpj", "Cnpj", TipoColuna.TEXTO),
+            criarConfiguracaoColuna("cnpj", "CNPJ", TipoColuna.TEXTO),
             criarConfiguracaoColuna(
                 "razaoSocial",
                 "Razão Social",
