@@ -6,7 +6,7 @@
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="p-d-flex p-ai-center p-jc-between">
-                <h5 class="p-m-0">Manage Products</h5>
+                <h5 class="p-m-0">Requisições</h5>
                 <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
@@ -37,7 +37,7 @@
                 <td>{{requisicao.dataRequisicao}}</td>
                 <td>{{requisicao.requisitante}}</td>
                 <td>{{requisicao.status}}</td>
-                <td><span [class]="'product-badge status-' + (produti.status ? produto.status.toLowerCase() : '')">{{produto.status}}</span></td>
+                <td><span [class]="'product-badge status-' + (requisicao.produto.status ? produto.status.toLowerCase() : '')">{{requisicao.produto.status}}</span></td>
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(product)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>

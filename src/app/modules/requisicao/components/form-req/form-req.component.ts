@@ -43,7 +43,7 @@ export class FormReqComponent implements OnInit {
   constructor(private requisicaoService: RequisicaoService,private produtoService: ProdutoService, private messageService: MessageService, private confirmationService: ConfirmationService, private commonService: CommonService,) { }
 
   ngOnInit(): void {
-      this.requisicaoService.buscarTodos().subscribe(registros => this.produtos = registros);
+      this.requisicaoService.buscarTodos();
 
       this.enums$ = this.commonService.buscarEnumeradores();
   }
