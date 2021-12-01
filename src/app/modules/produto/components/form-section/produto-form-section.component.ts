@@ -20,5 +20,6 @@ export class ProdutoFormSectionComponent implements OnInit {
 
     constructor(public formulario: NgForm) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+    }
 }

@@ -9,6 +9,9 @@
             <div class="p-field p-col-4">
                 <label for="dataRequisicao">Data de Requisição</label>
                 <p-calendar
+                    #dataRequisicaoControl="ngModel"
+                    id="dataRequisicao"
+                    name="dataRequisicao"
                     [(ngModel)]="dados.dataRequisicao"
                     [showIcon]="true"
                     inputId="dataRequisicao"

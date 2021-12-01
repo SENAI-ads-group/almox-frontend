@@ -5,7 +5,7 @@
     <div class="p-fluid p-formgrid p-grid">
         <div class="p-field p-col-4">
             <label for="name">Nome</label>
-            <input #nomeControl="ngModel" type="text" id="nome" name="nome" [(ngModel)]="usuario.nome" pInputText required autofocus [readonly]="modoVisualizacao" />
+            <input #nomeControl="ngModel" type="text" id="nome" name="nome" [(ngModel)]="usuario.username" pInputText required autofocus [readonly]="modoVisualizacao" />
             <small class="p-invalid p-error" *ngIf="formulario.submitted && !nomeControl.valid">
                 O nome do usuário é necessário.
             </small>

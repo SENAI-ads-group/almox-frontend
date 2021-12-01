@@ -97,7 +97,7 @@ export class UsuarioListaComponent implements OnInit {
                                 this.messageService.add({
                                     severity: "success",
                                     summary: "Sucesso",
-                                    detail: `Usuário ${usuario.nome} excluído.`,
+                                    detail: `Usuário ${usuario.username} excluído.`,
                                     life: 1500,
                                 });
                                 this.buscar(this.filtroComponent.filtro);
@@ -111,7 +111,7 @@ export class UsuarioListaComponent implements OnInit {
 
     excluir(usuario: Usuario) {
         this.confirmationService.confirm({
-            message: `Você têm certeza que deseja excluir o usuário ${usuario.nome} ?`,
+            message: `Você têm certeza que deseja excluir o usuário ${usuario.username} ?`,
             header: "Confirmação",
             icon: "pi pi-exclamation-triangle",
             acceptLabel: "Sim",

@@ -14,7 +14,7 @@
                 type="text"
                 [(ngModel)]="produto.id"
                 pInputText
-                readonly
+                disabled
             />
 
             <small
@@ -184,6 +184,8 @@
                     [(ngModel)]="
                         produto.configuracaoEstoque.controlaEstoqueMinimo
                     "
+                    id="controlaEstoqueMinimo"
+                    name="controlaEstoqueMinimo"
                 >
                 </p-inputSwitch>
             </div>
@@ -198,6 +200,8 @@
                     [(ngModel)]="
                         produto.configuracaoEstoque.controlaEstoqueMaximo
                     "
+                    id="controlaEstoqueMaximo"
+                    name="controlaEstoqueMaximo"
                 >
                 </p-inputSwitch>
             </div>

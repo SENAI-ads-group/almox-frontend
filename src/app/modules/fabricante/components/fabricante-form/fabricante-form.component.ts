@@ -59,6 +59,7 @@ export class FabricanteFormComponent implements OnInit {
         console.log('opa')
         if (!formulario.valid) return;
 
+        console.log('opa 2')
         const httpSubscriber = this.editandoRegistroExistente
             ? this.fabricanteService.atualizar(
                   this.fabricante.id,
@@ -68,7 +69,7 @@ export class FabricanteFormComponent implements OnInit {
 
         httpSubscriber.subscribe(() => {
             this.messageService.add(Mensagens.SUCESSO_REGISTRO_SALVO);
-            this.router.navigate(["/fornecedores/"]);
+            this.router.navigate(["/fabricantes/"]);
         });
     }
 

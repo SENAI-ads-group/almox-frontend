@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Fornecedor } from 'src/app/model/fornecedor';
+import { MessageService } from "primeng/api";
+import { Component, OnInit } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Observable } from "rxjs";
+import { Fornecedor } from "src/app/model/fornecedor";
+import { Mensagens } from "src/app/utils/Mensagens";
 
-import { CommonService } from '../../../shared/services/common.service';
-import { Departamento } from './../../../../model/departamento';
-import { Fabricante } from './../../../../model/fabricante';
-import { Grupo } from './../../../../model/grupo';
-import { Produto } from './../../../../model/produto';
-import { DepartamentoService } from './../../../departamento/services/departamento.service';
-import { FabricanteService } from './../../../fabricante/services/fabricante.service';
-import { FornecedorService } from './../../../fornecedor/services/fornecedor.service';
-import { GrupoService } from './../../../grupo/grupo.service';
-import { ProdutoService } from './../../services/produto.service';
+import { CommonService } from "../../../shared/services/common.service";
+import { Departamento } from "./../../../../model/departamento";
+import { Fabricante } from "./../../../../model/fabricante";
+import { Grupo } from "./../../../../model/grupo";
+import { Produto } from "./../../../../model/produto";
+import { DepartamentoService } from "./../../../departamento/services/departamento.service";
+import { FabricanteService } from "./../../../fabricante/services/fabricante.service";
+import { FornecedorService } from "./../../../fornecedor/services/fornecedor.service";
+import { GrupoService } from "./../../../grupo/grupo.service";
+import { ProdutoService } from "./../../services/produto.service";
 
 @Component({
     selector: "produto-form",
@@ -36,7 +38,8 @@ export class ProdutoFormComponent implements OnInit {
         private fabricanteService: FabricanteService,
         private fornecedorService: FornecedorService,
         private router: Router,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private messageService: MessageService
     ) {}
 
     ngOnInit(): void {
@@ -50,9 +53,13 @@ export class ProdutoFormComponent implements OnInit {
             const id: number = params["id"];
             if (id) {
                 this.editandoRegistroExistente = true;
-                this.produtoService
-                    .buscarPorId(id)
-                    .subscribe(produto => (this.produto = produto));
+                this.produtoService.buscarPorId(id).subscribe(produto => {
+                    this.produto = produto;
+                    this.departamentos$ =
+                        this.departamentoService.buscarTodosFiltrado({
+                            idProduto: produto.id,
+                        });
+                });
             }
         });
     }
@@ -63,7 +70,10 @@ export class ProdutoFormComponent implements OnInit {
         const httpSubscriber = this.editandoRegistroExistente
             ? this.produtoService.atualizar(this.produto.id, this.produto)
             : this.produtoService.criar(this.produto);
-        httpSubscriber.subscribe(() => this.router.navigate(["/produtos/"]));
+        httpSubscriber.subscribe(() => {
+            this.messageService.add(Mensagens.SUCESSO_REGISTRO_SALVO);
+            this.router.navigate(["/produtos/"]);
+        });
     }
 
     onLimpar(): void {}

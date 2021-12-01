@@ -3,7 +3,7 @@ import { Auditavel } from "./auditavel";
 
 export interface Usuario extends Auditavel {
     id?: number;
-    nome?: string;
+    username?: string;
     email?: string;
     tipoUsuario?: any;
     departamentos?: Departamento[];
