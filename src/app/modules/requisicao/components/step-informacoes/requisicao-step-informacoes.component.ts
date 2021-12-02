@@ -1,3 +1,4 @@
+import { UsuarioService } from './../../../usuario/services/usuario.service';
 import { DepartamentoService } from "src/app/modules/departamento/services/departamento.service";
 import { Component, ViewChild, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
@@ -15,26 +16,25 @@ import { RequisicaoStepMergeService } from "../../services/requisicao-step-merge
 export class RequisicaoStepInformacoesComponent implements OnInit {
     @ViewChild("formulario") formulario: NgForm;
     departamentos$: Observable<Departamento[]>;
-
-    dados:any;
+    almoxarifes$: Observable<Departamento[]>;
 
     constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute,
-        private stepMergeService: RequisicaoStepMergeService,
-        private departamentoService: DepartamentoService
+        public stepMergeService: RequisicaoStepMergeService,
+        private departamentoService: DepartamentoService,
+        private usuarioService: UsuarioService
     ) {}
 
     ngOnInit(): void {
         this.departamentos$ =
             this.departamentoService.buscarAssociadosUsuarioLogado();
-
-        this.dados = this.stepMergeService.state;
+        this.almoxarifes$ = this.usuarioService.buscarTodos();
     }
 
     onSubmit() {
         if (this.formulario.valid) {
-            this.stepMergeService.state.departamento = this.dados.departamento;
+            //this.stepMergeService.state.departamento = this.dados.departamento;
             this.proximo();
         }
     }

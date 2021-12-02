@@ -42,8 +42,13 @@ export class RequisicaoBuscaComponent
                 TipoColuna.DATA_HORA
             ),
             criarConfiguracaoColuna(
-                "requisitante.login",
+                "requisitante.nome",
                 "Requisitante",
+                TipoColuna.TEXTO
+            ),
+            criarConfiguracaoColuna(
+                "almoxarife.nome",
+                "Almoxarife",
                 TipoColuna.TEXTO
             ),
             criarConfiguracaoColuna(

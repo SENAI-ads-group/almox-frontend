@@ -45,6 +45,7 @@ export class RequisicaoFormComponent
             },
         ];
 
+        this.stepMergeService.state = { itens: [], dataRequisicao: new Date()}
         this.activatedRoute.params.subscribe(params => {
             const id: number = params["id"];
             if (id) {
@@ -53,6 +54,7 @@ export class RequisicaoFormComponent
                     .buscarPorId(id)
                     .subscribe(registroEncontrado => {
                         this.registro = registroEncontrado;
+                        this.stepMergeService.state = registroEncontrado
                     });
             }
         });

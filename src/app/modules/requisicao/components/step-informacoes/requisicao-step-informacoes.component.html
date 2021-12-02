@@ -12,7 +12,7 @@
                     #dataRequisicaoControl="ngModel"
                     id="dataRequisicao"
                     name="dataRequisicao"
-                    [(ngModel)]="dados.dataRequisicao"
+                    [(ngModel)]="stepMergeService.state.dataRequisicao"
                     [showIcon]="true"
                     inputId="dataRequisicao"
                 ></p-calendar>
@@ -24,8 +24,23 @@
                     id="departamento"
                     name="departamento"
                     [options]="departamentos$ | async"
-                    [(ngModel)]="dados.departamento"
+                    [(ngModel)]="stepMergeService.state.departamento"
                     placeholder="Selecione o departamento da requisição"
+                    optionLabel="nome"
+                    emptyMessage="Nenhum registro encontrado"
+                    required
+                    showClear="true"
+                ></p-dropdown>
+            </div>
+            <div class="p-field p-col-4">
+                <label>ALmoxarife</label>
+                <p-dropdown
+                    #almoxarifeControl="ngModel"
+                    id="almoxarife"
+                    name="almoxarife"
+                    [options]="almoxarifes$ | async"
+                    [(ngModel)]="stepMergeService.state.almoxarife"
+                    placeholder="Selecione o almoxarife responsável"
                     optionLabel="nome"
                     emptyMessage="Nenhum registro encontrado"
                     required
