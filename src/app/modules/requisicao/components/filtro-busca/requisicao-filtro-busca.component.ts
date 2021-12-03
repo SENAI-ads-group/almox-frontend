@@ -1,4 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { UsuarioService } from "./../../../usuario/services/usuario.service";
+import { Observable } from "rxjs";
+import { Usuario } from "./../../../../model/usuario";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 @Component({
     selector: "requisicao-filtro",
@@ -7,11 +10,18 @@ import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 export class RequisicaoFiltroComponent {
     @Output("buscar") buscarEvent: EventEmitter<any> = new EventEmitter();
 
+    @Input() almoxarifes: Usuario[];
+    @Input() requisitantes: Usuario[];
+    @Input() enums: any;
+
     filtro = {
         descricao: null,
+        almoxarife: null,
+        requisitante: null,
+        status: null
     };
 
-    constructor() {}
+    constructor(private usuarioService: UsuarioService) {}
 
     onBuscar(): void {
         this.buscarEvent.emit({ filtro: this.filtro });
@@ -20,6 +30,9 @@ export class RequisicaoFiltroComponent {
     onLimpar(): void {
         this.filtro = {
             descricao: null,
+            almoxarife: null,
+            requisitante: null,
+            status: null
         };
     }
 }

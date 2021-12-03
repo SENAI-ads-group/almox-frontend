@@ -22,6 +22,7 @@ export class TabelaCrudComponent<T> implements OnInit {
     @Input("exibirAcaoVisualizar") exibirAcaoVisualizar = (t: T) => true;
     @Input("exibirAcaoEditar") exibirAcaoEditar = (t: T) => true;
     @Input("exibirAcaoExcluir") exibirAcaoExcluir = (t: T) => true;
+    @Input("loading") loading : boolean;
 
     @Output("selecionadosChange") selecionadosEvent = new EventEmitter<T[]>();
     @Output("visualizar") visualizarEvent = new EventEmitter<T>();

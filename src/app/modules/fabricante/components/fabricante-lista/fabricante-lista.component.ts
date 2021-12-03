@@ -40,6 +40,7 @@ export class FabricanteListaComponent implements OnInit {
                 TipoColuna.TEXTO
             ),
         ];
+        this.handleBuscar({});
     }
     handleVisualizar(fabricante: Fabricante) {
         this.router.navigate([`fabricantes/visualizar/${fabricante.id}`]);

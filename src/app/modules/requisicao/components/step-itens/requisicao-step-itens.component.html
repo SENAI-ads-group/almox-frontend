@@ -14,10 +14,50 @@
     <div class="card">
         <div class="p-fluid">
             <item-requisicao-lista
-                [itens]="registros"
+                [itens]="stepMergeService.state.itens"
                 (editar)="handleEditar($event)"
                 (excluir)="handleExcluir($event)"
             ></item-requisicao-lista>
         </div>
     </div>
+    <p-toast
+        position="bottom-center"
+        key="confirmacao"
+        (onClose)="onRejeitarExclusao()"
+        [baseZIndex]="5000"
+    >
+        <ng-template let-message pTemplate="message">
+            <div class="p-flex p-flex-column" style="flex: 1">
+                <div class="p-text-center">
+                    <i
+                        class="pi pi-exclamation-triangle"
+                        style="font-size: 3rem"
+                    ></i>
+                    <h4>{{ message.summary }}</h4>
+                    <p>{{ message.detail }}</p>
+                    <br />
+                </div>
+                <div class="p-grid p-fluid">
+                    <div class="p-col-6">
+                        <button
+                            type="button"
+                            pButton
+                            (click)="onRejeitarExclusao()"
+                            label="Não"
+                            class="p-button-secondary"
+                        ></button>
+                    </div>
+                    <div class="p-col-6">
+                        <button
+                            type="button"
+                            pButton
+                            (click)="onConfirmarExclusao()"
+                            label="Sim"
+                            class="p-button-success"
+                        ></button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-toast>
 </step>

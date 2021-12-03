@@ -19,9 +19,10 @@
             ></produto-filtro>
             <tabela-crud
                 [colunas]="colunas"
-                [dados]="produtos$ | async"
+                [dados]="registros"
                 [exibirAcaoEditar]="exibirAcaoEditar"
                 [exibirAcaoExcluir]="exibirAcaoExcluir"
+                [loading]="loading"
                 (selecionadosChange)="selecionados = $event"
                 (editar)="onEditar($event)"
                 (excluir)="onExcluir($event)"

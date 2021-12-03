@@ -1,3 +1,4 @@
+import { Mensagens } from './../../../../utils/Mensagens';
 import { RequisicaoStepMergeService } from "../../services/requisicao-step-merge.service";
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
@@ -11,7 +12,7 @@ import { HandleErrorService } from "../../../shared/services/handle-error.servic
 import { UsuarioService } from "../../../usuario/services/usuario.service";
 import { RequisicaoService } from "../../services/requisicao.service";
 import { PaginaFormularioCrud } from "../../../shared/PaginaFormularioCrud";
-import { MenuItem } from "primeng/api";
+import { MenuItem, MessageService } from "primeng/api";
 
 @Component({
     selector: "departamento-form",
@@ -27,7 +28,7 @@ export class RequisicaoFormComponent
 
     constructor(
         private requisicaoService: RequisicaoService,
-        private handleErrorService: HandleErrorService,
+        private messageService : MessageService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private stepMergeService: RequisicaoStepMergeService
@@ -46,6 +47,7 @@ export class RequisicaoFormComponent
         ];
 
         this.stepMergeService.state = { itens: [], dataRequisicao: new Date()}
+
         this.activatedRoute.params.subscribe(params => {
             const id: number = params["id"];
             if (id) {
@@ -53,6 +55,7 @@ export class RequisicaoFormComponent
                 this.requisicaoService
                     .buscarPorId(id)
                     .subscribe(registroEncontrado => {
+                        registroEncontrado.dataRequisicao = new Date(registroEncontrado.dataRequisicao);
                         this.registro = registroEncontrado;
                         this.stepMergeService.state = registroEncontrado
                     });
@@ -68,6 +71,7 @@ export class RequisicaoFormComponent
             : this.requisicaoService.criar(this.registro);
         httpSubscriber.subscribe(() => {
             this.stepMergeService.state = {};
+            this.messageService.add(Mensagens.SUCESSO_REGISTRO_SALVO)
             this.router.navigate(["/requisicoes/"]);
         });
     }

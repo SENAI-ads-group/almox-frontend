@@ -43,7 +43,7 @@ export const Navigation: MenuItem[] = [
                 icon: "fa fa-th",
                 items: [
                     {
-                        label: "Nova",
+                        label: "Requisitar",
                         icon: "pi pi-plus",
                         routerLink: "/requisicoes/novo",
                     },

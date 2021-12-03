@@ -7,17 +7,6 @@
     <form #formulario="ngForm" (ngSubmit)="onSubmit()">
         <div class="p-fluid p-formgrid p-grid">
             <div class="p-field p-col-4">
-                <label for="dataRequisicao">Data de Requisição</label>
-                <p-calendar
-                    #dataRequisicaoControl="ngModel"
-                    id="dataRequisicao"
-                    name="dataRequisicao"
-                    [(ngModel)]="stepMergeService.state.dataRequisicao"
-                    [showIcon]="true"
-                    inputId="dataRequisicao"
-                ></p-calendar>
-            </div>
-            <div class="p-field p-col-4">
                 <label>Departamento</label>
                 <p-dropdown
                     #departamentoControl="ngModel"
@@ -31,6 +20,12 @@
                     required
                     showClear="true"
                 ></p-dropdown>
+                <small
+                    class="p-invalid p-error p-mt-1"
+                    *ngIf="!stepMergeService.state.departamento"
+                >
+                    *É necessário selecionar um departamento
+                </small>
             </div>
             <div class="p-field p-col-4">
                 <label>ALmoxarife</label>
@@ -46,6 +41,12 @@
                     required
                     showClear="true"
                 ></p-dropdown>
+                <small
+                    class="p-invalid p-error p-mt-1"
+                    *ngIf="!stepMergeService.state.almoxarife"
+                >
+                    *É necessário selecionar o Almoxarife
+                </small>
             </div>
         </div>
     </form>

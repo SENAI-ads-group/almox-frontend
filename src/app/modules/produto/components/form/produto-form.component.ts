@@ -53,12 +53,13 @@ export class ProdutoFormComponent implements OnInit {
             const id: number = params["id"];
             if (id) {
                 this.editandoRegistroExistente = true;
-                this.produtoService.buscarPorId(id).subscribe(produto => {
-                    this.produto = produto;
+                this.produtoService.buscarPorId(id).subscribe(resp => {
+                    this.produto = resp;
                     this.departamentos$ =
-                        this.departamentoService.buscarTodosFiltrado({
-                            idProduto: produto.id,
-                        });
+                        this.departamentoService.buscarPorRelacaoProduto(
+                            resp.id,
+                            false
+                        );
                 });
             }
         });

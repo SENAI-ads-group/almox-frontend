@@ -13,18 +13,17 @@
         <div class="card">
             <grupo-filtro-busca
                 #filtroComponent
-                (buscar)="buscar($event.filtro)"
-                [tiposGrupos]="grupos"
+                (buscar)="onBuscar($event.filtro)"
             ></grupo-filtro-busca>
+
             <tabela-crud
                 [colunas]="colunas"
-                [dados]="grupos"
+                [dados]="registros"
+                [loading]="loading"
                 [exibirAcaoEditar]="exibirAcaoEditar"
                 [exibirAcaoExcluir]="exibirAcaoExcluir"
-                (selecionadosChange)="selecionados = $event"
-                (visualizar)="visualizar($event)"
-                (editar)="editar($event)"
-                (excluir)="excluir($event)"
+                (editar)="onEditar($event)"
+                (excluir)="onExcluir($event)"
             ></tabela-crud>
         </div>
     </div>

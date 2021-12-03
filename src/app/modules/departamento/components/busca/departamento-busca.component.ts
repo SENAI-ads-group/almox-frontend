@@ -49,6 +49,7 @@ export class DepartamentoBuscaComponent implements OnInit {
             ),
             criarConfiguracaoColunaStatusAuditavel("Status"),
         ];
+        this.buscar({});
     }
 
     buscar(filtro: any): void {

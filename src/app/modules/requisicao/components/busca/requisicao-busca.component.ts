@@ -1,8 +1,10 @@
+import { UsuarioService } from "./../../../usuario/services/usuario.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { Observable } from "rxjs";
 import { Requisicao } from "src/app/model/requisicao";
+import { Usuario } from "src/app/model/usuario";
 import {
     criarConfiguracaoColuna,
     TipoColuna,
@@ -16,22 +18,25 @@ import { RequisicaoService } from "../../services/requisicao.service";
 @Component({
     selector: "requisicao-busca",
     templateUrl: "./requisicao-busca.component.html",
+    styleUrls: ["./requisicao-busca.component.scss"],
 })
-export class RequisicaoBuscaComponent
-    implements OnInit, PaginaBuscaCrud<Requisicao>
-{
+export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
     NOME_PAGINA = "Requisições";
-    registros$: Observable<Requisicao[]>;
     enums$: Observable<any>;
+    almoxarifes$: Observable<Usuario[]>;
+    requisitantes$: Observable<Usuario[]>;
     colunas: any[];
 
     constructor(
         private confirmationService: ConfirmationService,
         private messageService: MessageService,
         private commonService: CommonService,
-        private requisicaoService: RequisicaoService,
+        requisicaoService: RequisicaoService,
+        private usuarioService: UsuarioService,
         private router: Router
-    ) {}
+    ) {
+        super(requisicaoService);
+    }
 
     ngOnInit(): void {
         this.colunas = [
@@ -64,14 +69,22 @@ export class RequisicaoBuscaComponent
         ];
 
         this.enums$ = this.commonService.buscarEnumeradores();
+        this.almoxarifes$ = this.usuarioService.buscarTodos();
+        this.requisitantes$ = this.usuarioService.buscarTodos();
+        this.onBuscar({});
     }
 
     onBuscar(filtro: any) {
-        this.registros$ = this.requisicaoService.buscarTodosFiltrado(filtro);
-    }
-
-    onVisualizar(registro: Requisicao) {
-        this.router.navigate([`requisicoes/visualizar/${registro.id}`]);
+        console.log('opa')
+        this.loading = true;
+        this.service.buscarTodosFiltrado(filtro).subscribe(
+            (dados: Requisicao[]) => {
+                console.log("requisição", dados);
+                this.registros = dados;
+                this.loading = false;
+            },
+            () => (this.loading = false)
+        );
     }
 
     onEditar(registro: Requisicao) {
@@ -80,7 +93,7 @@ export class RequisicaoBuscaComponent
 
     onExcluir(registro: Requisicao) {
         this.confirmationService.confirm({
-            message: `Você têm certeza que deseja excluir a requisição ${registro} ?`,
+            message: `Você têm certeza que deseja excluir a requisição ${registro.id} ?`,
             header: "Confirmação",
             icon: "pi pi-exclamation-triangle",
             acceptLabel: "Sim",

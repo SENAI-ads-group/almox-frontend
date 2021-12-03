@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { Observable, Subscriber } from 'rxjs';
-import { Departamento } from 'src/app/model/departamento';
-import { Grupo } from 'src/app/model/grupo';
-import { DepartamentoService } from 'src/app/modules/departamento/services/departamento.service';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { ConfirmationService, MessageService } from "primeng/api";
+import { Observable, Subscriber } from "rxjs";
+import { catchError, tap } from "rxjs/operators";
+import { Departamento } from "src/app/model/departamento";
+import { Grupo } from "src/app/model/grupo";
+import { DepartamentoService } from "src/app/modules/departamento/services/departamento.service";
 
-import { Produto } from '../../../../model/produto';
-import { GrupoService } from '../../../grupo/grupo.service';
+import { Produto } from "../../../../model/produto";
+import { GrupoService } from "../../../grupo/grupo.service";
 import {
     criarConfiguracaoColuna,
     criarConfiguracaoColunaStatusAuditavel,
     TipoColuna,
-} from '../../../shared/components/tabela-crud/coluna';
-import { CommonService } from '../../../shared/services/common.service';
-import { ProdutoService } from './../../services/produto.service';
+} from "../../../shared/components/tabela-crud/coluna";
+import { CommonService } from "../../../shared/services/common.service";
+import { ProdutoService } from "./../../services/produto.service";
 
 @Component({
     selector: "produto-lista",
@@ -23,13 +24,14 @@ import { ProdutoService } from './../../services/produto.service';
 export class ProdutoBuscaComponent implements OnInit {
     TITULO_PAGINA = "Produtos";
 
-    produtos$: Observable<Produto[]>;
+    registros: Produto[];
     selecionados: Produto[];
     enums$: Observable<any>;
-    grupos$: Observable<Grupo[]>
-    departamentos$: Observable<Departamento[]>
+    grupos$: Observable<Grupo[]>;
+    departamentos$: Observable<Departamento[]>;
     enumsSubscribe: Subscriber<any>;
     colunas: any[];
+    loading: boolean = false;
 
     constructor(
         private messageService: MessageService,
@@ -69,10 +71,19 @@ export class ProdutoBuscaComponent implements OnInit {
         ];
         this.grupos$ = this.grupoService.buscarTodos();
         this.departamentos$ = this.departamentoService.buscarTodos();
+
+        this.onBuscar({});
     }
 
     onBuscar(filtro: any): void {
-        this.produtos$ = this.produtoService.buscarTodosFiltrado(filtro);
+        this.loading = true;
+        this.produtoService.buscarTodosFiltrado(filtro).subscribe(
+            dados => {
+                this.registros = dados;
+                this.loading = false;
+            },
+            () => (this.loading = false)
+        );
     }
 
     onEditar = (produto: Produto) =>

@@ -17,8 +17,8 @@ export class LoginService {
             .post(`${environment.api.baseUrl}/login`, solicitacaoLogin)
             .pipe(
                 tap(resposta => {
-                    localStorage.setItem(
-                        environment.auth.tokenLocalStorage,
+                    sessionStorage.setItem(
+                        environment.auth.tokensessionStorage,
                         resposta.token
                     );
                 })

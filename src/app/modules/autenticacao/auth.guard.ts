@@ -16,7 +16,7 @@ export class Authguard implements CanActivate {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): boolean {
-        const accessToken = localStorage.getItem("almox_access_token");
+        const accessToken = sessionStorage.getItem("almox_access_token");
         if (accessToken && accessToken !== 'null') {
             return true;
         }

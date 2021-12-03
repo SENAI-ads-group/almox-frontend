@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
         <button
             pButton
             pRipple
+            type="button"
             label="Limpar"
             class="p-button-outlined p-button-secondary p-mr-2 p-mb-3"
             style="color: #424242;"

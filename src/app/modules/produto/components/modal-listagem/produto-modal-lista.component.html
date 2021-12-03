@@ -8,17 +8,18 @@
 >
     <ng-template pTemplate="header">
         <tr>
-            <th pSortableColumn="id">
-                Id <p-sortIcon field="vin"></p-sortIcon>
-            </th>
-            <th pSortableColumn="codigoBarras">Código de Barras</th>
-            <th pSortableColumn="descricao">Descrição</th>
+            <th>Código</th>
+            <th>Código de Barras</th>
+            <th>Descrição</th>
             <th>Unidade de Medida</th>
             <th>Grupo</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-produto>
-        <tr [pSelectableRow]="produto" (dblclick)="onSelecionar($event, produto)">
+        <tr
+            [pSelectableRow]="produto"
+            (dblclick)="onSelecionar($event, produto)"
+        >
             <td>{{ produto.id }}</td>
             <td>{{ produto.codigoBarras }}</td>
             <td>{{ produto.descricao }}</td>

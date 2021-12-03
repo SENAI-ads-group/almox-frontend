@@ -19,7 +19,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
                 pButton
                 pRipple
                 icon="pi pi-times"
-                styleClass="p-button-danger"
+                class="p-button-danger"
                 (click)="onButtonRemoveClick()"
             ></button>
         </div>

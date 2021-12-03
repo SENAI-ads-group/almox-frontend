@@ -32,6 +32,7 @@ const routes: Routes = [
             { path: "itens", component: RequisicaoStepItensComponent },
         ]
     }
+
 ];
 
 @NgModule({
