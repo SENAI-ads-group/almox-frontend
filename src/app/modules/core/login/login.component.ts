@@ -15,7 +15,7 @@ export class LoginComponent {
 
     login() {
         this.loginService.logar(this.username, this.password).subscribe(r => {
-            localStorage.setItem("almox_access_token", r.access_token);
+            sessionStorage.setItem("almox_access_token", r.access_token);
             this.router.navigate(["/"]);
         });
     }

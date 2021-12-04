@@ -44,6 +44,8 @@ export class FornecedorBuscaComponent implements OnInit {
                 TipoColuna.TEXTO
             ),
         ];
+
+        this.onBuscar({});
     }
 
     onVisualizar(fornecedor: Fornecedor) {

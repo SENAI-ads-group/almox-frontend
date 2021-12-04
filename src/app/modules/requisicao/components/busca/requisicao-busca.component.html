@@ -13,13 +13,16 @@
         <div class="card">
             <requisicao-filtro
                 #filtroComponent
+                [almoxarifes]="almoxarifes$ | async"
+                [requisitantes]="requisitantes$ | async"
+                [enums]="enums$ | async"
                 (buscar)="onBuscar($event.filtro)"
             ></requisicao-filtro>
 
             <tabela-crud
                 [colunas]="colunas"
-                [dados]="registros$ | async"
-                (visualizar)="onVisualizar($event)"
+                [dados]="registros"
+                [loading]="loading"
                 (editar)="onEditar($event)"
                 (excluir)="onExcluir($event)"
             ></tabela-crud>

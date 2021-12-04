@@ -40,7 +40,6 @@ export class UsuarioFormComponent implements OnInit {
             if (id) {
                 this.editandoRegistroExistente = true;
                 this.usuarioService.buscarPorId(id).subscribe(usuario => {
-                    console.log(usuario);
                     this.usuario = usuario;
                 });
             }

@@ -7,30 +7,46 @@
     <form #formulario="ngForm" (ngSubmit)="onSubmit()">
         <div class="p-fluid p-formgrid p-grid">
             <div class="p-field p-col-4">
-                <label for="dataRequisicao">Data de Requisição</label>
-                <p-calendar
-                    #dataRequisicaoControl="ngModel"
-                    id="dataRequisicao"
-                    name="dataRequisicao"
-                    [(ngModel)]="dados.dataRequisicao"
-                    [showIcon]="true"
-                    inputId="dataRequisicao"
-                ></p-calendar>
-            </div>
-            <div class="p-field p-col-4">
                 <label>Departamento</label>
                 <p-dropdown
                     #departamentoControl="ngModel"
                     id="departamento"
                     name="departamento"
                     [options]="departamentos$ | async"
-                    [(ngModel)]="dados.departamento"
+                    [(ngModel)]="stepMergeService.state.departamento"
                     placeholder="Selecione o departamento da requisição"
                     optionLabel="nome"
                     emptyMessage="Nenhum registro encontrado"
                     required
                     showClear="true"
                 ></p-dropdown>
+                <small
+                    class="p-invalid p-error p-mt-1"
+                    *ngIf="!stepMergeService.state.departamento"
+                >
+                    *É necessário selecionar um departamento
+                </small>
+            </div>
+            <div class="p-field p-col-4">
+                <label>ALmoxarife</label>
+                <p-dropdown
+                    #almoxarifeControl="ngModel"
+                    id="almoxarife"
+                    name="almoxarife"
+                    [options]="almoxarifes$ | async"
+                    [(ngModel)]="stepMergeService.state.almoxarife"
+                    placeholder="Selecione o almoxarife responsável"
+                    optionLabel="nome"
+                    emptyMessage="Nenhum registro encontrado"
+                    required
+                    showClear="true"
+                ></p-dropdown>
+                <small
+                    class="p-invalid p-error p-mt-1"
+                    *ngIf="!stepMergeService.state.almoxarife"
+                >
+                    *É necessário selecionar o Almoxarife
+                </small>
             </div>
         </div>
     </form>

@@ -39,7 +39,6 @@ export class FornecedorFormComponent implements OnInit {
             if (id) {
                 this.editandoRegistroExistente = true;
                 this.fornecedorService.buscarPorId(id).subscribe(fornecedor => {
-                    console.log(fornecedor);
                     this.fornecedor = fornecedor;
                 });
             }

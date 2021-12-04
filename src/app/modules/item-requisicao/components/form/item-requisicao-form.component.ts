@@ -8,14 +8,13 @@ import { ProdutoModalListaComponent } from 'src/app/modules/produto/components/m
 @Component({
     selector: "item-requisicao-form",
     templateUrl: "./item-requisicao-form.component.html",
-    styleUrls: ["./form.component.scss"],
-    viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+    styleUrls: ["./form.component.scss"]
 })
 export class ItemRequisicaoFormComponent {
     @Input() item: ItemRequisicao = {  };
     @Output() submit = new EventEmitter<ItemRequisicao>();
 
-    constructor(private dialogService: DialogService, public formulario: NgForm) {}
+    constructor(private dialogService: DialogService) {}
 
     dialogRefProduto: DynamicDialogRef;
 
@@ -34,5 +33,13 @@ export class ItemRequisicaoFormComponent {
             if (!produtoSelecionado) return;
             this.item.produto = produtoSelecionado;
         });
+    }
+
+    onSubmit = () => {
+        if(!this.item.produto || !this.item.quantidade || this.item.quantidade <= 0) {
+            return;
+        }
+
+        this.submit.emit(this.item);
     }
 }

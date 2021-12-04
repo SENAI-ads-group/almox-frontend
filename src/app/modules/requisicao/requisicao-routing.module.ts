@@ -20,6 +20,19 @@ const routes: Routes = [
             { path: "itens", component: RequisicaoStepItensComponent },
         ]
     },
+    {
+        path: "editar/:id",
+        component: RequisicaoFormComponent,
+        children: [
+            { path: "", redirectTo: "informacoes", pathMatch: "full" },
+            {
+                path: "informacoes",
+                component: RequisicaoStepInformacoesComponent,
+            },
+            { path: "itens", component: RequisicaoStepItensComponent },
+        ]
+    }
+
 ];
 
 @NgModule({

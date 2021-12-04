@@ -9,6 +9,6 @@ export const environment = {
     baseUrl: 'http://localhost:8080'
   },
   auth: {
-    tokenLocalStorage: 'almox_access_token'
+    tokensessionStorage: 'almox_access_token'
     }
 };

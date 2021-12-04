@@ -39,7 +39,6 @@ export class FabricanteFormComponent implements OnInit {
             if (id) {
                 this.editandoRegistroExistente = true;
                 this.fabricanteService.buscarPorId(id).subscribe(fabricante => {
-                    console.log(fabricante);
                     this.fabricante = fabricante;
                 });
             }
@@ -56,10 +55,8 @@ export class FabricanteFormComponent implements OnInit {
     }
 
     onSubmit(formulario: NgForm): void {
-        console.log('opa')
         if (!formulario.valid) return;
 
-        console.log('opa 2')
         const httpSubscriber = this.editandoRegistroExistente
             ? this.fabricanteService.atualizar(
                   this.fabricante.id,

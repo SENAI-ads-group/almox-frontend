@@ -25,8 +25,8 @@ export class HandleErrorHttpInterceptor implements HttpInterceptor {
         request: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
-        const accessToken = localStorage.getItem(
-            environment.auth.tokenLocalStorage
+        const accessToken = sessionStorage.getItem(
+            environment.auth.tokensessionStorage
         );
         if (accessToken != null) {
             request = request.clone({
@@ -53,7 +53,7 @@ export class HandleErrorHttpInterceptor implements HttpInterceptor {
     private handleError401 = (errorResponse: HttpErrorResponse) => {
         this.genericHandleError(errorResponse);
 
-        localStorage.removeItem(environment.auth.tokenLocalStorage);
+        sessionStorage.removeItem(environment.auth.tokensessionStorage);
         this.router.navigate(["/login"]);
     };
 
@@ -71,12 +71,22 @@ export class HandleErrorHttpInterceptor implements HttpInterceptor {
 
     private genericHandleError = (errorResponse: HttpErrorResponse) => {
         const { error } = errorResponse;
-        this.messageService.addAll(error.messages.map((msg : string) => {
-            return {
+        if (error.messages) {
+            this.messageService.addAll(
+                error.messages.map((msg: string) => {
+                    return {
+                        key: "notification",
+                        severity: "error",
+                        summary: msg,
+                    };
+                })
+            );
+        } else {
+            this.messageService.add({
                 key: "notification",
                 severity: "error",
-                summary: msg,
-            }
-        }));
+                summary: "Erro desconhecido",
+            });
+        }
     };
 }
