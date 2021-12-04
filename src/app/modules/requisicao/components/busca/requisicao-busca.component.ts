@@ -75,11 +75,9 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
     }
 
     onBuscar(filtro: any) {
-        console.log('opa')
         this.loading = true;
         this.service.buscarTodosFiltrado(filtro).subscribe(
             (dados: Requisicao[]) => {
-                console.log("requisição", dados);
                 this.registros = dados;
                 this.loading = false;
             },
