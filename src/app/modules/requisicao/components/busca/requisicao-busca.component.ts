@@ -86,7 +86,7 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
     }
 
     onEditar(registro: Requisicao) {
-        this.router.navigate([`requisicoes/editar/${registro.id}`]);
+        this.router.navigate([`requisicoes/informacoes/${registro.id}`]);
     }
 
     onExcluir(registro: Requisicao) {

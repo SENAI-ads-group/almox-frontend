@@ -1,3 +1,4 @@
+
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
@@ -25,6 +26,7 @@ const routes: Routes = [
 
         ]
     },
+<<<<<<< HEAD
     {
         path: "editar/:id",
         component: RequisicaoFormComponent,
@@ -39,6 +41,9 @@ const routes: Routes = [
     }
 
 
+=======
+    { path: "informacoes/:id", component: InformacoesComponent},
+>>>>>>> 2676bd2 (criar-acao-requisicao)
 ];
 
 @NgModule({
