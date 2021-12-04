@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 <div class="p-fluid p-formgrid p-grid">
     <div class="p-field p-col-6">
+=======
+<form #formulario="ngForm" (ngSubmit)="onSubmit(formulario)">
+    <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-8">
+>>>>>>> 2676bd2 (criar-acao-requisicao)
         <label for="produto">Produto</label>
         <input-button
             id="produto"
@@ -55,13 +61,18 @@
 <div class="p-grid p-justify-end">
     <div class="p-col-2">
         <button
-            type="button"
+            type="submit"
             pButton
             label="Salvar"
             class="p-mr-2 p-mb-2"
             icon="pi pi-save"
+<<<<<<< HEAD
             (click)="onSubmit()"
             [disabled]="!item.produto || !item.quantidade || item.quantidade <= 0"
+=======
+
+>>>>>>> 2676bd2 (criar-acao-requisicao)
         ></button>
     </div>
 </div>
+</form>

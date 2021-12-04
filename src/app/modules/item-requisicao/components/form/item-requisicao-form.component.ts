@@ -8,7 +8,11 @@ import { ProdutoModalListaComponent } from 'src/app/modules/produto/components/m
 @Component({
     selector: "item-requisicao-form",
     templateUrl: "./item-requisicao-form.component.html",
+<<<<<<< HEAD
     styleUrls: ["./form.component.scss"]
+=======
+    styleUrls: ["./form.component.scss"],
+>>>>>>> 2676bd2 (criar-acao-requisicao)
 })
 export class ItemRequisicaoFormComponent {
     @Input() item: ItemRequisicao = {  };
@@ -35,11 +39,16 @@ export class ItemRequisicaoFormComponent {
         });
     }
 
+<<<<<<< HEAD
     onSubmit = () => {
         if(!this.item.produto || !this.item.quantidade || this.item.quantidade <= 0) {
             return;
         }
 
         this.submit.emit(this.item);
+=======
+    onSubmit(formulario: NgForm){
+        formulario.valid ? this.submit.emit(this.item) : null
+>>>>>>> 2676bd2 (criar-acao-requisicao)
     }
 }
