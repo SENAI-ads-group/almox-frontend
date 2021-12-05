@@ -1,3 +1,4 @@
+import { RequisicaoFormComponent } from "./../form/requisicao-form.component";
 import { UsuarioService } from "./../../../usuario/services/usuario.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
@@ -14,6 +15,7 @@ import { HandleErrorService } from "src/app/modules/shared/services/handle-error
 
 import { PaginaBuscaCrud } from "../../../shared/PaginaBuscaCrud";
 import { RequisicaoService } from "../../services/requisicao.service";
+import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 
 @Component({
     selector: "requisicao-busca",
@@ -26,6 +28,7 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
     almoxarifes$: Observable<Usuario[]>;
     requisitantes$: Observable<Usuario[]>;
     colunas: any[];
+    dialogRef: DynamicDialogRef;
 
     constructor(
         private confirmationService: ConfirmationService,
@@ -33,7 +36,8 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
         private commonService: CommonService,
         requisicaoService: RequisicaoService,
         private usuarioService: UsuarioService,
-        private router: Router
+        private router: Router,
+        private dialogService: DialogService
     ) {
         super(requisicaoService);
     }
@@ -83,6 +87,16 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
             },
             () => (this.loading = false)
         );
+    }
+
+    onNovaRequisicao() {
+        this.dialogRef = this.dialogService.open(RequisicaoFormComponent, {
+            width: "80%",
+            showHeader: true,
+            header: "Nova Requisição",
+        });
+
+        this.dialogRef.onClose.subscribe(() => {});
     }
 
     onEditar(registro: Requisicao) {

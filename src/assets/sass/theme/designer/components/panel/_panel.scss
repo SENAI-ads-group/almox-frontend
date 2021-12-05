@@ -6,6 +6,7 @@
         color: $panelHeaderTextColor;
         border-top-right-radius: $borderRadius;
         border-top-left-radius: $borderRadius;
+        margin: $panelHeaderMargin;
 
         .p-panel-title {
             font-weight: $panelHeaderFontWeight;

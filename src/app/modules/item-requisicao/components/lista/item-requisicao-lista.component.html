@@ -1,13 +1,4 @@
 <p-table [value]="itens" responsiveLayout="scroll">
-    <ng-template pTemplate="caption">
-        <div class="p-d-flex p-ai-center p-jc-between">
-            <div><h3>Produtos Inclusos</h3></div>
-            <p-button
-                icon="pi pi-plus"
-                (click)="handleEditar(-1, {})"
-            ></p-button>
-        </div>
-    </ng-template>
     <ng-template pTemplate="header">
         <tr>
             <th>Cód Produto</th>

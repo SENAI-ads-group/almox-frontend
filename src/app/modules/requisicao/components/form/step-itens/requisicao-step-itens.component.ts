@@ -30,11 +30,11 @@ export class RequisicaoStepItensComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    handleEditar({ rowIndex, item }) {
+    onEditar({ rowIndex, item }) {
         this.registroNoFormulario = { rowIndex, item: Object.assign({}, item) };
     }
 
-    handleExcluir({ rowIndex }) {
+    onExcluir({ rowIndex }) {
         this.messageService.clear('confirmacao')
         this.messageService.add({
             key: "confirmacao",
@@ -72,13 +72,9 @@ export class RequisicaoStepItensComponent implements OnInit {
         this.registroNoFormulario = null; // fecha o formulário
     }
 
-    stepAnterior() {
-        this.router.navigate(["../informacoes"], {
-            relativeTo: this.activatedRoute,
-        });
-    }
+    onFinalizar() {
 
-    proximoStep() {}
+    }
 
     onConfirmarExclusao() {
         this.stepMergeService.state.itens.splice(this.indexExclusao, 1);

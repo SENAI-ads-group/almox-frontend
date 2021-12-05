@@ -1,25 +1,32 @@
 <step
     exibirBotaoAnterior="true"
-    titulo="Itens"
-    subtitulo="Selecione os produtos"
-    (anterior)="stepAnterior()"
+    exibirBotaoFinalizar="true"
+    [stepMergeService]="stepMergeService"
+    (finalizar)="onFinalizar()"
 >
-    <div class="card" *ngIf="registroNoFormulario">
+    <p-panel [header]="registroNoFormulario.rowIndex === -1 ? 'Novo Item' : 'Alterar Item'" *ngIf="registroNoFormulario">
         <item-requisicao-form
             (submit)="onFormularioSubmit($event)"
             [item]="registroNoFormulario.item"
         >
         </item-requisicao-form>
-    </div>
-    <div class="card">
-        <div class="p-fluid">
-            <item-requisicao-lista
-                [itens]="stepMergeService.state.itens"
-                (editar)="handleEditar($event)"
-                (excluir)="handleExcluir($event)"
-            ></item-requisicao-lista>
-        </div>
-    </div>
+    </p-panel>
+    <div class="p-mb-3" *ngIf="registroNoFormulario"></div>
+
+    <p-panel header="Itens" class="p-shadown-4">
+        <ng-template pTemplate="icons">
+            <p-button
+            icon="pi pi-plus"
+            (click)="onEditar({rowIndex: -1, item: {}})"
+        ></p-button>
+        </ng-template>
+        <item-requisicao-lista
+            [itens]="stepMergeService.state.itens"
+            (editar)="onEditar($event)"
+            (excluir)="onExcluir($event)"
+        ></item-requisicao-lista>
+    </p-panel>
+
     <p-toast
         position="bottom-center"
         key="confirmacao"

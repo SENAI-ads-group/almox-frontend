@@ -16,29 +16,24 @@
             </small>
         </div>
 
-        <div class="p-field p-col-2" *ngIf="item.produto">
-            <label for="grupo">Grupo</label>
-            <input
-                id="grupo"
-                name="grupo"
-                type="text"
-                [(ngModel)]="item.produto.descricao"
-                disabled
-                pInputText
-            />
-        </div>
-
-        <div class="p-field p-col-2">
+        <div class="p-field p-col-4">
             <label for="quantidade">Quantidade</label>
-            <input
-                #quantidadeControl
-                type="text"
-                id="quantidade"
-                name="quantidade"
-                [(ngModel)]="item.quantidade"
-                pInputText
-                required
-            />
+            <div class="p-inputgroup">
+                <input
+                    #quantidadeControl
+                    type="text"
+                    id="quantidade"
+                    name="quantidade"
+                    [(ngModel)]="item.quantidade"
+                    pInputText
+                    required
+                />
+                <span
+                    class="p-inputgroup-addon"
+                    *ngIf="item.produto && item.produto.unidadeMedida"
+                    >{{ item.produto.unidadeMedida.type }}</span
+                >
+            </div>
             <small
                 class="p-invalid p-error"
                 *ngIf="!quantidadeControl.valid && !item.quantidade"

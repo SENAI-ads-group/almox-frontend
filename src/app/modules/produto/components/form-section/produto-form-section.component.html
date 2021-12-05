@@ -252,7 +252,7 @@
                     pInputText
                     required
                     autofocus
-                    [readonly]="modoVisualizacao"
+                    disabled
                 />
                 <span class="p-inputgroup-addon">{{
                     produto.unidadeMedida.type
@@ -307,8 +307,8 @@
             targetHeader="Selecionados"
             [dragdrop]="true"
             [responsive]="true"
-            [sourceStyle]="{ height: '25rem' }"
-            [targetStyle]="{ height: '25rem' }"
+            [sourceStyle]="{ height: '20rem' }"
+            [targetStyle]="{ height: '20rem' }"
             filterBy="nome"
             [showSourceControls]="false"
             [showTargetControls]="false"

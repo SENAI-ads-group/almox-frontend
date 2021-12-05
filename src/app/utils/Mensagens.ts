@@ -10,7 +10,7 @@ export class Mensagens {
 
     static readonly SUCESSO_PRODUTO_ADICIONADO: Message = {
         severity: "success",
-        key: "notification",
+        key: "requisicao-form",
         summary: "Sucesso",
         detail: "Produto Adicionado com Sucesso!",
         life: 1500,
@@ -18,7 +18,7 @@ export class Mensagens {
 
     static readonly SUCESSO_PRODUTO_ATUALIZADO: Message = {
         severity: "success",
-        key: "notification",
+        key: "requisicao-form",
         summary: "Sucesso",
         detail: "Produto Atualizado com Sucesso!",
         life: 1500,

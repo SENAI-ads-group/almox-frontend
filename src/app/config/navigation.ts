@@ -41,21 +41,7 @@ export const Navigation: MenuItem[] = [
             {
                 label: "Requisições",
                 icon: "fa fa-th",
-                items: [
-                    {
-                        label: "Requisitar",
-                        icon: "pi pi-plus",
-                        routerLink: "/requisicoes/novo",
-                    },
-                    {
-                        label: "Consultar",
-                        routerLink: "/requisicoes",
-                    },
-                    {
-                        label: "Atender",
-                        routerLink: "/requisicoes",
-                    }
-                ]
+                routerLink: "/requisicoes"
             },
         ],
     },

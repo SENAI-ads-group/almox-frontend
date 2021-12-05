@@ -203,10 +203,10 @@ $dangerButtonFocusShadow:none;
 $dangerAltButtonBg:#f6c9c9;
 $dangerAltButtonTextColor:#dc2626;
 $dangerAltButtonBorder:0 none;
-$dangerAltButtonHoverBg:#ee9393;
+$dangerAltButtonHoverBg:#f6c9c9;
 $dangerAltButtonTextHoverColor:#dc2626;
 $dangerAltButtonHoverBorderColor:transparent;
-$dangerAltButtonActiveBg:#ee9393;
+$dangerAltButtonActiveBg:#f6c9c9;
 $dangerAltButtonTextActiveColor:#ffffff;
 $dangerAltButtonActiveBorderColor:transparent;
 $dangerAltButtonFocusShadow:none;
@@ -345,11 +345,12 @@ $inputSwitchHandleOnBg:#f50057;
 //panel
 $panelHeaderBorderColor: #e0e0e0 !default;
 $panelHeaderBorder:1px solid #e0e0e0;
-$panelHeaderBg:#ffffff;
+$panelHeaderBg:#dee2e6;
 $panelHeaderTextColor:$textColor;
 $panelHeaderFontWeight:500;
 $panelHeaderPadding:1rem;
 $panelToggleableHeaderPadding:.5rem 1rem;
+$panelHeaderMargin: 0 0 1rem 0;
 
 $panelHeaderHoverBg:rgba(0,0,0,.04);
 $panelHeaderHoverBorderColor:#e0e0e0;

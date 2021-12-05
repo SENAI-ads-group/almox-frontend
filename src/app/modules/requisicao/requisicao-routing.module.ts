@@ -9,30 +9,6 @@ import { RequisicaoStepItensComponent } from "./components/form/step-itens/requi
 
 const routes: Routes = [
     { path: "", component: RequisicaoBuscaComponent, pathMatch: "full" },
-    {
-        path: "novo",
-        component: RequisicaoFormComponent,
-        children: [
-            { path: "", redirectTo: "informacoes", pathMatch: "full" },
-            {
-                path: "informacoes",
-                component: RequisicaoStepInformacoesComponent,
-            },
-            { path: "itens", component: RequisicaoStepItensComponent },
-        ],
-    },
-    {
-        path: "editar/:id",
-        component: RequisicaoFormComponent,
-        children: [
-            { path: "", redirectTo: "informacoes", pathMatch: "full" },
-            {
-                path: "informacoes",
-                component: RequisicaoStepInformacoesComponent,
-            },
-            { path: "itens", component: RequisicaoStepItensComponent },
-        ],
-    },
     { path: "informacoes/:id", component: RequisicaoAtendimentoComponent },
 ];
 

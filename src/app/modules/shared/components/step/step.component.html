@@ -1,10 +1,10 @@
 <div>
     <p-card>
         <ng-template pTemplate="title">
-            {{ titulo }}
+            {{ titulo || '' }}
         </ng-template>
         <ng-template pTemplate="subtitle">
-            {{ subtitulo }}
+            {{ subtitulo || '' }}
         </ng-template>
         <ng-template pTemplate="content">
             <ng-content></ng-content>
@@ -17,7 +17,7 @@
                         label="Anterior"
                         (onClick)="onAnterior()"
                         icon="pi pi-angle-left"
-                        iconPos="right"
+                        iconPos="left"
                     ></p-button>
                 </div>
                 <div>
@@ -28,6 +28,16 @@
                         icon="pi pi-angle-right"
                         iconPos="right"
                     ></p-button>
+                </div>
+                <div *ngIf="exibirBotaoFinalizar">
+                    <button
+                        pButton
+                        label="Finalizar"
+                        type="submit"
+                        icon="pi pi-check"
+                        iconPos="left"
+                        style="background: #C8E6C9;color: #256029; font-weight: 700; font-size: 14px;"
+                    ></button>
                 </div>
             </div>
         </ng-template>
