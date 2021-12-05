@@ -29,7 +29,7 @@
     <div class="p-field p-col-3">
         <label>Status</label>
         <p-dropdown
-            [options]="enums.statusRequisicoes"
+            [options]="((enums || {}).statusRequisicoes)|| []"
             [(ngModel)]="filtro.status"
             placeholder="Todos"
             optionLabel="descricao"
