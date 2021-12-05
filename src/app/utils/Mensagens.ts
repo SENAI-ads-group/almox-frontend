@@ -23,4 +23,20 @@ export class Mensagens {
         detail: "Produto Atualizado com Sucesso!",
         life: 1500,
     };
+
+    static readonly INFO_REQUISICAO_EM_ATENDIMENTO: Message = {
+        severity: "info",
+        key: "notification",
+        summary: "Atendimento",
+        detail: "Iniciado o Atendimento da Requisição",
+        life: 1500,
+    };
+
+    static readonly SUCESSO_REQUISICAO_ENTREGUE: Message = {
+        severity: "success",
+        key: "notification",
+        summary: "Sucesso",
+        detail: "Requisição entregue!",
+        life: 1500,
+    };
 }

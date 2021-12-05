@@ -7,11 +7,10 @@ import { RequisicaoBuscaComponent } from "./components/busca/requisicao-busca.co
 import { RequisicaoFiltroComponent } from "./components/filtro-busca/requisicao-filtro-busca.component";
 import { RequisicaoFormComponent } from "./components/form/requisicao-form.component";
 import { RequisicaoRoutingModule } from "./requisicao-routing.module";
-import { RequisicaoStepInformacoesComponent } from './components/step-informacoes/requisicao-step-informacoes.component';
-import { RequisicaoStepItensComponent } from './components/step-itens/requisicao-step-itens.component';
-import { ItemRequisicaoModule } from '../item-requisicao/item-requisicao.module';
-import { InformacoesComponent } from './components/informacoes/informacoes.component';
-
+import { RequisicaoStepInformacoesComponent } from "./components/form/step-informacoes/requisicao-step-informacoes.component";
+import { RequisicaoStepItensComponent } from "./components/form/step-itens/requisicao-step-itens.component";
+import { ItemRequisicaoModule } from "../item-requisicao/item-requisicao.module";
+import { RequisicaoAtendimentoComponent } from "./components/atendimento/requisicao-atendimento.component";
 
 @NgModule({
     declarations: [
@@ -20,14 +19,14 @@ import { InformacoesComponent } from './components/informacoes/informacoes.compo
         RequisicaoFormComponent,
         RequisicaoStepInformacoesComponent,
         RequisicaoStepItensComponent,
-        InformacoesComponent,
+        RequisicaoAtendimentoComponent,
     ],
     imports: [
         CommonModule,
         RequisicaoRoutingModule,
         PrimengModule,
         SharedModule,
-        ItemRequisicaoModule
+        ItemRequisicaoModule,
     ],
 })
 export class RequisicaoModule {}

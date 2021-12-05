@@ -5,8 +5,8 @@ import { Message, MessageService } from "primeng/api";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ProdutoService } from "src/app/modules/produto/services/produto.service";
 
-import { ItemRequisicao } from "../../../../model/item-requisicao";
-import { RequisicaoStepMergeService } from "../../services/requisicao-step-merge.service";
+import { ItemRequisicao } from "../../../../../model/item-requisicao";
+import { RequisicaoStepMergeService } from "../../../services/requisicao-step-merge.service";
 
 @Component({
     selector: "requisicao-step-itens",

@@ -1,21 +1,17 @@
-import { ControlContainer, NgForm } from '@angular/forms';
+import { ControlContainer, NgForm } from "@angular/forms";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 
 import { ItemRequisicao } from "../../../../model/item-requisicao";
-import { ProdutoModalListaComponent } from 'src/app/modules/produto/components/modal-listagem/produto-modal-lista.component';
+import { ProdutoModalListaComponent } from "src/app/modules/produto/components/modal-listagem/produto-modal-lista.component";
 
 @Component({
     selector: "item-requisicao-form",
     templateUrl: "./item-requisicao-form.component.html",
-<<<<<<< HEAD
-    styleUrls: ["./form.component.scss"]
-=======
     styleUrls: ["./form.component.scss"],
->>>>>>> 2676bd2 (criar-acao-requisicao)
 })
 export class ItemRequisicaoFormComponent {
-    @Input() item: ItemRequisicao = {  };
+    @Input() item: ItemRequisicao = {};
     @Output() submit = new EventEmitter<ItemRequisicao>();
 
     constructor(private dialogService: DialogService) {}
@@ -39,16 +35,15 @@ export class ItemRequisicaoFormComponent {
         });
     }
 
-<<<<<<< HEAD
     onSubmit = () => {
-        if(!this.item.produto || !this.item.quantidade || this.item.quantidade <= 0) {
+        if (
+            !this.item.produto ||
+            !this.item.quantidade ||
+            this.item.quantidade <= 0
+        ) {
             return;
         }
 
         this.submit.emit(this.item);
-=======
-    onSubmit(formulario: NgForm){
-        formulario.valid ? this.submit.emit(this.item) : null
->>>>>>> 2676bd2 (criar-acao-requisicao)
-    }
+    };
 }

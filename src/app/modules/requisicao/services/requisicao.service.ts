@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Requisicao } from "src/app/model/requisicao";
@@ -13,16 +13,18 @@ export class RequisicaoService extends CrudService<Requisicao, number> {
         super(_http, `${environment.api.baseUrl}/requisicoes`);
     }
 
-    atenderRequisicao(id: number): Observable<any>{
-return this._http.post(this._base+"/iniciar-atendimento/"+id, null);
+    atenderRequisicao(id: number): Observable<any> {
+        return this._http.post(this._base + "/atender/" + id, null);
     }
 
-    cancelarRequisicao(id: number): Observable<any>{
-        return this._http.post(this._base+"/cancelar-atendimento/"+id, null);
+    cancelarRequisicao(id: number): Observable<any> {
+        return this._http.post(this._base + "/cancelar/" + id, null);
     }
 
-    entregarRequisicao(id: number): Observable<any>{
-        return this._http.post(this._base+"/entregar-atendimento/"+id, null);
+    entregarRequisicao(requisicao: Requisicao): Observable<any> {
+        return this._http.post(
+            this._base + "/entregar/" + requisicao.id,
+            requisicao
+        );
     }
-
 }

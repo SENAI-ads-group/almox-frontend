@@ -1,4 +1,4 @@
-import { UsuarioService } from './../../../usuario/services/usuario.service';
+import { UsuarioService } from '../../../../usuario/services/usuario.service';
 import { DepartamentoService } from "src/app/modules/departamento/services/departamento.service";
 import { Component, ViewChild, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { Departamento } from "src/app/model/departamento";
 
-import { RequisicaoStepMergeService } from "../../services/requisicao-step-merge.service";
+import { RequisicaoStepMergeService } from "../../../services/requisicao-step-merge.service";
 
 @Component({
     selector: "requisicao-step-informacoes",
