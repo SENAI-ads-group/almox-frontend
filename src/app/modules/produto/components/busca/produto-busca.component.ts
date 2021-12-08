@@ -1,21 +1,22 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { ConfirmationService, MessageService } from "primeng/api";
-import { Observable, Subscriber } from "rxjs";
-import { catchError, tap } from "rxjs/operators";
-import { Departamento } from "src/app/model/departamento";
-import { Grupo } from "src/app/model/grupo";
-import { DepartamentoService } from "src/app/modules/departamento/services/departamento.service";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Observable, Subscriber } from 'rxjs';
+import { Departamento } from 'src/app/model/departamento';
+import { Grupo } from 'src/app/model/grupo';
+import { DepartamentoService } from 'src/app/modules/departamento/services/departamento.service';
 
-import { Produto } from "../../../../model/produto";
-import { GrupoService } from "../../../grupo/grupo.service";
+import { Produto } from '../../../../model/produto';
+import { GrupoService } from '../../../grupo/grupo.service';
 import {
     criarConfiguracaoColuna,
     criarConfiguracaoColunaStatusAuditavel,
     TipoColuna,
-} from "../../../shared/components/tabela-crud/coluna";
-import { CommonService } from "../../../shared/services/common.service";
-import { ProdutoService } from "./../../services/produto.service";
+} from '../../../shared/components/tabela-crud/coluna';
+import { Mensagens } from './../../../../utils/Mensagens';
+import { ProdutoService } from './../../services/produto.service';
+import { ModalHistoricoComponent } from './../modal-historico/modal-historico-produto.component';
 
 @Component({
     selector: "produto-lista",
@@ -32,11 +33,13 @@ export class ProdutoBuscaComponent implements OnInit {
     enumsSubscribe: Subscriber<any>;
     colunas: any[];
     loading: boolean = false;
+    dynamicDialog: DynamicDialogRef;
+    mostrarDialogHistorico: boolean;
 
     constructor(
         private messageService: MessageService,
         private confirmationService: ConfirmationService,
-        private commonService: CommonService,
+        private dialogService: DialogService,
         private produtoService: ProdutoService,
         private grupoService: GrupoService,
         private departamentoService: DepartamentoService,
@@ -86,8 +89,18 @@ export class ProdutoBuscaComponent implements OnInit {
         );
     }
 
-    onEditar = (produto: Produto) =>
-        this.router.navigate([`produtos/editar/${produto.id}`]);
+    onEditar = (produto: Produto) => {
+        this.router.navigate([`/produtos/editar/${produto.id}`])
+    }
+
+
+    onDetalhes(produto: Produto) {
+        this.dialogService.open(ModalHistoricoComponent, {
+            header: "Histórico de Estoque",
+            width: "70%",
+            data: produto,
+        });
+    }
 
     onExcluir(produto: Produto) {
         this.confirmationService.confirm({
@@ -96,9 +109,13 @@ export class ProdutoBuscaComponent implements OnInit {
             icon: "pi pi-exclamation-triangle",
             acceptLabel: "Sim",
             rejectLabel: "Não",
-            accept: () => {},
+            accept: () => {
+                this.produtoService.excluir(produto.id).subscribe(() => {
+                    this.messageService.add(Mensagens.SUCESSO_REGISTRO_EXCLUIDO);
+                    this.ngOnInit();
+                });
+            }
         });
-        this.messageService.messageObserver.subscribe();
     }
 
     exibirAcaoEditar = (produto: Produto) => !produto.excluido;

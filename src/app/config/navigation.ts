@@ -40,8 +40,13 @@ export const Navigation: MenuItem[] = [
         items: [
             {
                 label: "Requisições",
-                icon: "fa fa-th",
+                icon: "pi pi-ticket",
                 routerLink: "/requisicoes"
+            },
+            {
+                label: "Pedidos de Compra",
+                icon: "pi pi-shopping-cart",
+                routerLink: "/pedidos"
             },
         ],
     },

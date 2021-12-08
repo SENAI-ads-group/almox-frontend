@@ -1,11 +1,19 @@
-import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
-import * as moment from 'moment';
-import { Auditavel } from 'src/app/model/auditavel';
-import { StatusEntidadeAuditavel } from 'src/app/model/enums';
-import * as NumberUtil from 'src/app/utils/NumberUtil';
-import * as StringUtil from 'src/app/utils/StringUtil';
+import {
+    Component,
+    ContentChild,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    TemplateRef,
+} from "@angular/core";
+import * as moment from "moment";
+import { Auditavel } from "src/app/model/auditavel";
+import { StatusEntidadeAuditavel } from "src/app/model/enums";
+import * as NumberUtil from "src/app/utils/NumberUtil";
+import * as StringUtil from "src/app/utils/StringUtil";
 
-import { Coluna, TipoColuna } from '../tabela-crud/coluna';
+import { Coluna, TipoColuna } from "../tabela-crud/coluna";
 
 @Component({
     selector: "tabela",
@@ -42,13 +50,7 @@ export class TabelaComponent<T> implements OnInit {
             const subpropriedade = propriedadeRenderizada[propriedades[i]];
             propriedadeRenderizada = subpropriedade;
         }
-        return {
-            styleClass: this.resolverStyleCssColuna(dadoLinha, coluna),
-            conteudo: this.formatarConteudoColuna(
-                propriedadeRenderizada,
-                coluna
-            ),
-        };
+        return this.formatarConteudoColuna(propriedadeRenderizada, coluna);
     }
 
     formatarConteudoColuna(
@@ -88,18 +90,5 @@ export class TabelaComponent<T> implements OnInit {
                 return conteudo;
             }
         }
-    }
-
-    resolverStyleCssColuna(dadoLinha: T, coluna: Coluna) {
-        if (coluna.tipo === TipoColuna.STATUS_AUDITAVEL) {
-            if (!("statusAuditoria" in dadoLinha)) return null;
-            const auditavel = <Auditavel>dadoLinha;
-            const { classBadge } =
-                StatusEntidadeAuditavel[
-                    (auditavel.statusAuditoria || {}).type
-                ] || {};
-            return `auditavel-badge status-${classBadge}`;
-        }
-        return null;
     }
 }

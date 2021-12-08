@@ -1646,7 +1646,8 @@ body a {
 .layout-wrapper .footer {
   background-color: #eeefefff;
   padding: 0.5em;
-  margin: 0 3rem;
+  margin-left: 8rem;
+  margin-right: 8rem;
 }
 .layout-wrapper .footer .footer-text-left {
   float: left;
