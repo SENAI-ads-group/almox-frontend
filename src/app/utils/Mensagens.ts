@@ -1,5 +1,13 @@
 import { Message } from "primeng/api";
 export class Mensagens {
+
+    static readonly BEM_VINDO: Message = {
+        severity: "success",
+        key: "notification",
+        summary: "Bem vindo(a)",
+        life: 1500,
+    };
+
     static readonly SUCESSO_REGISTRO_SALVO: Message = {
         severity: "success",
         key: "notification",

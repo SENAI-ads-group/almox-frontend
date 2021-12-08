@@ -10,7 +10,7 @@ import { Contato } from 'src/app/model/contato';
 })
 export class EnderecoComponent implements OnInit {
 
-    @Input() enums: any;
+    @Input() tiposEnderecos: any[];
     @Input() contato: Contato;
 
     constructor(public formulario: NgForm) {}

@@ -12,6 +12,17 @@
                         />
                     </div>
                 </ng-template>
+                <ng-template pTemplate="end">
+                    <button
+                        pButton
+                        pRipple
+                        class="p-button-icon-only"
+                        style="color: white; font-size: 25px"
+                        (click)="logout()"
+                    >
+                        <i class="fa fa-sign-out"></i>
+                    </button>
+                </ng-template>
             </p-menubar>
         </div>
     </div>

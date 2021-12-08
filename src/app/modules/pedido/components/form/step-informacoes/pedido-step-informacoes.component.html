@@ -31,12 +31,11 @@
 
             <div class="p-field p-col-6">
                 <label>Previsão de Entrega</label>
-                <p-inputMask
-                    mask="99/99/9999"
+                <input
+                    pInputText
                     [(ngModel)]="stepMergeService.state.dataPrevisaoEntrega"
-                    placeholder="__/__/____"
-                    slotChar="__/__/____"
-                ></p-inputMask>
+                    type="date"
+                />
             </div>
         </div>
     </form>

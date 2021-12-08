@@ -50,14 +50,14 @@ export const Navigation: MenuItem[] = [
             },
         ],
     },
-    {
-        label: "Financeiro",
-        icon: "pi pi-money-bill",
-        items: [],
-    },
-    {
-        label: "Relatórios",
-        icon: "pi pi-file-o",
-        items: [],
-    },
+    // {
+    //     label: "Financeiro",
+    //     icon: "pi pi-money-bill",
+    //     items: [],
+    // },
+    // {
+    //     label: "Relatórios",
+    //     icon: "pi pi-file-o",
+    //     items: [],
+    // },
 ];

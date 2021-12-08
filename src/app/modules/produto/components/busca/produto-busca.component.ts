@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, Subscriber } from 'rxjs';
 import { Departamento } from 'src/app/model/departamento';
+import { FiltroConsideracaoAtivos } from 'src/app/model/enums';
 import { Grupo } from 'src/app/model/grupo';
 import { DepartamentoService } from 'src/app/modules/departamento/services/departamento.service';
 
@@ -75,7 +76,7 @@ export class ProdutoBuscaComponent implements OnInit {
         this.grupos$ = this.grupoService.buscarTodos();
         this.departamentos$ = this.departamentoService.buscarTodos();
 
-        this.onBuscar({});
+        this.onBuscar({filtroStatusAuditavel: FiltroConsideracaoAtivos.APENAS_ATIVOS});
     }
 
     onBuscar(filtro: any): void {

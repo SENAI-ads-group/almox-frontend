@@ -48,7 +48,7 @@ export class PedidoBuscaComponent extends PaginaBuscaCrud<Pedido> {
         this.colunas = [
             criarConfiguracaoColuna("id", "#", TipoColuna.TEXTO),
             criarConfiguracaoColuna("dataPedido", "Data Pedido", TipoColuna.DATA_HORA),
-            criarConfiguracaoColuna("dataPrevisaoEntrega", "Previsão de Entrega", TipoColuna.DATA_HORA),
+            //criarConfiguracaoColuna("dataPrevisaoEntrega", "Previsão de Entrega", TipoColuna.DATA_HORA),
             criarConfiguracaoColuna(
                 "comprador.nome",
                 "Comprador",
