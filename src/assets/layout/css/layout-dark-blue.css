@@ -1275,8 +1275,8 @@ body a {
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 5px 10px 0 rgba(0, 0, 0, 0.26);
 }
 .layout-wrapper .topbar .topbar-content {
-  padding-left: 8rem;
-  padding-right: 8rem;
+  padding-left: 20rem;
+  padding-right: 20rem;
 }
 .layout-wrapper .topbar .topbar-content .topbar-menu {
   margin-top: 0.5rem;
@@ -1630,8 +1630,8 @@ body a {
 .layout-wrapper .layout-main {
   flex: 1 1 0;
   padding: 140px 10px 0px 10px;
-  margin-left: 8rem;
-  margin-right: 8rem;
+  margin-left: 20rem;
+  margin-right: 20rem;
 }
 
 .layout-wrapper .footer {
