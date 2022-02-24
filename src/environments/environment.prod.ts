@@ -1,7 +1,7 @@
 export const environment = {
     production: true,
     api: {
-        baseUrl: "http://localhost:8080",
+        baseUrl: "https://almox-fatesg-service.herokuapp.com",
     },
     auth: {
         tokensessionStorage: "almox_access_token",
