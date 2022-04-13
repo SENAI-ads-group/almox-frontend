@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators'
 
 export abstract class CrudService<T, ID> {
 
-  constructor(protected _http: HttpClient,protected _base: string) {}
+  constructor(protected _http: HttpClient, protected _base: string) { }
 
   criar(t: T): Observable<T> {
     return this._http.post<T>(`${this._base}`, t);
@@ -18,12 +18,12 @@ export abstract class CrudService<T, ID> {
     return this._http.get<T>(this._base + "/" + id);
   }
 
-  buscarTodosFiltrado(filtro : any): Observable<T[]> {
+  buscarTodosFiltrado(filtro: any): Observable<T[]> {
     return this._http.post<T[]>(`${this._base}/listar`, filtro)
   }
 
-  buscarTodos(): Observable<T[]> {
-    return this._http.get<T[]>(`${this._base}/listar`)
+  buscarTodos(filtro: object = {}): Observable<any> {
+    return this._http.get<T[]>(`${this._base}`, { params: new HttpParams({ fromObject: { ...filtro } }) })
   }
 
   excluir(id: ID): Observable<T> {

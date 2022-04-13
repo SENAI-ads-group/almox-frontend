@@ -38,10 +38,10 @@
                 <div [style]="'text-align: ' + col.textAlign">
                     <span
                         class="{{
-                            renderizarConteudo(rowData, col).styleClass
+                            renderizarConteudo(rowData, col)?.styleClass
                         }}"
                     >
-                        {{ renderizarConteudo(rowData, col).conteudo }}
+                        {{ renderizarConteudo(rowData, col)?.conteudo }}
                     </span>
                 </div>
             </td>

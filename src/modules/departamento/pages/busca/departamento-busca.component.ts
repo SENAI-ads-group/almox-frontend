@@ -36,7 +36,7 @@ export class DepartamentoBuscaComponent implements OnInit {
     ngOnInit(): void {
         this.colunas = [
             criarConfiguracaoColuna("id", "#", TipoColuna.TEXTO),
-            criarConfiguracaoColuna("nome", "Nome", TipoColuna.TEXTO),
+            criarConfiguracaoColuna("descricao", "Descrição", TipoColuna.TEXTO),
             criarConfiguracaoColuna(
                 "dataCriacao",
                 "Criação",
@@ -54,10 +54,10 @@ export class DepartamentoBuscaComponent implements OnInit {
 
     buscar(filtro: any): void {
         this.departamentoService
-            .buscarTodosFiltrado(filtro)
+            .buscarTodos(filtro)
             .subscribe(
                 departamentosEncontrados =>
-                    (this.departamentos = departamentosEncontrados)
+                    (this.departamentos = departamentosEncontrados.data)
             );
     }
 

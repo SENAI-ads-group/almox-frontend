@@ -13,13 +13,16 @@ export class LoginComponent {
     username: string;
     password: string;
 
-    constructor(private loginService: LoginService, private router: Router, private messageService : MessageService) {}
+    constructor(private loginService: LoginService, private router: Router, private messageService: MessageService) { }
 
     login() {
-        this.loginService.logar(this.username, this.password).subscribe(r => {
-            sessionStorage.setItem("almox_access_token", r.access_token);
-            this.router.navigate(["/"]);
-            this.messageService.add(Mensagens.BEM_VINDO)
-        }, () => {console.log('er')});
+        this.loginService.logar(this.username, this.password).subscribe({
+            next: ({ access_token }) => {
+                sessionStorage.setItem("almox_access_token", access_token);
+                this.router.navigate(["/"]);
+                this.messageService.add(Mensagens.BEM_VINDO)
+            },
+            error: (e) => { }
+        });
     }
 }

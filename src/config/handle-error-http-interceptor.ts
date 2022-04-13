@@ -28,7 +28,7 @@ export class HandleErrorHttpInterceptor implements HttpInterceptor {
         const accessToken = sessionStorage.getItem(
             environment.auth.tokensessionStorage
         );
-        if (accessToken != null) {
+        if (accessToken != null && !request.url.includes('/oauth/token')) {
             request = request.clone({
                 setHeaders: {
                     "Content-Type": "application/json",

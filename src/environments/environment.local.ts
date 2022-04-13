@@ -7,5 +7,10 @@ export const environment = {
   production: false,
   api: {
     baseUrl: 'http://localhost:8080'
+  },
+  oauth: {
+    client_id: 'myappname123',
+    client_secret: 'myappsecret123',
+    grant_type: 'password'
   }
 };

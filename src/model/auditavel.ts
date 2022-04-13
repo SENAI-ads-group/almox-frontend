@@ -6,7 +6,7 @@ export interface Auditavel {
     criadoPor?: UsuarioAutor;
     alteradoPor?: UsuarioAutor;
     excluidoPor?: UsuarioAutor;
-    statusAuditoria?: any;
+    situacao?: any;
 }
 
 interface UsuarioAutor {

@@ -107,11 +107,11 @@ export class TabelaCrudComponent<T> implements OnInit {
 
     resolverStyleCssColuna(dadoLinha: T, coluna: Coluna) {
         if (coluna.tipo === TipoColuna.STATUS_AUDITAVEL) {
-            if (!("statusAuditoria" in dadoLinha)) return null;
+            if (!("situacao" in dadoLinha)) return null;
             const auditavel = <Auditavel>dadoLinha;
             const { classBadge } =
                 StatusEntidadeAuditavel[
-                    (auditavel.statusAuditoria || {}).type
+                    (auditavel.situacao || {}).type
                 ] || {};
             return `auditavel-badge status-${classBadge}`;
         }
