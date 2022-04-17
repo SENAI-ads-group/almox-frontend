@@ -1,12 +1,12 @@
 import { FornecedorService } from "./../../../../fornecedor/services/fornecedor.service";
 import { Fornecedor } from "src/model/fornecedor";
-import { UsuarioService } from "../../../../usuario/services/usuario.service";
-import { DepartamentoService } from "src/modules/departamento/services/departamento.service";
+import { OperadorService } from "../../../../operador/operador.service";
+import { DepartamentoService } from "src/modules/departamento/departamento.service";
 import { Component, ViewChild, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
-import { Departamento } from "src/model/departamento";
+import DepartamentoModel from "src/model/departamento";
 
 import { PedidoStepMergeService } from "../../../services/pedido-step-merge.service";
 

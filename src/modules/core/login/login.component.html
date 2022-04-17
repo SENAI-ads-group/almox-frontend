@@ -4,23 +4,43 @@
             <div class="p-col-12 login-header">
                 <h1>Autenticação</h1>
                 <h2>Bem vindo(a) ao Almox</h2>
-                <img src="assets/layout/images/logo.png">
+                <img src="assets/layout/images/logo.png" />
             </div>
-            <div class="p-col-12">
-                <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="username">
-                    <label>Login</label>
-                </span>
-            </div>
-            <div class="p-col-12">
-                <span class="p-float-label">
-                    <input type="password" pInputText [(ngModel)]="password">
-                    <label>Senha</label>
-                </span>
-            </div>
-            <div class="p-col-12 button-container">
-                <button pButton type="button" label="Entrar" icon="pi pi-user" (click)="login()"></button>
-            </div>
+            <ng-container *ngIf="!isLoading; else loading">
+                <div class="p-col-12">
+                    <span class="p-float-label">
+                        <input type="text" pInputText [(ngModel)]="username" />
+                        <label>Login</label>
+                    </span>
+                </div>
+                <div class="p-col-12">
+                    <span class="p-float-label">
+                        <input
+                            type="password"
+                            pInputText
+                            [(ngModel)]="password"
+                        />
+                        <label>Senha</label>
+                    </span>
+                </div>
+                <div class="p-col-12 button-container">
+                    <button
+                        pButton
+                        type="button"
+                        label="Entrar"
+                        icon="pi pi-user"
+                        (click)="login()"
+                    ></button>
+                </div>
+            </ng-container>
         </div>
     </div>
 </div>
+<ng-template #loading>
+    <div class="p-mt-4 p-col-12 p-d-flex p-p-0 p-jc-center" style="width: 100%">
+            <i class="pi pi-spin pi-spinner" style="font-size: 5rem"></i>
+    </div>
+    <div class="p-col-12 p-d-flex p-p-0 p-jc-center" style="width: 100%">
+        <h3>Carregando...</h3>
+    </div>
+</ng-template>

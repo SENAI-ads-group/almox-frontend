@@ -1,4 +1,4 @@
-export const TipoUsuario = Object.freeze({
+export const TipoOperador = Object.freeze({
     SOLICITANTE: {
         type: 'SOLICITANTE'
     },

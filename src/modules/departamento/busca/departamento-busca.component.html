@@ -2,11 +2,11 @@
     <div class="p-col-12">
         <div class="p-d-flex p-jc-between">
             <titulo-pagina-crud
-                entidade="Grupos"
+                entidade="Departamentos"
                 acao="Consultar"
             ></titulo-pagina-crud>
             <div>
-                <novo-button label="Novo Grupo"></novo-button>
+                <novo-button label="Novo Departamento"></novo-button>
             </div>
         </div>
 
@@ -33,7 +33,7 @@
             <div class="p-d-flex p-jc-center">
                 <div class="flex align-items-center justify-content-center">
                     <limpar-filtro-button
-                        (click)="limparFiltros()"
+                        (click)="onLimparFiltro()"
                     ></limpar-filtro-button>
                     <pesquisar-button
                         (click)="onBuscar(filtro)"
@@ -43,10 +43,10 @@
 
             <tabela-crud
                 [colunas]="colunas"
-                [dados]="registros"
-                [loading]="loading"
+                [dados]="departamentos$ | async"
                 [exibirAcaoEditar]="exibirAcaoEditar"
                 [exibirAcaoExcluir]="exibirAcaoExcluir"
+                (selecionadosChange)="selecionados = $event"
                 (editar)="onEditar($event)"
                 (excluir)="onExcluir($event)"
             ></tabela-crud>

@@ -3,13 +3,13 @@ export interface Auditavel {
     dataAlteracao?: Date;
     dataExclusao?: Date;
     excluido?: boolean;
-    criadoPor?: UsuarioAutor;
-    alteradoPor?: UsuarioAutor;
-    excluidoPor?: UsuarioAutor;
+    criadoPor?: OperadorAutor;
+    alteradoPor?: OperadorAutor;
+    excluidoPor?: OperadorAutor;
     situacao?: any;
 }
 
-interface UsuarioAutor {
+interface OperadorAutor {
     id?: number;
     nome?: string;
 }

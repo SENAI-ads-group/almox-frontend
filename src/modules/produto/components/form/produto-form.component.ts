@@ -7,11 +7,11 @@ import { Fornecedor } from "src/model/fornecedor";
 import { Mensagens } from "src/utils/Mensagens";
 
 import { CommonService } from "../../../shared/services/common.service";
-import { Departamento } from "./../../../../model/departamento";
+import DepartamentoModel from "./../../../../model/departamento";
 import { Fabricante } from "./../../../../model/fabricante";
-import { Grupo } from "./../../../../model/grupo";
+import GrupoModel from "./../../../../model/grupo";
 import { Produto } from "./../../../../model/produto";
-import { DepartamentoService } from "./../../../departamento/services/departamento.service";
+import { DepartamentoService } from "../../../departamento/departamento.service";
 import { FabricanteService } from "./../../../fabricante/services/fabricante.service";
 import { FornecedorService } from "./../../../fornecedor/services/fornecedor.service";
 import { GrupoService } from "./../../../grupo/grupo.service";
@@ -27,8 +27,8 @@ export class ProdutoFormComponent implements OnInit {
     enums$: Observable<any>;
     fabricantes$: Observable<Fabricante[]>;
     fornecedores$: Observable<Fornecedor[]>;
-    grupos$: Observable<Grupo[]>;
-    departamentos$: Observable<Departamento[]>;
+    grupos$: Observable<GrupoModel[]>;
+    departamentos$: Observable<DepartamentoModel[]>;
 
     constructor(
         private commonService: CommonService,
@@ -44,10 +44,10 @@ export class ProdutoFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.enums$ = this.commonService.buscarEnumeradores();
-        this.grupos$ = this.grupoService.buscarTodos();
+        this.grupos$ = this.grupoService.buscarGrupos();
         this.fabricantes$ = this.fabricanteService.buscarTodos();
         this.fornecedores$ = this.fornecedorService.buscarTodos();
-        this.departamentos$ = this.departamentoService.buscarTodos();
+        this.departamentos$ = this.departamentoService.buscarDepartamentos();
 
         this.activatedRoute.params.subscribe(params => {
             const id: number = params["id"];

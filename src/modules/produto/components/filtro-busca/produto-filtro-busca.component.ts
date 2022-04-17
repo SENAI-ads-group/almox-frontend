@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 
-import { FiltroConsideracaoAtivos } from "../../../../model/enums";
-import { Departamento } from "../../../../model/departamento";
-import { Grupo } from "../../../../model/grupo";
+import { FiltroStatusAuditoria } from "../../../../model/enums";
+import DepartamentoModel from "../../../../model/departamento";
+import GrupoModel from "../../../../model/grupo";
 
 @Component({
     selector: "produto-filtro",
@@ -10,8 +10,8 @@ import { Grupo } from "../../../../model/grupo";
 })
 export class ProdutoFiltroComponent {
     @Output("buscar") buscarEvent: EventEmitter<any> = new EventEmitter();
-    @Input() grupos: Grupo[];
-    @Input() departamentos: Departamento[];
+    @Input() grupos: GrupoModel[];
+    @Input() departamentos: DepartamentoModel[];
 
     filtro = {
         descricao: null,
@@ -20,7 +20,7 @@ export class ProdutoFiltroComponent {
         fornecedor: null,
         departamentos: null,
         unidadeMedida: null,
-        filtroStatusAuditavel: FiltroConsideracaoAtivos.APENAS_ATIVOS,
+        filtroStatusAuditavel: FiltroStatusAuditoria.APENAS_ATIVOS,
     };
 
     constructor() {}
@@ -37,7 +37,7 @@ export class ProdutoFiltroComponent {
             fornecedor: null,
             departamentos: null,
             unidadeMedida: null,
-            filtroStatusAuditavel: FiltroConsideracaoAtivos.APENAS_ATIVOS,
+            filtroStatusAuditavel: FiltroStatusAuditoria.APENAS_ATIVOS,
         };
     }
 }

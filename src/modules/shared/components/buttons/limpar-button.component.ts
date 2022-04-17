@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: "limpar-button",
@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
         <button
             pButton
             pRipple
+            [disabled]="disabled"
             type="button"
             label="Limpar"
             class="p-mb-3 p-mr-1 p-button-secondary"
@@ -13,5 +14,6 @@ import { Component } from '@angular/core';
     `,
 })
 export class LimparButtonComponent {
-    constructor() {}
+    @Input("disabled") disabled: boolean;
+    constructor() { }
 }

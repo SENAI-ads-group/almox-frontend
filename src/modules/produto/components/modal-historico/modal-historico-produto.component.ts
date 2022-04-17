@@ -72,7 +72,7 @@ export class ModalHistoricoComponent implements OnInit {
                 "left"
             ),
             criarConfiguracaoColuna(
-                "usuario.nome",
+                "operador.nome",
                 "Usuário",
                 TipoColuna.TEXTO,
                 "left"

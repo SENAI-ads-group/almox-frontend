@@ -22,7 +22,7 @@ export class TabelaCrudComponent<T> implements OnInit {
     @Input("exibirAcaoVisualizar") exibirAcaoVisualizar = (t: T) => true;
     @Input("exibirAcaoEditar") exibirAcaoEditar = (t: T) => true;
     @Input("exibirAcaoExcluir") exibirAcaoExcluir = (t: T) => true;
-    @Input("loading") loading : boolean;
+    @Input("loading") loading: boolean;
 
     @Output("selecionadosChange") selecionadosEvent = new EventEmitter<T[]>();
     @Output("visualizar") visualizarEvent = new EventEmitter<T>();
@@ -31,9 +31,9 @@ export class TabelaCrudComponent<T> implements OnInit {
 
     @ContentChild(TemplateRef) botoesAcaoTemplateRef: TemplateRef<any>;
 
-    constructor() {}
+    constructor() { }
 
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 
     selecionadosChange() {
         this.selecionadosEvent.emit(this.selecionados);
@@ -107,11 +107,11 @@ export class TabelaCrudComponent<T> implements OnInit {
 
     resolverStyleCssColuna(dadoLinha: T, coluna: Coluna) {
         if (coluna.tipo === TipoColuna.STATUS_AUDITAVEL) {
-            if (!("situacao" in dadoLinha)) return null;
-            const auditavel = <Auditavel>dadoLinha;
+            if (!("auditoria" in dadoLinha)) return null;
+            const auditavel = <any>dadoLinha;
             const { classBadge } =
                 StatusEntidadeAuditavel[
-                    (auditavel.situacao || {}).type
+                (auditavel.auditoria.situacao || {}).type
                 ] || {};
             return `auditavel-badge status-${classBadge}`;
         }
