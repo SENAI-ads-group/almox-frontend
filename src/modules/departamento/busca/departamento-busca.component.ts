@@ -25,7 +25,7 @@ export class DepartamentoBuscaComponent implements OnInit {
     enums$: Observable<any>;
     enumsSubscribe: Subscriber<any>;
     colunas: any[];
-    filtro = { descricao: null, statusAuditoria: FiltroStatusAuditoria.APENAS_ATIVOS };
+    filtro = { descricao: null };
 
     constructor(
         private departamentoService: DepartamentoService,
@@ -55,15 +55,12 @@ export class DepartamentoBuscaComponent implements OnInit {
     }
 
     onLimparFiltro() {
-        this.filtro = {
-            descricao: null,
-            statusAuditoria: FiltroStatusAuditoria.APENAS_ATIVOS,
-        };
+        this.filtro = { descricao: null };
         this.onBuscar(this.filtro);
     }
 
     onBuscar(filtro: any): void {
-        this.departamentos$ = this.departamentoService.buscarDepartamentos({ ...filtro, statusAuditoria: filtro?.statusAuditoria?.type ?? null })
+        this.departamentos$ = this.departamentoService.buscarDepartamentos({ ...filtro })
     }
 
     onEditar = (departamento: DepartamentoModel) =>

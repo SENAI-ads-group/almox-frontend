@@ -6,3 +6,9 @@ export interface PessoaJurica {
     nomeFantasia?: string;
     contato?: Contato;
 }
+
+export interface CriarPessoa {
+    razaoSocial?: string;
+    cnpj?: string;
+    nomeFantasia?: string;
+}

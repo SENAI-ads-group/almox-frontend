@@ -1,4 +1,4 @@
-import { FornecedorService } from "./../../../fornecedor/services/fornecedor.service";
+import { FornecedorService } from "../../../fornecedor/fornecedor.service";
 import { PedidoFormComponent } from "../form/pedido-form.component";
 import { OperadorService } from "../../../operador/operador.service";
 import { Component, OnInit } from "@angular/core";
@@ -17,7 +17,7 @@ import { HandleErrorService } from "src/modules/shared/services/handle-error.ser
 import { PaginaBuscaCrud } from "../../../shared/PaginaBuscaCrud";
 import { PedidoService } from "../../services/pedido.service";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Fornecedor } from "src/model/fornecedor";
+import FornecedorModel from "src/model/fornecedor";
 
 @Component({
     selector: "pedido-busca",
@@ -28,7 +28,7 @@ export class PedidoBuscaComponent extends PaginaBuscaCrud<Pedido> {
     NOME_PAGINA = "Pedidos de Compra";
     enums: any;
     compradores$: Observable<OperadorModel[]>;
-    fornecedores$: Observable<Fornecedor[]>;
+    fornecedores$: Observable<FornecedorModel[]>;
     colunas: any[];
     dialogRef: DynamicDialogRef;
 
@@ -66,7 +66,7 @@ export class PedidoBuscaComponent extends PaginaBuscaCrud<Pedido> {
             .buscarEnumeradores()
             .subscribe(resp => (this.enums = resp));
         this.compradores$ = this.operadorService.buscarTodos();
-        this.fornecedores$ = this.fornecedorService.buscarTodos();
+        this.fornecedores$ = this.fornecedorService.buscarFornecedores();
         this.onBuscar({ status: { type: "PENDENTE_ENTREGA" } });
     }
 

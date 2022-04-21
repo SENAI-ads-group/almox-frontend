@@ -25,10 +25,7 @@ export class GrupoBuscaComponent extends PaginaBuscaCrud<GrupoModel> {
 
     enums$: Observable<any>;
     colunas: any[];
-    filtro = {
-        descricao: null,
-        statusAuditoria: FiltroStatusAuditoria.APENAS_ATIVOS,
-    };
+    filtro = { descricao: null };
 
     constructor(
         private grupoService: GrupoService,
@@ -60,9 +57,8 @@ export class GrupoBuscaComponent extends PaginaBuscaCrud<GrupoModel> {
     }
 
     onBuscar(filtro: any): void {
-        filtro = { ...filtro, statusAuditoria: filtro?.statusAuditoria?.type ?? null };
         this.loading = true;
-        this.grupoService.buscarGrupos(filtro).subscribe({
+        this.grupoService.buscarGrupos({ ...filtro }).subscribe({
             next: dados => this.registros = dados,
             complete: () => this.loading = false
         });
@@ -70,10 +66,7 @@ export class GrupoBuscaComponent extends PaginaBuscaCrud<GrupoModel> {
 
 
     limparFiltros(): void {
-        this.filtro = {
-            descricao: null,
-            statusAuditoria: FiltroStatusAuditoria.APENAS_ATIVOS,
-        };
+        this.filtro = { descricao: null };
         this.onBuscar(this.filtro);
     }
 

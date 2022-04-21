@@ -2,7 +2,7 @@ import { ItemPedido } from './item-pedido';
 import OperadorModel from './operador';
 
 import DepartamentoModel from './departamento';
-import { Fornecedor } from './fornecedor';
+import FornecedorModel from './fornecedor';
 import { ItemRequisicao } from './item-requisicao';
 
 export interface Pedido {
@@ -10,7 +10,7 @@ export interface Pedido {
     dataPedido?: Date;
     dataPrevisaoEntrega?: Date;
     anotacoes?: string;
-    fornecedor?: Fornecedor;
+    fornecedor?: FornecedorModel;
     comprador?: OperadorModel;
     status?: any;
     itens?: ItemPedido[];

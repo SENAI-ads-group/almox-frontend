@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
-import { Fornecedor } from "src/model/fornecedor";
+import FornecedorModel from "src/model/fornecedor";
 import { Mensagens } from "src/utils/Mensagens";
 
 import { CommonService } from "../../../shared/services/common.service";
@@ -13,7 +13,7 @@ import GrupoModel from "./../../../../model/grupo";
 import { Produto } from "./../../../../model/produto";
 import { DepartamentoService } from "../../../departamento/departamento.service";
 import { FabricanteService } from "./../../../fabricante/services/fabricante.service";
-import { FornecedorService } from "./../../../fornecedor/services/fornecedor.service";
+import { FornecedorService } from "../../../fornecedor/fornecedor.service";
 import { GrupoService } from "./../../../grupo/grupo.service";
 import { ProdutoService } from "./../../services/produto.service";
 
@@ -26,7 +26,7 @@ export class ProdutoFormComponent implements OnInit {
     editandoRegistroExistente: boolean;
     enums$: Observable<any>;
     fabricantes$: Observable<Fabricante[]>;
-    fornecedores$: Observable<Fornecedor[]>;
+    fornecedores$: Observable<FornecedorModel[]>;
     grupos$: Observable<GrupoModel[]>;
     departamentos$: Observable<DepartamentoModel[]>;
 
@@ -46,7 +46,7 @@ export class ProdutoFormComponent implements OnInit {
         this.enums$ = this.commonService.buscarEnumeradores();
         this.grupos$ = this.grupoService.buscarGrupos();
         this.fabricantes$ = this.fabricanteService.buscarTodos();
-        this.fornecedores$ = this.fornecedorService.buscarTodos();
+        this.fornecedores$ = this.fornecedorService.buscarFornecedores();
         this.departamentos$ = this.departamentoService.buscarDepartamentos();
 
         this.activatedRoute.params.subscribe(params => {

@@ -47,6 +47,7 @@ export class DepartamentoFormularioComponent implements OnInit, OnDestroy {
                                     map(opeList => opeList.filter(ope => !res.operadores.some(o => o.id === ope.id)))
                                 );
                         },
+                        error: () => this.router.navigate(['/departamentos']),
                         complete: () => this.isLoading = false
                     });
             } else {

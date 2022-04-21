@@ -1,33 +1,34 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { ConfirmationService, MessageService } from "primeng/api";
-import { Fornecedor } from "src/model/fornecedor";
+import FornecedorModel from "src/model/fornecedor";
 import {
     criarConfiguracaoColuna,
     TipoColuna,
 } from "src/modules/shared/components/tabela-crud/coluna";
 
-import { FornecedorService } from "../../services/fornecedor.service";
-import { FornecedorFiltroBuscaComponent } from "../filtro-busca/fornecedor-filtro-busca.component";
+import { FornecedorService } from "../fornecedor.service";
 
 @Component({
-    selector: "fornecedor-lista",
+    selector: "fornecedor-busca",
     templateUrl: "./fornecedor-busca.component.html",
 })
 export class FornecedorBuscaComponent implements OnInit {
     colunas = [];
-    fornecedores: Fornecedor[];
-    selecionados: Fornecedor[];
+    fornecedores: FornecedorModel[];
 
-    @ViewChild("filtroComponent")
-    filtroComponent: FornecedorFiltroBuscaComponent;
+    filtro = {
+        cnpj: "",
+        razaoSocial: "",
+        email: "",
+    };
 
     constructor(
         private router: Router,
         private confirmationService: ConfirmationService,
         private messageService: MessageService,
         private fornecedorService: FornecedorService
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.colunas = [
@@ -48,17 +49,17 @@ export class FornecedorBuscaComponent implements OnInit {
         this.onBuscar({});
     }
 
-    onVisualizar(fornecedor: Fornecedor) {
+    onVisualizar(fornecedor: FornecedorModel) {
         this.router.navigate([`fornecedores/visualizar/${fornecedor.id}`]);
     }
 
-    onEditar(fornecedor: Fornecedor) {
+    onEditar(fornecedor: FornecedorModel) {
         this.router.navigate([`fornecedores/editar/${fornecedor.id}`]);
     }
 
-    onExcluir(fornecedor: Fornecedor) {
+    onExcluir(fornecedor: FornecedorModel) {
         this.confirmationService.confirm({
-            message: `Você têm certeza que deseja excluir o fornecedor ${fornecedor.razaoSocial} ?`,
+            message: `Você têm certeza que deseja excluir o fornecedor ${fornecedor.pessoa.razaoSocial} ?`,
             header: "Confirmação",
             icon: "pi pi-exclamation-triangle",
             acceptLabel: "Sim",
@@ -71,7 +72,7 @@ export class FornecedorBuscaComponent implements OnInit {
                         detail: "Fornecedor Excluído",
                         life: 3000,
                     });
-                    this.onBuscar(this.filtroComponent.filtro);
+                    this.onBuscar(this.filtro);
                 });
             },
         });
@@ -80,17 +81,25 @@ export class FornecedorBuscaComponent implements OnInit {
 
     onBuscar(filtro: any) {
         this.fornecedorService
-            .buscarTodosFiltrado(filtro)
+            .buscarFornecedores(filtro)
             .subscribe(
                 fornecedoresEncontrados =>
                     (this.fornecedores = fornecedoresEncontrados)
             );
     }
 
-    onExibirAcaoEditar(fornecedor: Fornecedor) {
+    onLimpar() {
+        this.filtro = {
+            cnpj: "",
+            razaoSocial: "",
+            email: "",
+        };
+    }
+
+    onExibirAcaoEditar(fornecedor: FornecedorModel) {
         return true;
     }
-    onExibirAcaoExcluir(fornecedor: Fornecedor) {
+    onExibirAcaoExcluir(fornecedor: FornecedorModel) {
         return true;
     }
 }

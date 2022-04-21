@@ -1,5 +1,5 @@
-import { FornecedorService } from "./../../../../fornecedor/services/fornecedor.service";
-import { Fornecedor } from "src/model/fornecedor";
+import { FornecedorService } from "../../../../fornecedor/fornecedor.service";
+import FornecedorModel from "src/model/fornecedor";
 import { OperadorService } from "../../../../operador/operador.service";
 import { DepartamentoService } from "src/modules/departamento/departamento.service";
 import { Component, ViewChild, OnInit } from "@angular/core";
@@ -17,7 +17,7 @@ import { PedidoStepMergeService } from "../../../services/pedido-step-merge.serv
 })
 export class PedidoStepInformacoesComponent implements OnInit {
     @ViewChild("formulario") formulario : NgForm;
-    fornecedores$: Observable<Fornecedor[]>;
+    fornecedores$: Observable<FornecedorModel[]>;
 
     constructor(
         private router: Router,
@@ -28,7 +28,7 @@ export class PedidoStepInformacoesComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.fornecedores$ = this.fornecedorService.buscarTodos();
+        this.fornecedores$ = this.fornecedorService.buscarFornecedores();
     }
 
     onSubmit() {
