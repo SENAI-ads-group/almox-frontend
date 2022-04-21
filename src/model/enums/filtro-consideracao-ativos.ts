@@ -1,4 +1,4 @@
-export const FiltroConsideracaoAtivos = Object.freeze({
+export const FiltroStatusAuditoria = Object.freeze({
     TODOS: {
         type: "CONSIDERAR_TODOS",
         descricao: "Considerar Todos",
@@ -15,9 +15,9 @@ export const FiltroConsideracaoAtivos = Object.freeze({
         valor: false,
     },
     resolverSelecaoConsideracao(consideracao: any) {
-        if (consideracao == null) return FiltroConsideracaoAtivos.TODOS;
-        if (!!consideracao) return FiltroConsideracaoAtivos.APENAS_ATIVOS;
-        if (!consideracao) return FiltroConsideracaoAtivos.APENAS_EXCLUIDOS;
+        if (consideracao == null) return FiltroStatusAuditoria.TODOS;
+        if (!!consideracao) return FiltroStatusAuditoria.APENAS_ATIVOS;
+        if (!consideracao) return FiltroStatusAuditoria.APENAS_EXCLUIDOS;
         return undefined;
     },
 });

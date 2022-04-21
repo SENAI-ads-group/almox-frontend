@@ -5,20 +5,16 @@ import { ContatoModule } from '../contato/contato.module';
 import { PessoaJuridicaModule } from '../pessoa-juridica/pessoa-juridica.module';
 import { SharedModule } from '../shared/shared.module';
 import { PrimengModule } from './../primeng/primeng.module';
-import { FornecedorBuscaComponent } from './components/busca/fornecedor-busca.component';
-import { FornecedorFiltroBuscaComponent } from './components/filtro-busca/fornecedor-filtro-busca.component';
-import { FornecedorFormSectionComponent } from './components/form-section/fornecedor-form-section.component';
-import { FornecedorFormComponent } from './components/form/fornecedor-form.component';
-import { FornecedorModalListaComponent } from './components/modal-listagem/fornecedor-modal-lista.component';
+import { FornecedorBuscaComponent } from './busca/fornecedor-busca.component';
+import { FornecedorFormularioComponent } from './formulario/fornecedor-formulario.component';
+import { FornecedorModalListaComponent } from './modal-listagem/fornecedor-modal-lista.component';
 import { FornecedorRoutingModule } from './fornecedor-routing.module';
 
 @NgModule({
     declarations: [
         FornecedorModalListaComponent,
-        FornecedorFormComponent,
-        FornecedorFormSectionComponent,
+        FornecedorFormularioComponent,
         FornecedorBuscaComponent,
-        FornecedorFiltroBuscaComponent,
     ],
     imports: [
         CommonModule,
@@ -30,4 +26,4 @@ import { FornecedorRoutingModule } from './fornecedor-routing.module';
     ],
     exports: [FornecedorModalListaComponent],
 })
-export class FornecedorModule {}
+export class FornecedorModule { }

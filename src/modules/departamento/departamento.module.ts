@@ -4,20 +4,14 @@ import { NgModule } from '@angular/core';
 import { AuditoriaModule } from './../auditoria/auditoria.module';
 import { PrimengModule } from './../primeng/primeng.module';
 import { SharedModule } from './../shared/shared.module';
-import { DepartamentoFiltroComponent } from './components/filtro-busca/departamento-filtro-busca.component';
-import {
-    DepartamentoFormSectionComponent,
-} from './components/form-section/departamento-form-section.component';
-import { DepartamentoFormComponent } from './pages/form/departamento-form.component';
-import { DepartamentoBuscaComponent } from './pages/busca/departamento-busca.component';
+import { DepartamentoFormularioComponent } from './formulario/departamento-formulario.component';
+import { DepartamentoBuscaComponent } from './busca/departamento-busca.component';
 import { DepartamentoRoutingModule } from './departamento-routing.module';
 
 @NgModule({
     declarations: [
         DepartamentoBuscaComponent,
-        DepartamentoFiltroComponent,
-        DepartamentoFormComponent,
-        DepartamentoFormSectionComponent,
+        DepartamentoFormularioComponent,
     ],
     imports: [
         CommonModule,
@@ -27,4 +21,4 @@ import { DepartamentoRoutingModule } from './departamento-routing.module';
         AuditoriaModule,
     ],
 })
-export class DepartamentoModule {}
+export class DepartamentoModule { }

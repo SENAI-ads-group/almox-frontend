@@ -1,0 +1,40 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <div class="p-d-flex p-jc-between">
+            <titulo-pagina-crud
+                entidade="Fornecedores"
+                acao="{{ isEditando ? 'Editar' : 'Novo' }}"
+            ></titulo-pagina-crud>
+            <div>
+                <button
+                    pButton
+                    pRipple
+                    label="Consultar"
+                    class="p-mb-3 p-mr-1 p-shadow-4 p-button-secondary"
+                    icon="pi pi-list"
+                    routerLink="/fornecedores"
+                ></button>
+            </div>
+        </div>
+
+        <form #formulario="ngForm" (ngSubmit)="onSubmit(formulario)">
+            <p-card styleClass="p-mb-4 p-p-0 p-shadow-3">
+                <ng-template pTemplate="title">Informações Básicas</ng-template>
+                <ng-template pTemplate="subtitle"
+                    >Informe os dados do novo fornecedor</ng-template
+                >
+                <pj-form-section
+                    [pessoa]="fornecedorFormulario.pessoa"
+                    [formulario]="formulario"
+                ></pj-form-section>
+            </p-card>
+
+            <div class="p-grid p-justify-end" *ngIf="!modoVisualizacao">
+                <limpar-button (click)="limpar()"></limpar-button>
+                <submit-button></submit-button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<p-toast></p-toast>

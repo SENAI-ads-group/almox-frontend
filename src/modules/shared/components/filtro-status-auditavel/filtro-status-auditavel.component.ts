@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FiltroConsideracaoAtivos } from "../../../../model/enums";
+import { FiltroStatusAuditoria } from "../../../../model/enums";
 
 @Component({
     selector: "filtro-status-auditavel",
@@ -8,7 +8,7 @@ import { FiltroConsideracaoAtivos } from "../../../../model/enums";
 })
 export class FiltroStatusAuditavel implements OnInit {
     filtroStatusAuditavel: any = null;
-    @Input() filtroSelecionado: any = FiltroConsideracaoAtivos.APENAS_ATIVOS;
+    @Input() filtroSelecionado: any = FiltroStatusAuditoria.APENAS_ATIVOS;
     @Output() filtroChange = new EventEmitter();
 
     constructor() {}
@@ -19,7 +19,7 @@ export class FiltroStatusAuditavel implements OnInit {
 
     onChangeTriStateCheckBox() {
         this.filtroSelecionado =
-            FiltroConsideracaoAtivos.resolverSelecaoConsideracao(
+            FiltroStatusAuditoria.resolverSelecaoConsideracao(
                 this.filtroStatusAuditavel
             );
         this.filtroChange.emit(this.filtroSelecionado);

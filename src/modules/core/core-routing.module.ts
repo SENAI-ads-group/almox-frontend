@@ -10,10 +10,10 @@ const routes: Routes = [
         component: MainComponent,
         children: [
             {
-                path: "usuarios",
+                path: "operadors",
                 loadChildren: () =>
-                    import("../usuario/usuario.module").then(
-                        module => module.UsuarioModule
+                    import("../operador/operador.module").then(
+                        module => module.OperadorModule
                     ),
             },
             {

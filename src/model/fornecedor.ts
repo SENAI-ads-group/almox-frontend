@@ -1,12 +1,13 @@
-import { PessoaJurica } from './pessoa-juridica';
-import { Contato } from './contato';
+import { CriarPessoa, PessoaJurica } from './pessoa-juridica';
 
-export interface Fornecedor extends PessoaJurica{
-    id?: number;
-    razaoSocial?:string;
-    nomeFantasia?:string;
-    rg?:string;
-    cnpj?:string;
-    contato?:Contato;
+export default interface FornecedorModel {
+    id?: string;
+    pessoa?: PessoaJurica;
+}
 
+interface _CriarPessoaFornecedor extends CriarPessoa {
+    id?: string;
+}
+export interface CriarFornecedor {
+    pessoa: _CriarPessoaFornecedor;
 }

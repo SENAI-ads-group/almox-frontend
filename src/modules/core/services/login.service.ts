@@ -15,7 +15,6 @@ export class LoginService {
             'Authorization': `Basic ${btoa(environment.auth.client_id + ':' + environment.auth.client_secret)}`
         });
 
-
         const body = new URLSearchParams();
         body.set('grant_type', environment.auth.grant_type);
         body.set('username', username);

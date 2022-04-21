@@ -1,12 +1,12 @@
-import { FornecedorService } from "./../../../fornecedor/services/fornecedor.service";
+import { FornecedorService } from "../../../fornecedor/fornecedor.service";
 import { PedidoFormComponent } from "../form/pedido-form.component";
-import { UsuarioService } from "../../../usuario/services/usuario.service";
+import { OperadorService } from "../../../operador/operador.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { Observable } from "rxjs";
 import { Pedido } from "src/model/pedido";
-import { Usuario } from "src/model/usuario";
+import OperadorModel from "src/model/operador";
 import {
     criarConfiguracaoColuna,
     TipoColuna,
@@ -17,6 +17,7 @@ import { HandleErrorService } from "src/modules/shared/services/handle-error.ser
 import { PaginaBuscaCrud } from "../../../shared/PaginaBuscaCrud";
 import { PedidoService } from "../../services/pedido.service";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
+import FornecedorModel from "src/model/fornecedor";
 
 @Component({
     selector: "pedido-busca",
@@ -26,8 +27,8 @@ import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 export class PedidoBuscaComponent extends PaginaBuscaCrud<Pedido> {
     NOME_PAGINA = "Pedidos de Compra";
     enums: any;
-    compradores$: Observable<Usuario[]>;
-    fornecedores$: Observable<Usuario[]>;
+    compradores$: Observable<OperadorModel[]>;
+    fornecedores$: Observable<FornecedorModel[]>;
     colunas: any[];
     dialogRef: DynamicDialogRef;
 
@@ -35,13 +36,13 @@ export class PedidoBuscaComponent extends PaginaBuscaCrud<Pedido> {
         private confirmationService: ConfirmationService,
         private messageService: MessageService,
         private commonService: CommonService,
-        pedidoService: PedidoService,
-        private usuarioService: UsuarioService,
+        private pedidoService: PedidoService,
+        private operadorService: OperadorService,
         private fornecedorService: FornecedorService,
         private router: Router,
         private dialogService: DialogService
     ) {
-        super(pedidoService);
+        super();
     }
 
     ngOnInit(): void {
@@ -64,8 +65,8 @@ export class PedidoBuscaComponent extends PaginaBuscaCrud<Pedido> {
         this.commonService
             .buscarEnumeradores()
             .subscribe(resp => (this.enums = resp));
-        this.compradores$ = this.usuarioService.buscarTodos();
-        this.fornecedores$ = this.fornecedorService.buscarTodos();
+        this.compradores$ = this.operadorService.buscarTodos();
+        this.fornecedores$ = this.fornecedorService.buscarFornecedores();
         this.onBuscar({ status: { type: "PENDENTE_ENTREGA" } });
     }
 
@@ -75,7 +76,7 @@ export class PedidoBuscaComponent extends PaginaBuscaCrud<Pedido> {
             : { type: 'PENDENTE_ENTREGA' };
 
         this.loading = true;
-        this.service.buscarTodosFiltrado(filtro).subscribe(
+        this.pedidoService.buscarTodosFiltrado(filtro).subscribe(
             (dados: Pedido[]) => {
                 this.registros = dados;
                 this.loading = false;
@@ -94,7 +95,7 @@ export class PedidoBuscaComponent extends PaginaBuscaCrud<Pedido> {
             header: "Novo Pedido",
         });
 
-        this.dialogRef.onClose.subscribe(() => {});
+        this.dialogRef.onClose.subscribe(() => { });
     }
 
     onEditar(registro: Pedido): void {
@@ -112,7 +113,7 @@ export class PedidoBuscaComponent extends PaginaBuscaCrud<Pedido> {
             icon: "pi pi-exclamation-triangle",
             acceptLabel: "Sim",
             rejectLabel: "Não",
-            accept: () => {},
+            accept: () => { },
         });
         this.messageService.messageObserver.subscribe();
     }

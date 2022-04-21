@@ -1,10 +1,10 @@
-import { Departamento } from "./departamento"
+import DepartamentoModel from "./departamento"
 import { Auditavel } from "./auditavel";
 
-export interface Usuario extends Auditavel {
+export interface Operador extends Auditavel {
     id?: number;
     username?: string;
     email?: string;
-    tipoUsuario?: any;
+    tipoOperador?: any;
     departamentos?: Departamento[];
 }

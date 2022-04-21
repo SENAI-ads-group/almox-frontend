@@ -8,6 +8,13 @@ export class Mensagens {
         life: 1500,
     };
 
+    static readonly SUCESSO_REGISTRO_CRIADO: Message = {
+        severity: "success",
+        key: "notification",
+        summary: "Registro Criado com Sucesso!",
+        life: 1500,
+    };
+
     static readonly SUCESSO_REGISTRO_SALVO: Message = {
         severity: "success",
         key: "notification",
@@ -65,6 +72,22 @@ export class Mensagens {
         key: "notification",
         summary: "Sucesso",
         detail: "Pedido cancelado!",
+        life: 1500,
+    }
+
+    static readonly ERRO_EXCLUIR_REGISTRO: Message = {
+        severity: "error",
+        key: "notification",
+        summary: "Erro",
+        detail: "Erro ao excluir registro",
+        life: 1500,
+    }
+
+    static readonly ERRO_DESCONHECIDO: Message = {
+        severity: "error",
+        key: "notification",
+        summary: "Erro",
+        detail: "Erro desconhecido",
         life: 1500,
     }
 }

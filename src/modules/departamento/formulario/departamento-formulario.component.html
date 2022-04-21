@@ -1,0 +1,96 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <div class="p-d-flex p-jc-between">
+            <titulo-pagina-crud
+                entidade="Departamentos"
+                acao="{{ isEditando ? 'Editar' : 'Novo' }}"
+            ></titulo-pagina-crud>
+            <div>
+                <button
+                    pButton
+                    pRipple
+                    label="Consultar"
+                    class="p-mb-3 p-mr-1 p-shadow-4 p-button-secondary"
+                    icon="pi pi-list"
+                    routerLink="/departamentos"
+                ></button>
+            </div>
+        </div>
+
+        <form #formulario="ngForm" (ngSubmit)="onSubmit()">
+            <p-card styleClass="p-mb-4 p-p-0 p-shadow-3">
+                <ng-template pTemplate="title">Informações Básicas</ng-template>
+                <ng-template pTemplate="subtitle"
+                    >Informe os dados departamento</ng-template
+                >
+
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-6">
+                        <label for="descricao">Descrição</label>
+                        <input
+                            #descricaoControl="ngModel"
+                            type="text"
+                            id="descricao"
+                            name="descricao"
+                            [(ngModel)]="departamentoFormulario.descricao"
+                            pInputText
+                            required
+                        />
+                        <small
+                            class="p-invalid p-error"
+                            *ngIf="
+                                !descricaoControl.valid &&
+                                descricaoControl.touched &&
+                                !departamentoFormulario.descricao
+                            "
+                        >
+                            A descrição do departamento é necessária.
+                        </small>
+                    </div>
+                </div>
+            </p-card>
+
+            <p-card styleClass="p-mb-4 p-p-0 p-shadow-3">
+                <ng-template pTemplate="title"
+                    >Usuários Pertencentes</ng-template
+                >
+                <ng-template pTemplate="subtitle"
+                    >Selecione os usuários pertencentes à este
+                    departamento</ng-template
+                >
+                <div class="p-field p-col-12">
+                    <p-pickList
+                        name="usr"
+                        id="usr"
+                        [source]="operadores$ | async"
+                        [target]="departamentoFormulario.operadores"
+                        sourceHeader="Disponíveis"
+                        targetHeader="Selecionados"
+                        [dragdrop]="true"
+                        [responsive]="true"
+                        [sourceStyle]="{ height: '15rem' }"
+                        [targetStyle]="{ height: '15rem' }"
+                        filterBy="pessoa"
+                        [showSourceControls]="false"
+                        [showTargetControls]="false"
+                        sourceFilterPlaceholder="Pesquisar por nome"
+                        targetFilterPlaceholder="Pesquisar por nome"
+                    >
+                        <ng-template let-operador pTemplate="item">
+                            <h5 class="p-mb-2">{{ operador.pessoa.nome }}</h5>
+                            <span>{{ operador.pessoa.email }}</span>
+                        </ng-template>
+                    </p-pickList>
+                </div>
+            </p-card>
+
+            <div class="p-grid p-justify-end">
+                <limpar-button
+                    [disabled]="isEditando"
+                    (click)="onLimpar()"
+                ></limpar-button>
+                <submit-button [disabled]="!formulario.valid"></submit-button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,10 +1,10 @@
-import { UsuarioService } from '../../../../usuario/services/usuario.service';
-import { DepartamentoService } from "src/modules/departamento/services/departamento.service";
+import { OperadorService } from '../../../../operador/operador.service';
+import { DepartamentoService } from "src/modules/departamento/departamento.service";
 import { Component, ViewChild, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
-import { Departamento } from "src/model/departamento";
+import DepartamentoModel from "src/model/departamento";
 
 import { RequisicaoStepMergeService } from "../../../services/requisicao-step-merge.service";
 
@@ -15,21 +15,21 @@ import { RequisicaoStepMergeService } from "../../../services/requisicao-step-me
 })
 export class RequisicaoStepInformacoesComponent implements OnInit {
     @ViewChild("formulario") formulario: NgForm;
-    departamentos$: Observable<Departamento[]>;
-    almoxarifes$: Observable<Departamento[]>;
+    departamentos$: Observable<DepartamentoModel[]>;
+    almoxarifes$: Observable<DepartamentoModel[]>;
 
     constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute,
         public stepMergeService: RequisicaoStepMergeService,
         private departamentoService: DepartamentoService,
-        private usuarioService: UsuarioService
+        private operadorService: OperadorService
     ) {}
 
     ngOnInit(): void {
         this.departamentos$ =
-            this.departamentoService.buscarAssociadosUsuarioLogado();
-        this.almoxarifes$ = this.usuarioService.buscarAlmoxarifes();
+            this.departamentoService.buscarAssociadosOperadorLogado();
+        //this.almoxarifes$ = this.operadorService.buscarAlmoxarifes();
     }
 
     onSubmit() {

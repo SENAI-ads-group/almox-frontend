@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, Subscriber } from 'rxjs';
-import { Departamento } from 'src/model/departamento';
-import { FiltroConsideracaoAtivos } from 'src/model/enums';
-import { Grupo } from 'src/model/grupo';
-import { DepartamentoService } from 'src/modules/departamento/services/departamento.service';
+import DepartamentoModel from 'src/model/departamento';
+import { FiltroStatusAuditoria } from 'src/model/enums';
+import GrupoModel from 'src/model/grupo';
+import { DepartamentoService } from 'src/modules/departamento/departamento.service';
 
 import { Produto } from '../../../../model/produto';
 import { GrupoService } from '../../../grupo/grupo.service';
@@ -29,8 +29,8 @@ export class ProdutoBuscaComponent implements OnInit {
     registros: Produto[];
     selecionados: Produto[];
     enums$: Observable<any>;
-    grupos$: Observable<Grupo[]>;
-    departamentos$: Observable<Departamento[]>;
+    grupos$: Observable<GrupoModel[]>;
+    departamentos$: Observable<DepartamentoModel[]>;
     enumsSubscribe: Subscriber<any>;
     colunas: any[];
     loading: boolean = false;
@@ -73,10 +73,10 @@ export class ProdutoBuscaComponent implements OnInit {
             ),
             criarConfiguracaoColunaStatusAuditavel("Status"),
         ];
-        this.grupos$ = this.grupoService.buscarTodos();
-        this.departamentos$ = this.departamentoService.buscarTodos();
+        this.grupos$ = this.grupoService.buscarGrupos();
+        this.departamentos$ = this.departamentoService.buscarDepartamentos();
 
-        this.onBuscar({filtroStatusAuditavel: FiltroConsideracaoAtivos.APENAS_ATIVOS});
+        this.onBuscar({filtroStatusAuditavel: FiltroStatusAuditoria.APENAS_ATIVOS});
     }
 
     onBuscar(filtro: any): void {

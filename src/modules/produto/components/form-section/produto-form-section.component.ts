@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ControlContainer, NgForm } from "@angular/forms";
-import { Departamento } from "src/model/departamento";
+import DepartamentoModel from "src/model/departamento";
 import { Produto } from "src/model/produto";
 
 import { Fabricante } from "./../../../../model/fabricante";
-import { Grupo } from "./../../../../model/grupo";
+import GrupoModel from "./../../../../model/grupo";
 
 @Component({
     selector: "produto-form-section",
@@ -13,9 +13,9 @@ import { Grupo } from "./../../../../model/grupo";
 })
 export class ProdutoFormSectionComponent implements OnInit {
     @Input() produto: Produto;
-    @Input() departamentos: Departamento[];
+    @Input() departamentos: DepartamentoModel[];
     @Input() fabricantes: Fabricante[];
-    @Input() grupos: Grupo[];
+    @Input() grupos: GrupoModel[];
     @Input() enums: any;
 
     constructor(public formulario: NgForm) {}
