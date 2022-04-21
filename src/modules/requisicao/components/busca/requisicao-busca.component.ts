@@ -81,14 +81,11 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
             ? filtro.status
             : { type: 'AGUARDANDO_ATENDIMENTO' };
 
-        this.loading = true;
-        this.requisicaoService.buscarTodosFiltrado(filtro).subscribe(
-            (dados: Requisicao[]) => {
-                this.registros = dados;
-                this.loading = false;
-            },
-            () => (this.loading = false)
-        );
+        this.carregando = true;
+        this.registrosSubscription = this.requisicaoService.buscarTodosFiltrado(filtro).subscribe({
+            next: (data) => this.registros = data,
+            complete: () => this.carregando = false
+        });
     }
 
     onChangeStatus({ index }) {
@@ -101,7 +98,7 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
             header: "Nova Requisição",
         });
 
-        this.dialogRef.onClose.subscribe(() => {});
+        this.dialogRef.onClose.subscribe(() => { });
     }
 
     onEditar(registro: Requisicao) {
@@ -119,7 +116,7 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
             icon: "pi pi-exclamation-triangle",
             acceptLabel: "Sim",
             rejectLabel: "Não",
-            accept: () => {},
+            accept: () => { },
         });
         this.messageService.messageObserver.subscribe();
     }

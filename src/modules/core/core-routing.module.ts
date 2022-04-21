@@ -38,15 +38,6 @@ const routes: Routes = [
                     ),
             },
             {
-
-                path: "fabricantes",
-                loadChildren: () =>
-                    import("../fabricante/fabricante.module").then(
-                        module => module.FabricanteModule
-
-                    ),
-            },
-{
                 path: "item-requisicao",
                 loadChildren: () =>
                     import("../item-requisicao/item-requisicao.module").then(
@@ -89,4 +80,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
-export class CoreRoutingModule {}
+export class CoreRoutingModule { }

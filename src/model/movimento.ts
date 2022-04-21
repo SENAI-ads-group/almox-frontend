@@ -1,4 +1,4 @@
-import { Produto } from 'src/model/produto';
+import ProdutoModel from 'src/model/produto';
 export interface Movimento {
     id?: number,
     data?: Date,
@@ -12,7 +12,7 @@ export interface Movimento {
 
 export interface ItemMovimento {
     id?: number,
-    produto?: Produto,
+    produto?: ProdutoModel,
     quantidade?: number,
     custoLiquido?: number,
     custoBruto?: number,

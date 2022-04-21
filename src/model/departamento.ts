@@ -1,11 +1,11 @@
 import { Auditavel } from './auditavel';
 import OperadorModel from './operador';
-import { Produto } from './produto';
+import ProdutoModel from './produto';
 export default interface DepartamentoModel {
     id?: string;
     descricao?: string;
     operadores?: OperadorModel[];
-    produtos?: Produto[];
+    produtos?: ProdutoModel[];
     auditoria?: Auditavel;
 }
 

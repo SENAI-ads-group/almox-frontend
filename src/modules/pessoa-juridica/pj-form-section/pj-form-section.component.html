@@ -1,0 +1,266 @@
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-4">
+        <label for="nome">Nome</label>
+        <input
+            #nomeControl="ngModel"
+            type="text"
+            id="nome"
+            name="nome"
+            [(ngModel)]="pessoa.nome"
+            pInputText
+            required
+            autofocus
+        />
+        <small
+            class="p-invalid p-error"
+            *ngIf="formulario.submitted && !nomeControl.valid"
+        >
+            O Nome é necessário.
+        </small>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label for="nomeFantasia">Nome Fantasia</label>
+        <input
+            #nomeFantasiaControl="ngModel"
+            type="text"
+            id="nomeFantasia"
+            name="nomeFantasia"
+            [(ngModel)]="pessoa.nomeFantasia"
+            pInputText
+            required
+            autofocus
+        />
+        <small
+            class="p-invalid p-error"
+            *ngIf="formulario.submitted && !nomeFantasiaControl.valid"
+        >
+            O Nome Fantasia é necessário.
+        </small>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label for="razaoSocial">Razão Social</label>
+        <input
+            #razaoSocialControl="ngModel"
+            type="text"
+            id="razaoSocial"
+            name="razaoSocial"
+            [(ngModel)]="pessoa.razaoSocial"
+            pInputText
+            required
+            autofocus
+        />
+        <small
+            class="p-invalid p-error"
+            *ngIf="formulario.submitted && !razaoSocialControl.valid"
+        >
+            A Razão Social é necessária.
+        </small>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label for="cnpj">CNPJ</label>
+        <p-inputMask
+            mask="99.999.999/9999-99"
+            placeholder="00.000.000/0000-00"
+            #cnpjControl="ngModel"
+            id="cnpj"
+            name="cnpj"
+            [(ngModel)]="pessoa.cnpj"
+            required
+            autofocus
+        ></p-inputMask>
+        <small
+            class="p-invalid p-error"
+            *ngIf="formulario.submitted && !cnpjControl.valid"
+        >
+            O Cnpj é necessário.
+        </small>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label for="email1">E-mail</label>
+        <input
+            #emailControl="ngModel"
+            type="text"
+            id="email1"
+            name="email1"
+            [(ngModel)]="pessoa.email"
+            pInputText
+            required
+            autofocus
+        />
+        <small
+            class="p-invalid p-error"
+            *ngIf="formulario.submitted && !emailControl.valid"
+        >
+            Informe um e-mail.
+        </small>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label for="telefone">Telefone</label>
+        <p-inputMask
+            mask="(99) 99999-9999"
+            placeholder="(99) 99999-9999"
+            #telefoneControl="ngModel"
+            type="text"
+            id="telefone"
+            name="telefone"
+            [(ngModel)]="pessoa.telefone"
+            required
+            autofocus
+        ></p-inputMask>
+        <small
+            class="p-invalid p-error"
+            *ngIf="formulario.submitted && !telefoneControl.valid"
+        >
+            Informe um telefone.
+        </small>
+    </div>
+</div>
+
+<h3>Endereço</h3>
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-4">
+        <label for="cep">CEP</label>
+        <p-inputMask
+            mask="99999-999"
+            placeholder="99999-999"
+            #cepControl="ngModel"
+            type="text"
+            id="cep"
+            name="cep"
+            [(ngModel)]="pessoa.cep"
+            required
+            autofocus
+        ></p-inputMask>
+        <small
+            class="p-invalid p-error"
+            *ngIf="formulario.submitted && !cepControl.valid"
+        >
+            Informe o número.
+        </small>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label for="logradouro">Logradouro</label>
+        <input
+            #logradouroControl="ngModel"
+            type="text"
+            id="logradouro"
+            name="logradouro"
+            [(ngModel)]="pessoa.logradouro"
+            pInputText
+            required
+            autofocus
+        />
+        <small
+            class="p-invalid p-error"
+            *ngIf="formulario.submitted && !logradouroControl.valid"
+        >
+            Informe o Logradouro.
+        </small>
+    </div>
+
+    <div class="p-field p-col-2">
+        <label for="numero">Número</label>
+        <input
+            #numeroControl="ngModel"
+            type="text"
+            id="numero"
+            name="numero"
+            [(ngModel)]="pessoa.numero"
+            pInputText
+            required
+            autofocus
+        />
+        <small
+            class="p-invalid p-error"
+            *ngIf="formulario.submitted && !numeroControl.valid"
+        >
+            Informe o número.
+        </small>
+    </div>
+
+    <div class="p-field p-col-2">
+        <label for="estado">Estado</label>
+        <input
+            #estadoControl="ngModel"
+            type="text"
+            id="estado"
+            name="estado"
+            [(ngModel)]="pessoa.uf"
+            pInputText
+            required
+            autofocus
+        />
+        <small
+            class="p-invalid p-error"
+            *ngIf="formulario.submitted && !estadoControl.valid"
+        >
+            Informe o estado.
+        </small>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label for="cidade">Cidade</label>
+        <input
+            #cidadeControl="ngModel"
+            type="text"
+            id="cidade"
+            name="cidade"
+            [(ngModel)]="pessoa.cidade"
+            pInputText
+            required
+            autofocus
+        />
+        <small
+            class="p-invalid p-error"
+            *ngIf="formulario.submitted && !cidadeControl.valid"
+        >
+            Informe a cidade.
+        </small>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label for="bairro">Bairro</label>
+        <input
+            #bairroControl="ngModel"
+            type="text"
+            id="bairro"
+            name="bairro"
+            [(ngModel)]="pessoa.bairro"
+            pInputText
+            required
+            autofocus
+        />
+        <small
+            class="p-invalid p-error"
+            *ngIf="formulario.submitted && !bairroControl.valid"
+        >
+            Informe o bairro.
+        </small>
+    </div>
+
+    <div class="p-field p-col-4">
+        <label for="complemento">Complemento</label>
+        <input
+            #complementoControl="ngModel"
+            type="text"
+            id="complemento"
+            name="complemento"
+            [(ngModel)]="pessoa.complemento"
+            pInputText
+            required
+            autofocus
+        />
+        <small
+            class="p-invalid p-error"
+            *ngIf="formulario.submitted && !complementoControl.valid"
+        >
+            Informe o complemento.
+        </small>
+    </div>
+</div>

@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 
 import { ItemPedido } from "../../../../model/item-pedido";
-import { ProdutoModalListaComponent } from "src/modules/produto/components/modal-listagem/produto-modal-lista.component";
+import { ProdutoModalListaComponent } from "src/modules/produto/modal-listagem/produto-modal-lista.component";
 
 @Component({
     selector: "item-pedido-form",

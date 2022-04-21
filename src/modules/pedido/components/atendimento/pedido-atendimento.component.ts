@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MessageService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
 import { Pedido } from "src/model/pedido";
-import { ModalHistoricoComponent } from "src/modules/produto/components/modal-historico/modal-historico-produto.component";
+import { ModalHistoricoComponent } from "src/modules/produto/modal-historico/modal-historico-produto.component";
 import { Mensagens } from "src/utils/Mensagens";
 
 import { ItemPedido } from "../../../../model/item-pedido";

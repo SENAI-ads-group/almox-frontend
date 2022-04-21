@@ -1,4 +1,4 @@
-import { CriarPessoa, PessoaJurica } from './pessoa-juridica';
+import { CriarPessoa, PessoaJurica } from './pessoa';
 
 export default interface FornecedorModel {
     id?: string;

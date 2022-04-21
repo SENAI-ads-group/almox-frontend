@@ -1,6 +1,6 @@
 import { CriarGrupo } from './../../../model/grupo';
 import { Mensagens } from '../../../utils/Mensagens';
-import { Produto } from "../../../model/produto";
+import ProdutoModel from "../../../model/produto";
 import { NgForm } from "@angular/forms";
 import GrupoModel from "../../../model/grupo";
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
 export class GrupoFormularioComponent implements OnInit, OnDestroy {
     grupo: GrupoModel = {};
     descricao: String;
-    produtos: Produto[];
+    produtos: ProdutoModel[];
     isEditando: boolean = false;
     isLoading: boolean = false;
 
