@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { ProdutoService } from "./../../services/produto.service";
+import { ProdutoService } from "../produto.service";
 import { Component, OnInit } from "@angular/core";
-import { Produto } from "src/model/produto";
+import ProdutoModel from "../../../model/produto";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 
 @Component({
@@ -9,19 +9,19 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
     templateUrl: "./produto-modal-lista.component.html",
 })
 export class ProdutoModalListaComponent implements OnInit {
-    produtos$ : Observable<Produto[]>;
+    produtos$: Observable<ProdutoModel[]>;
 
     constructor(
         private produtoService: ProdutoService,
         public dynamicDialogRef: DynamicDialogRef,
         public configDialog: DynamicDialogConfig
-    ) {}
+    ) { }
 
     ngOnInit(): void {
-        this.produtos$ = this.produtoService.buscarTodos();
+        this.produtos$ = this.produtoService.buscarProdutos();
     }
 
-    onSelecionar(event: MouseEvent, produtoSelecionado: Produto) {
+    onSelecionar(event: MouseEvent, produtoSelecionado: ProdutoModel) {
         this.dynamicDialogRef.close(produtoSelecionado);
     }
 

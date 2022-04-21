@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Message, MessageService } from "primeng/api";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
-import { ProdutoService } from "src/modules/produto/services/produto.service";
+import { ProdutoService } from "src/modules/produto/produto.service";
 
 import { ItemPedido } from "../../../../../model/item-pedido";
 import { PedidoStepMergeService } from "../../../services/pedido-step-merge.service";

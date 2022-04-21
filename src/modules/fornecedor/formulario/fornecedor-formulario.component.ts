@@ -16,7 +16,7 @@ import { FornecedorService } from "../fornecedor.service";
     templateUrl: "./fornecedor-formulario.component.html",
 })
 export class FornecedorFormularioComponent implements OnInit {
-    fornecedorFormulario: FornecedorModel = {};
+    fornecedorFormulario: FornecedorModel = { pessoa: {} };
 
     tiposEndereco: any[];
     tiposTelefone: any[];
@@ -60,15 +60,13 @@ export class FornecedorFormularioComponent implements OnInit {
             this.fornecedorService.atualizar(this.fornecedorFormulario.id, this.fornecedorFormulario).subscribe({
                 next: () => {
                     this.messageService.add(Mensagens.SUCESSO_REGISTRO_SALVO);
-                    this.router.navigate(["/departamentos/"]);
+                    this.router.navigate(["/fornecedores/"]);
                 },
                 error: e => this.handleErrorService.handleError(e)
             });
         }
         else {
-            const criarFornecedor: CriarFornecedor = {
-                pessoa: {}
-            };
+            const criarFornecedor: CriarFornecedor = { pessoa: { ...this.fornecedorFormulario.pessoa } };
             this.fornecedorService.criar(criarFornecedor).subscribe({
                 next: () => {
                     this.messageService.add(Mensagens.SUCESSO_REGISTRO_CRIADO);
@@ -80,7 +78,7 @@ export class FornecedorFormularioComponent implements OnInit {
     }
 
     limpar(): void {
-        this.fornecedorFormulario = {};
+        this.fornecedorFormulario = { pessoa: {} };
     }
 
 }

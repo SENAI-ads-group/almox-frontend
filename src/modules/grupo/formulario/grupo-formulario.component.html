@@ -51,7 +51,10 @@
             </p-card>
 
             <div class="p-grid p-justify-end">
-                <limpar-button (click)="onLimpar()"></limpar-button>
+                <limpar-button
+                    (limpar)="onLimpar()"
+                    [disabled]="!formulario.dirty"
+                ></limpar-button>
                 <submit-button></submit-button>
             </div>
         </form>

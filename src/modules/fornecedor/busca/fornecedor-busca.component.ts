@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { ConfirmationService, MessageService } from "primeng/api";
@@ -15,7 +16,7 @@ import { FornecedorService } from "../fornecedor.service";
 })
 export class FornecedorBuscaComponent implements OnInit {
     colunas = [];
-    fornecedores: FornecedorModel[];
+    fornecedores$: Observable<FornecedorModel[]>;
 
     filtro = {
         cnpj: "",
@@ -32,16 +33,20 @@ export class FornecedorBuscaComponent implements OnInit {
 
     ngOnInit(): void {
         this.colunas = [
-            criarConfiguracaoColuna("id", "#", TipoColuna.TEXTO),
-            criarConfiguracaoColuna("cnpj", "Cnpj", TipoColuna.TEXTO),
+            criarConfiguracaoColuna("pessoa.cnpj", "CNPJ", TipoColuna.TEXTO),
             criarConfiguracaoColuna(
-                "razaoSocial",
-                "Razão Social",
+                "pessoa.nome",
+                "Nome",
                 TipoColuna.TEXTO
             ),
             criarConfiguracaoColuna(
-                "nomeFantasia",
-                "Nome Fantasia",
+                "pessoa.email",
+                "Email",
+                TipoColuna.TEXTO
+            ),
+            criarConfiguracaoColuna(
+                "pessoa.razaoSocial",
+                "Razão Social",
                 TipoColuna.TEXTO
             ),
         ];
@@ -80,12 +85,7 @@ export class FornecedorBuscaComponent implements OnInit {
     }
 
     onBuscar(filtro: any) {
-        this.fornecedorService
-            .buscarFornecedores(filtro)
-            .subscribe(
-                fornecedoresEncontrados =>
-                    (this.fornecedores = fornecedoresEncontrados)
-            );
+        this.fornecedores$ = this.fornecedorService.buscarFornecedores({ ...filtro });
     }
 
     onLimpar() {

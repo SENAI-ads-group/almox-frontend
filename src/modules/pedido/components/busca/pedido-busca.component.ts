@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { Observable } from "rxjs";
 import { Pedido } from "src/model/pedido";
-import OperadorModel from "src/model/operador";
+import OperadorModel from "../../../../model/operador";
 import {
     criarConfiguracaoColuna,
     TipoColuna,
@@ -75,13 +75,13 @@ export class PedidoBuscaComponent extends PaginaBuscaCrud<Pedido> {
             ? filtro.status
             : { type: 'PENDENTE_ENTREGA' };
 
-        this.loading = true;
+        this.carregando = true;
         this.pedidoService.buscarTodosFiltrado(filtro).subscribe(
             (dados: Pedido[]) => {
                 this.registros = dados;
-                this.loading = false;
+                this.carregando = false;
             },
-            () => (this.loading = false)
+            () => (this.carregando = false)
         );
     }
 

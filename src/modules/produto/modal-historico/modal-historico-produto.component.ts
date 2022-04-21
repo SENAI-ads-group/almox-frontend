@@ -1,13 +1,10 @@
-import { HistoricoEstoqueProduto } from "./../../../../model/historico-estoque";
-import { Observable } from "rxjs";
-import { ProdutoService } from "src/modules/produto/services/produto.service";
-import { Component, Input, OnInit } from "@angular/core";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Produto } from "src/model/produto";
-import {
-    criarConfiguracaoColuna,
-    TipoColuna,
-} from "src/modules/shared/components/tabela-crud/coluna";
+import { Component, Input, OnInit } from '@angular/core';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ProdutoService } from 'src/modules/produto/produto.service';
+import { criarConfiguracaoColuna, TipoColuna } from 'src/modules/shared/components/tabela-crud/coluna';
+
+import { HistoricoEstoqueProduto } from '../../../model/historico-estoque';
+import ProdutoModel from '../../../model/produto';
 
 @Component({
     selector: "modal-historico",
@@ -15,7 +12,7 @@ import {
     styleUrls: ["./modal-historico-produto.component.scss"],
 })
 export class ModalHistoricoComponent implements OnInit {
-    @Input() produto: Produto;
+    @Input() produto: ProdutoModel;
     colunas: any[];
     registros: HistoricoEstoqueProduto[];
     loading: boolean = false;
@@ -24,7 +21,7 @@ export class ModalHistoricoComponent implements OnInit {
         public dynamicDialogRef: DynamicDialogRef,
         public configDialog: DynamicDialogConfig,
         private produtoService: ProdutoService
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.loading = true;

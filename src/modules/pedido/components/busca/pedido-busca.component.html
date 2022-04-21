@@ -34,18 +34,16 @@
                 ></p-tabPanel>
             </p-tabView>
 
-            <tabela [colunas]="colunas" [dados]="registros" [loading]="loading">
+            <tabela
+                [colunas]="colunas"
+                [dados]="registros"
+                [loading]="carregando"
+            >
                 <ng-template class="botoesAcao" let-rowData="rowData">
                     <button
                         pButton
                         pRipple
-                        class="
-                            p-mr-2
-                            p-mb-2
-                            p-button-sm
-                            p-button-icon-only
-                            p-button-rounded
-                        "
+                        class="p-mr-2 p-mb-2 p-button-sm p-button-icon-only p-button-rounded"
                         style="background: #b3e5fc; color: #23547b"
                         pTooltip="Detalhes"
                         tooltipPosition="bottom"

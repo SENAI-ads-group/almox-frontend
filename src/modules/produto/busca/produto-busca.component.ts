@@ -1,23 +1,26 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import UnidadeMedida from 'src/model/enums/unidade-medida';
+import { FornecedorService } from './../../fornecedor/fornecedor.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, Subscriber } from 'rxjs';
+import { Observable } from 'rxjs';
 import DepartamentoModel from 'src/model/departamento';
 import { FiltroStatusAuditoria } from 'src/model/enums';
+import FornecedorModel from 'src/model/fornecedor';
 import GrupoModel from 'src/model/grupo';
 import { DepartamentoService } from 'src/modules/departamento/departamento.service';
 
-import { Produto } from '../../../../model/produto';
-import { GrupoService } from '../../../grupo/grupo.service';
+import ProdutoModel from '../../../model/produto';
+import { Mensagens } from '../../../utils/Mensagens';
+import { GrupoService } from '../../grupo/grupo.service';
 import {
     criarConfiguracaoColuna,
     criarConfiguracaoColunaStatusAuditavel,
     TipoColuna,
-} from '../../../shared/components/tabela-crud/coluna';
-import { Mensagens } from './../../../../utils/Mensagens';
-import { ProdutoService } from './../../services/produto.service';
-import { ModalHistoricoComponent } from './../modal-historico/modal-historico-produto.component';
+} from '../../shared/components/tabela-crud/coluna';
+import { ModalHistoricoComponent } from '../modal-historico/modal-historico-produto.component';
+import { ProdutoService } from '../produto.service';
 
 @Component({
     selector: "produto-lista",
@@ -26,16 +29,26 @@ import { ModalHistoricoComponent } from './../modal-historico/modal-historico-pr
 export class ProdutoBuscaComponent implements OnInit {
     TITULO_PAGINA = "Produtos";
 
-    registros: Produto[];
-    selecionados: Produto[];
+    produtos$: Observable<ProdutoModel[]>;
     enums$: Observable<any>;
     grupos$: Observable<GrupoModel[]>;
     departamentos$: Observable<DepartamentoModel[]>;
-    enumsSubscribe: Subscriber<any>;
+    fornecedores$: Observable<FornecedorModel[]>;
+
+    unidadesMedida = Object.values(UnidadeMedida);
+
     colunas: any[];
-    loading: boolean = false;
     dynamicDialog: DynamicDialogRef;
     mostrarDialogHistorico: boolean;
+
+    filtro = {
+        descricao: null,
+        codigoBarras: null,
+        grupos: null,
+        fornecedor: null,
+        departamentos: null,
+        unidadeMedida: null,
+    };
 
     constructor(
         private messageService: MessageService,
@@ -44,12 +57,12 @@ export class ProdutoBuscaComponent implements OnInit {
         private produtoService: ProdutoService,
         private grupoService: GrupoService,
         private departamentoService: DepartamentoService,
+        private fornecedorService: FornecedorService,
         private router: Router
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.colunas = [
-            criarConfiguracaoColuna("id", "#", TipoColuna.TEXTO),
             criarConfiguracaoColuna("descricao", "Descrição", TipoColuna.TEXTO),
             criarConfiguracaoColuna(
                 "grupo.descricao",
@@ -57,17 +70,12 @@ export class ProdutoBuscaComponent implements OnInit {
                 TipoColuna.TEXTO
             ),
             criarConfiguracaoColuna(
-                "fabricante.razaoSocial",
-                "Fabricante",
-                TipoColuna.TEXTO
-            ),
-            criarConfiguracaoColuna(
-                "dataCriacao",
+                "auditoria.dataCriacao",
                 "Criação",
                 TipoColuna.DATA_HORA
             ),
             criarConfiguracaoColuna(
-                "dataAlteracao",
+                "auditoria.dataAlteracao",
                 "Última Alteração",
                 TipoColuna.DATA_HORA
             ),
@@ -75,27 +83,18 @@ export class ProdutoBuscaComponent implements OnInit {
         ];
         this.grupos$ = this.grupoService.buscarGrupos();
         this.departamentos$ = this.departamentoService.buscarDepartamentos();
+        this.fornecedores$ = this.fornecedorService.buscarFornecedores();
 
-        this.onBuscar({filtroStatusAuditavel: FiltroStatusAuditoria.APENAS_ATIVOS});
+        this.onBuscar({});
     }
 
     onBuscar(filtro: any): void {
-        this.loading = true;
-        this.produtoService.buscarTodosFiltrado(filtro).subscribe(
-            dados => {
-                this.registros = dados;
-                this.loading = false;
-            },
-            () => (this.loading = false)
-        );
+        this.produtos$ = this.produtoService.buscarProdutos({ ...filtro });
     }
 
-    onEditar = (produto: Produto) => {
-        this.router.navigate([`/produtos/editar/${produto.id}`])
-    }
+    onEditar = (produto: ProdutoModel) => this.router.navigate([`/produtos/editar/${produto.id}`])
 
-
-    onDetalhes(produto: Produto) {
+    onDetalhes(produto: ProdutoModel) {
         this.dialogService.open(ModalHistoricoComponent, {
             header: "Histórico de Estoque",
             width: "70%",
@@ -103,7 +102,7 @@ export class ProdutoBuscaComponent implements OnInit {
         });
     }
 
-    onExcluir(produto: Produto) {
+    onExcluir(produto: ProdutoModel) {
         this.confirmationService.confirm({
             message: `Você têm certeza que deseja excluir o produto ${produto.descricao} ?`,
             header: "Confirmação",
@@ -119,7 +118,9 @@ export class ProdutoBuscaComponent implements OnInit {
         });
     }
 
-    exibirAcaoEditar = (produto: Produto) => !produto.excluido;
+    exibirAcaoEditar = (produto: ProdutoModel) => !produto.excluido;
 
-    exibirAcaoExcluir = (produto: Produto) => !produto.excluido;
+    exibirAcaoExcluir = (produto: ProdutoModel) => !produto.excluido;
+
+    onLimpar = () => this.filtro = { descricao: null, codigoBarras: null, grupos: null, fornecedor: null, departamentos: null, unidadeMedida: null }
 }

@@ -57,10 +57,10 @@ export class GrupoBuscaComponent extends PaginaBuscaCrud<GrupoModel> {
     }
 
     onBuscar(filtro: any): void {
-        this.loading = true;
-        this.grupoService.buscarGrupos({ ...filtro }).subscribe({
+        this.carregando = true;
+        this.registrosSubscription = this.grupoService.buscarGrupos({ ...filtro }).subscribe({
             next: dados => this.registros = dados,
-            complete: () => this.loading = false
+            complete: () => this.carregando = false
         });
     }
 

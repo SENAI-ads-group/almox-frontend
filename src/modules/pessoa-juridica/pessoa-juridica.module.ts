@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { PrimengModule } from './../primeng/primeng.module';
-import { PjFormSectionComponent } from './components/pj-form-section/pj-form-section.component';
+import { PjFormSectionComponent } from './pj-form-section/pj-form-section.component';
 
 @NgModule({
     declarations: [PjFormSectionComponent],

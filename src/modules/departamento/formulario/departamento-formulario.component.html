@@ -86,8 +86,8 @@
 
             <div class="p-grid p-justify-end">
                 <limpar-button
-                    [disabled]="isEditando"
-                    (click)="onLimpar()"
+                    [disabled]="!formulario.dirty"
+                    (limpar)="onLimpar()"
                 ></limpar-button>
                 <submit-button [disabled]="!formulario.valid"></submit-button>
             </div>
