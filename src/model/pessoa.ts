@@ -18,6 +18,10 @@ export interface PessoaJurica extends Pessoa {
     cnpj?: string;
 }
 
+export interface PessoaFisica extends Pessoa {
+    cpf?: string;
+}
+
 export interface CriarPessoa {
     razaoSocial?: string;
     cnpj?: string;

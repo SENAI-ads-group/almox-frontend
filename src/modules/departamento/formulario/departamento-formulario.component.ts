@@ -42,7 +42,7 @@ export class DepartamentoFormularioComponent implements OnInit, OnDestroy {
                     .subscribe({
                         next: res => {
                             this.departamentoFormulario = res;
-                            this.operadores$ = this.operadorService.buscarTodos()
+                            this.operadores$ = this.operadorService.buscarOperadores()
                                 .pipe(
                                     map(opeList => opeList.filter(ope => !res.operadores.some(o => o.id === ope.id)))
                                 );
@@ -51,7 +51,7 @@ export class DepartamentoFormularioComponent implements OnInit, OnDestroy {
                         complete: () => this.isLoading = false
                     });
             } else {
-                this.operadores$ = this.operadorService.buscarTodos();
+                this.operadores$ = this.operadorService.buscarOperadores();
             }
         });
     }
