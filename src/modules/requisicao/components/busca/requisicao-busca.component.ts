@@ -70,8 +70,8 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
         this.commonService
             .buscarEnumeradores()
             .subscribe(resp => (this.enums = resp));
-        this.almoxarifes$ = this.operadorService.buscarTodos();
-        this.requisitantes$ = this.operadorService.buscarTodos();
+        this.almoxarifes$ = this.operadorService.buscarOperadores();
+        this.requisitantes$ = this.operadorService.buscarOperadores();
 
         this.onBuscar({});
     }

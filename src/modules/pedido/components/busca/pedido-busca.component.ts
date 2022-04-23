@@ -65,7 +65,7 @@ export class PedidoBuscaComponent extends PaginaBuscaCrud<Pedido> {
         this.commonService
             .buscarEnumeradores()
             .subscribe(resp => (this.enums = resp));
-        this.compradores$ = this.operadorService.buscarTodos();
+        this.compradores$ = this.operadorService.buscarOperadores();
         this.fornecedores$ = this.fornecedorService.buscarFornecedores();
         this.onBuscar({ status: { type: "PENDENTE_ENTREGA" } });
     }

@@ -67,6 +67,13 @@ const routes: Routes = [
                         module => module.FornecedorModule
                     ),
             },
+            {
+                path: "operadores",
+                loadChildren: () =>
+                    import("../operador/operador.module").then(
+                        module => module.OperadorModule
+                    ),
+            },
         ],
         canActivate: [Authguard],
     },
