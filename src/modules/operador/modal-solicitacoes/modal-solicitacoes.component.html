@@ -1,0 +1,74 @@
+<tabela
+    [colunas]="colunas"
+    [dados]="registros$ | async"
+    [loading]="loading"
+    *ngIf="!operadorEmAprovacao; else formularioNovoOperador"
+>
+    <ng-template class="botoesAcao" let-rowData="rowData">
+        <button
+            pButton
+            pRipple
+            class="p-mr-2 p-mb-2 p-button-sm p-button-icon-only p-button-rounded"
+            style="background: #c8e6c9; color: #256029"
+            pTooltip="Aprovar"
+            tooltipPosition="bottom"
+            (click)="onAprovar(rowData)"
+        >
+            <i
+                class="fa fa-fw fa-check"
+                style="font-size: 1.1rem; font-weight: 550; line-height: 1.5rem"
+            ></i>
+        </button>
+        <button
+            pButton
+            pRipple
+            class="p-mr-2 p-mb-2 p-button-sm p-button-icon-only p-button-danger-alt p-button-rounded"
+            pTooltip="Excluir"
+            tooltipPosition="bottom"
+            (click)="onExcluir(rowData)"
+        >
+            <i
+                class="pi pi-times"
+                style="font-size: 1.1rem; font-weight: 550; line-height: 1.5rem"
+            ></i>
+        </button>
+    </ng-template>
+</tabela>
+
+<ng-template #formularioNovoOperador>
+    <form #formulario="ngForm" (ngSubmit)="onSubmit()">
+        <pf-form-section
+            [pessoa]="operadorEmAprovacao.pessoa"
+        ></pf-form-section>
+
+        <h3>Funções</h3>
+        <div class="p-field p-col-12">
+            <p-pickList
+                name="funcoes"
+                id="funcoes"
+                [source]="['ALMOXARIFE', 'ADMINISTRADOR', 'REQUISITANTE']"
+                [target]="operadorEmAprovacao.funcoes"
+                sourceHeader="Disponíveis"
+                targetHeader="Selecionadas"
+                [dragdrop]="true"
+                [responsive]="true"
+                [sourceStyle]="{ height: '15rem' }"
+                [targetStyle]="{ height: '15rem' }"
+                [showSourceControls]="false"
+                [showTargetControls]="false"
+            >
+                <ng-template let-funcao pTemplate="item">
+                    <h5 class="p-mb-2">{{ funcao }}</h5>
+                </ng-template>
+            </p-pickList>
+        </div>
+
+        <div class="p-grid p-justify-end">
+            <limpar-button
+                (limpar)="onLimpar()"
+                [disabled]="!formulario.dirty"
+            ></limpar-button>
+            <submit-button></submit-button>
+        </div>
+    </form>
+</ng-template>

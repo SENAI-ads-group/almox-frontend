@@ -24,7 +24,11 @@ export const Navigation: MenuItem[] = [
                 label: "Fornecedores",
                 icon: "fa fa-clipboard",
                 routerLink: "/fornecedores",
-
+            },
+            {
+                label: "Operadores",
+                icon: "fa fa-users",
+                routerLink: "/operadores",
             },
         ],
     },
