@@ -1,22 +1,34 @@
 import { Auditavel } from './auditavel';
-import { ConfiguracaoEstoque } from './configuracao-estoque';
-import { Departamento } from './departamento';
-import { Fabricante } from './fabricante';
-import { Fornecedor } from './fornecedor';
-import { Grupo } from './grupo';
 
-export interface Produto extends Auditavel {
-    id?: number;
+export default interface ProdutoModel extends Auditavel {
+    id?: string;
     descricao?: string;
     codigoBarras?: string;
-    unidadeMedida?: any;
-    palavrasChave?: string[];
-    possuiLoteValidade?: boolean;
-    custoMedio?: number;
-    fabricante?: Fabricante;
-    fornecedores?: Fornecedor[];
+    fornecedores?: { id: string, pessoa: { id: string } }[];
+    unidadeMedida?: string;
     detalhes?: string;
-    departamentos?: Departamento[];
-    grupo?: Grupo;
-    configuracaoEstoque?: ConfiguracaoEstoque;
+    palavrasChave?: string[];
+    departamentos?: { id: string }[];
+    grupo?: { id: string };
+    estoqueMinimo?: number;
+    estoqueAtual?: number;
+    estoqueMaximo?: number;
+    controlaEstoqueMinimo?: boolean;
+    controlaEstoqueMaximo?: boolean;
 }
+
+export interface CriarProduto {
+    descricao: string;
+    codigoBarras?: string;
+    idFornecedores: string[];
+    unidadeMedida: string;
+    detalhes?: string;
+    palavrasChave?: string[];
+    idDepartamentos?: string[];
+    idGrupo: string;
+    estoqueMinimo: number;
+    estoqueMaximo: number;
+    controlaEstoqueMinimo?: boolean;
+    controlaEstoqueMaximo?: boolean;
+}
+

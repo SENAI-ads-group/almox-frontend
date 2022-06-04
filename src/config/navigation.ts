@@ -21,16 +21,14 @@ export const Navigation: MenuItem[] = [
                 routerLink: "/departamentos",
             },
             {
-                label: "Fabricantes",
-                icon: "fa fa-industry",
-                routerLink: "/fabricantes",
-
-            },
-            {
                 label: "Fornecedores",
                 icon: "fa fa-clipboard",
                 routerLink: "/fornecedores",
-
+            },
+            {
+                label: "Operadores",
+                icon: "fa fa-users",
+                routerLink: "/operadores",
             },
         ],
     },

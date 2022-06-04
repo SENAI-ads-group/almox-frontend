@@ -1,0 +1,68 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <div class="p-d-flex p-jc-between">
+            <titulo-pagina-crud
+                entidade="Fornecedores"
+                acao="Consultar"
+            ></titulo-pagina-crud>
+            <div>
+                <novo-button label="Novo Fornecedor"></novo-button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-3">
+                    <label for="cnpj">Cnpj</label>
+                    <input
+                        id="cnpj"
+                        type="text"
+                        [(ngModel)]="filtro.cnpj"
+                        pInputText
+                    />
+                </div>
+                <div class="p-field p-col-3">
+                    <label for="razaoSocial">Razão Social</label>
+                    <input
+                        id="razaoSocial"
+                        type="text"
+                        [(ngModel)]="filtro.razaoSocial"
+                        pInputText
+                    />
+                </div>
+                <div class="p-field p-col-3">
+                    <label for="email">E-mail</label>
+                    <input
+                        id="email"
+                        type="text"
+                        [(ngModel)]="filtro.email"
+                        pInputText
+                    />
+                </div>
+            </div>
+            <div class="p-d-flex p-jc-center">
+                <div class="flex align-items-center justify-content-center">
+                    <limpar-filtro-button
+                        (limpar)="onLimpar()"
+                    ></limpar-filtro-button>
+                    <pesquisar-button
+                        (click)="onBuscar(filtro)"
+                    ></pesquisar-button>
+                </div>
+            </div>
+
+            <tabela-crud
+                [colunas]="colunas"
+                [dados]="fornecedores$ | async"
+                [exibirAcaoEditar]="onExibirAcaoEditar"
+                [exibirAcaoExcluir]="onExibirAcaoExcluir"
+                (visualizar)="onVisualizar($event)"
+                (editar)="onEditar($event)"
+                (excluir)="onExcluir($event)"
+            ></tabela-crud>
+        </div>
+    </div>
+</div>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<p-toast></p-toast>

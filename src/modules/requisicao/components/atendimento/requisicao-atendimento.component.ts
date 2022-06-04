@@ -8,7 +8,7 @@ import { Requisicao } from 'src/model/requisicao';
 
 import { ItemRequisicao } from '../../../../model/item-requisicao';
 import { RequisicaoService } from '../../services/requisicao.service';
-import { ModalHistoricoComponent } from 'src/modules/produto/components/modal-historico/modal-historico-produto.component';
+import { ModalHistoricoComponent } from 'src/modules/produto/modal-historico/modal-historico-produto.component';
 
 @Component({
     selector: "requisicao-atendimento",

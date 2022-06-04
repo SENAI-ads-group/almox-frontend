@@ -1,8 +1,8 @@
 import { ItemPedido } from './item-pedido';
-import { Usuario } from 'src/model/usuario';
+import OperadorModel from './operador';
 
-import { Departamento } from './departamento';
-import { Fornecedor } from './fornecedor';
+import DepartamentoModel from './departamento';
+import FornecedorModel from './fornecedor';
 import { ItemRequisicao } from './item-requisicao';
 
 export interface Pedido {
@@ -10,8 +10,8 @@ export interface Pedido {
     dataPedido?: Date;
     dataPrevisaoEntrega?: Date;
     anotacoes?: string;
-    fornecedor?: Fornecedor;
-    comprador?: Usuario;
+    fornecedor?: FornecedorModel;
+    comprador?: OperadorModel;
     status?: any;
     itens?: ItemPedido[];
 }

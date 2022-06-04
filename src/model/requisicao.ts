@@ -1,14 +1,14 @@
-import { Usuario } from "src/model/usuario";
-import { Departamento } from "./departamento";
+import OperadorModel from "./operador";
+import DepartamentoModel from "./departamento";
 import { ItemRequisicao } from "./item-requisicao";
 export interface Requisicao {
     produto?: any;
     id?: number;
     dataRequisicao?: Date;
-    requisitante?: Usuario;
-    almoxarife?: Usuario;
+    requisitante?: OperadorModel;
+    almoxarife?: OperadorModel;
     anotacoes?: string;
-    departamento?: Departamento;
+    departamento?: DepartamentoModel;
     status?: any;
     itens?: ItemRequisicao[];
 }

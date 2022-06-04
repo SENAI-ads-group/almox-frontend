@@ -10,10 +10,10 @@ const routes: Routes = [
         component: MainComponent,
         children: [
             {
-                path: "usuarios",
+                path: "operadors",
                 loadChildren: () =>
-                    import("../usuario/usuario.module").then(
-                        module => module.UsuarioModule
+                    import("../operador/operador.module").then(
+                        module => module.OperadorModule
                     ),
             },
             {
@@ -38,15 +38,6 @@ const routes: Routes = [
                     ),
             },
             {
-
-                path: "fabricantes",
-                loadChildren: () =>
-                    import("../fabricante/fabricante.module").then(
-                        module => module.FabricanteModule
-
-                    ),
-            },
-{
                 path: "item-requisicao",
                 loadChildren: () =>
                     import("../item-requisicao/item-requisicao.module").then(
@@ -76,6 +67,13 @@ const routes: Routes = [
                         module => module.FornecedorModule
                     ),
             },
+            {
+                path: "operadores",
+                loadChildren: () =>
+                    import("../operador/operador.module").then(
+                        module => module.OperadorModule
+                    ),
+            },
         ],
         canActivate: [Authguard],
     },
@@ -89,4 +87,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
-export class CoreRoutingModule {}
+export class CoreRoutingModule { }

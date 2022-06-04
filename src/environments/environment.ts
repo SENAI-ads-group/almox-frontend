@@ -9,6 +9,9 @@ export const environment = {
     baseUrl: 'http://localhost:8080'
   },
   auth: {
-    tokensessionStorage: 'almox_access_token'
-    }
+    tokensessionStorage: 'almox_access_token',
+    client_id: 'myappname123',
+    client_secret: 'myappsecret123',
+    grant_type: 'password'
+  }
 };

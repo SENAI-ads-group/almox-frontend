@@ -470,7 +470,7 @@
   margin-right: 8px;
 }
 .dashboard .chat ul li.message-from span {
-  background-color: #d8dadb;
+  background-color: #fff;
   color: #000000;
 }
 .dashboard .chat ul li.message-own img, .dashboard .chat ul li.message-own span {
@@ -561,7 +561,7 @@
 }
 .login-body .login-panel .login-header {
   background-color: #007bff;
-  color: #d8dadb;
+  color: #fff;
   position: relative;
 }
 .login-body .login-panel .login-header h1 {
@@ -788,7 +788,7 @@
 }
 .landing-body .landing-wrapper #header .pre-header .pre-header-content #menu-button {
   display: none;
-  color: #d8dadb;
+  color: #fff;
   font-size: 28px;
   float: right;
   margin-top: 20px;
@@ -825,7 +825,7 @@
   font-size: 14px;
   font-weight: 600;
   padding: 8px 14px;
-  color: #d8dadb;
+  color: #fff;
   border-bottom: 1px solid transparent;
   -moz-transition: border-bottom-color 0.3s;
   -o-transition: border-bottom-color 0.3s;
@@ -833,7 +833,7 @@
   transition: border-bottom-color 0.3s;
 }
 .landing-body .landing-wrapper #header .pre-header .pre-header-content #menu li a:hover {
-  border-bottom-color: #d8dadb;
+  border-bottom-color: #fff;
 }
 .landing-body .landing-wrapper #header .header-content {
   height: 400px;
@@ -1022,7 +1022,7 @@
   line-height: 32px;
   display: inline-block;
   text-align: center;
-  color: #d8dadb;
+  color: #fff;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
@@ -1038,7 +1038,7 @@
   background-color: #007bff;
 }
 .landing-body .landing-wrapper #pricing .pricing-content .pricing-box.pricing-basic .pricing-footer a {
-  color: #d8dadb;
+  color: #fff;
 }
 .landing-body .landing-wrapper #pricing .pricing-content .pricing-box.pricing-basic .pricing-footer a:hover {
   color: #ebeced;
@@ -1275,8 +1275,8 @@ body a {
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 5px 10px 0 rgba(0, 0, 0, 0.26);
 }
 .layout-wrapper .topbar .topbar-content {
-  padding-left: 20rem;
-  padding-right: 20rem;
+  padding-left: 20%;
+  padding-right: 20%;
 }
 .layout-wrapper .topbar .topbar-content .topbar-menu {
   margin-top: 0.5rem;
@@ -1630,15 +1630,15 @@ body a {
 .layout-wrapper .layout-main {
   flex: 1 1 0;
   padding: 140px 10px 0px 10px;
-  margin-left: 20rem;
-  margin-right: 20rem;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 .layout-wrapper .footer {
   background-color: #eeefefff;
   padding: 0.5em;
-  margin-left: 8rem;
-  margin-right: 8rem;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 .layout-wrapper .footer .footer-text-left {
   float: left;
@@ -2858,7 +2858,7 @@ p:last-child {
   margin-right: 8px;
 }
 .widget-chat ul li.message-from span {
-  background-color: #d8dadb;
+  background-color: #fff;
   color: #000000;
 }
 .widget-chat ul li.message-own img, .widget-chat ul li.message-own span {

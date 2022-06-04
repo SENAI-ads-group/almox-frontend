@@ -1,4 +1,4 @@
-import { Produto } from 'src/model/produto';
+import ProdutoModel from 'src/model/produto';
 import { ItemMovimento } from './movimento';
 export interface HistoricoEstoqueProduto {
     id?: number,
@@ -6,5 +6,5 @@ export interface HistoricoEstoqueProduto {
     estoqueAnterior?: number,
     estoqueFinal?: number,
     itemMovimento?: ItemMovimento,
-    produto?: Produto
+    produto?: ProdutoModel
 }

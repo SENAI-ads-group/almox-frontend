@@ -1,11 +1,11 @@
 import { RequisicaoFormComponent } from "./../form/requisicao-form.component";
-import { UsuarioService } from "./../../../usuario/services/usuario.service";
+import { OperadorService } from "../../../operador/operador.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { Observable } from "rxjs";
 import { Requisicao } from "src/model/requisicao";
-import { Usuario } from "src/model/usuario";
+import OperadorModel from "src/model/operador";
 import {
     criarConfiguracaoColuna,
     TipoColuna,
@@ -25,8 +25,8 @@ import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
     NOME_PAGINA = "Requisições";
     enums: any;
-    almoxarifes$: Observable<Usuario[]>;
-    requisitantes$: Observable<Usuario[]>;
+    almoxarifes$: Observable<OperadorModel[]>;
+    requisitantes$: Observable<OperadorModel[]>;
     colunas: any[];
     dialogRef: DynamicDialogRef;
 
@@ -34,12 +34,12 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
         private confirmationService: ConfirmationService,
         private messageService: MessageService,
         private commonService: CommonService,
-        requisicaoService: RequisicaoService,
-        private usuarioService: UsuarioService,
+        private requisicaoService: RequisicaoService,
+        private operadorService: OperadorService,
         private router: Router,
         private dialogService: DialogService
     ) {
-        super(requisicaoService);
+        super();
     }
 
     ngOnInit(): void {
@@ -61,7 +61,7 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
                 TipoColuna.TEXTO
             ),
             criarConfiguracaoColuna(
-                "departamento.nome",
+                "departamento.descricao",
                 "Departamento",
                 TipoColuna.TEXTO
             ),
@@ -70,8 +70,8 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
         this.commonService
             .buscarEnumeradores()
             .subscribe(resp => (this.enums = resp));
-        this.almoxarifes$ = this.usuarioService.buscarTodos();
-        this.requisitantes$ = this.usuarioService.buscarTodos();
+        this.almoxarifes$ = this.operadorService.buscarOperadores();
+        this.requisitantes$ = this.operadorService.buscarOperadores();
 
         this.onBuscar({});
     }
@@ -81,14 +81,11 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
             ? filtro.status
             : { type: 'AGUARDANDO_ATENDIMENTO' };
 
-        this.loading = true;
-        this.service.buscarTodosFiltrado(filtro).subscribe(
-            (dados: Requisicao[]) => {
-                this.registros = dados;
-                this.loading = false;
-            },
-            () => (this.loading = false)
-        );
+        this.carregando = true;
+        this.registrosSubscription = this.requisicaoService.buscarTodosFiltrado(filtro).subscribe({
+            next: (data) => this.registros = data,
+            complete: () => this.carregando = false
+        });
     }
 
     onChangeStatus({ index }) {
@@ -101,7 +98,7 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
             header: "Nova Requisição",
         });
 
-        this.dialogRef.onClose.subscribe(() => {});
+        this.dialogRef.onClose.subscribe(() => { });
     }
 
     onEditar(registro: Requisicao) {
@@ -119,7 +116,7 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
             icon: "pi pi-exclamation-triangle",
             acceptLabel: "Sim",
             rejectLabel: "Não",
-            accept: () => {},
+            accept: () => { },
         });
         this.messageService.messageObserver.subscribe();
     }

@@ -29,7 +29,7 @@ function criarConfiguracaoColuna(
 
 function criarConfiguracaoColunaStatusAuditavel(titulo: string) {
     return {
-        campo: "statusAuditoria.descricao",
+        campo: "auditoria.situacao.descricao",
         titulo,
         tipo: TipoColuna.STATUS_AUDITAVEL,
         textAlign: "center",

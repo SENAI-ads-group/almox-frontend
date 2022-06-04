@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
     selector: "submit-button",
@@ -7,6 +7,7 @@ import { Component } from "@angular/core";
             type="submit"
             pButton
             pRipple
+            [disabled]="disabled"
             label="Salvar"
             class="p-mb-3 p-mr-1"
             icon="pi pi-save"
@@ -14,5 +15,6 @@ import { Component } from "@angular/core";
     `,
 })
 export class SubmitButtonComponent {
+    @Input("disabled") disabled: boolean;
     constructor() {}
 }

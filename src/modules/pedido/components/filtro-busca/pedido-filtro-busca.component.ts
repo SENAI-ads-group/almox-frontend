@@ -1,6 +1,6 @@
-import { UsuarioService } from "../../../usuario/services/usuario.service";
+import { OperadorService } from "../../../operador/operador.service";
 import { Observable } from "rxjs";
-import { Usuario } from "../../../../model/usuario";
+import OperadorModel from "../../../../model/operador";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 @Component({
@@ -10,8 +10,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 export class PedidoFiltroComponent {
     @Output("buscar") buscarEvent: EventEmitter<any> = new EventEmitter();
 
-    @Input() compradores: Usuario[];
-    @Input() fornecedores: Usuario[];
+    @Input() compradores: OperadorModel[];
+    @Input() fornecedores: OperadorModel[];
     @Input() enums: any;
 
     filtro = {
@@ -20,7 +20,7 @@ export class PedidoFiltroComponent {
         fornecedor: null
     };
 
-    constructor(private usuarioService: UsuarioService) {}
+    constructor(private operadorService: OperadorService) {}
 
     onBuscar(): void {
         this.buscarEvent.emit({ filtro: this.filtro });

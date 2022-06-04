@@ -1,4 +1,4 @@
-import { Produto } from './produto';
+import ProdutoModel from './produto';
 export interface ConfiguracaoEstoque {
     id?: number;
     estoqueMinimo?: number;

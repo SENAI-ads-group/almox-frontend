@@ -1,8 +1,13 @@
 import { Auditavel } from './auditavel';
-import { Produto } from './produto';
+import ProdutoModel from './produto';
 
-export interface Grupo extends Auditavel{
-id?: number;
-descricao?: string;
-produtos?: Produto[];
+export default interface GrupoModel {
+    id?: string;
+    descricao?: string;
+    auditoria?: Auditavel;
+    produtos?: ProdutoModel[];
+}
+
+export interface CriarGrupo {
+    descricao: string;
 }

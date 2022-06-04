@@ -1,17 +1,24 @@
-export const UnidadeMedida = Object.freeze({
+const UnidadeMedida = Object.freeze({
     KG: {
-        type: 'KG'
+        valor: 'KG',
+        descricao: 'KG'
     },
     LT: {
-        type: 'LT'
+        valor: 'LT',
+        descricao: 'LT'
     },
     UN: {
-        type: 'UN'
+        valor: 'UN',
+        descricao: 'UN'
     },
     FD: {
-        type: 'FD'
+        valor: 'FD',
+        descricao: 'FD'
     },
     CX: {
-        type: 'CX'
+        valor: 'CX',
+        descricao: 'CX',
     },
 });
+
+export default UnidadeMedida;
