@@ -53,7 +53,7 @@ jobs:
     -
       name: Build and push to teste
       uses: docker/build-push-action@v3
-      if: ${{ GITHUB_REF }} == 'desenvolvimento'
+      if: github.ref == 'desenvolvimento'
       with:
         file: .devops/docker/Dockerfile
         context: .
@@ -62,7 +62,7 @@ jobs:
     -
       name: Build and push to prod
       uses: docker/build-push-action@v3
-      if: ${{ GITHUB_REF }} == 'master'
+      if: github.ref == 'master'
       with:
         file: .devops/docker/Dockerfile
         context: .
