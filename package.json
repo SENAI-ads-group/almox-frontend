@@ -6,6 +6,7 @@
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
+        "build:teste": "ng build --configuration teste",
         "test": "ng test",
         "lint": "ng lint",
         "ci": "yarn install --network-concurrency 1 --network-timeout=30000 --no-progress --non-interactive --silent --prefer-offline"
