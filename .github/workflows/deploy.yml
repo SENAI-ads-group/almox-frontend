@@ -1,5 +1,7 @@
 name: deploy
 on:
+  release:
+    types: [ published ]
   push:
     branches: [ desenvolvimento ]
 jobs:
@@ -49,8 +51,18 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
     -
-      name: Build and push
+      name: Build and push to teste
       uses: docker/build-push-action@v3
+      if: $GITHUB_REF == 'desenvolvimento'
+      with:
+        file: .devops/docker/Dockerfile
+        context: .
+        push: true
+        tags: registry.patrick.dev.br/almox-web:staging
+    -
+      name: Build and push to prod
+      uses: docker/build-push-action@v3
+      if: $GITHUB_REF == 'master'
       with:
         file: .devops/docker/Dockerfile
         context: .
