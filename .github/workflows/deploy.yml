@@ -1,7 +1,8 @@
 name: deploy
 on:
-  release:
-    types: [ published ]
+  create:
+    tags:
+      - "v*"
   push:
     branches: [ desenvolvimento ]
 jobs:
