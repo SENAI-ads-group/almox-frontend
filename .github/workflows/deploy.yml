@@ -1,7 +1,8 @@
 name: deploy
 on:
-  release:
-    types: [ published ]
+  create:
+    tags:
+      - "v*"
   push:
     branches: [ desenvolvimento ]
 jobs:
@@ -16,7 +17,13 @@ jobs:
       with:
         node-version: 14.x
     -
-      name: yarn build
+      name: yarn build teste
+      run: |
+        yarn ci
+        yarn build:teste
+    -
+      name: yarn build prod
+      if: startsWith(github.event.ref, 'refs/tags/v')
       run: |
         yarn ci
         yarn build
@@ -61,7 +68,7 @@ jobs:
     -
       name: Build and push to prod
       uses: docker/build-push-action@v3
-      if: github.ref == 'refs/heads/master'
+      if: startsWith(github.event.ref, 'refs/tags/v')
       with:
         file: .devops/docker/Dockerfile
         context: .
