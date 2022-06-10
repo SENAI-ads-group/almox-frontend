@@ -17,20 +17,20 @@ import { ModalHistoricoComponent } from 'src/modules/produto/modal-historico/mod
 })
 export class RequisicaoAtendimentoComponent implements OnInit {
     NOME_PAGINA = "Informações da Requisição";
-    registro: Requisicao = { status: {}};
+    registro: Requisicao = { status: {} };
     registroNoFormulario: any;
 
     constructor(
         private requisicaoService: RequisicaoService,
-        private messageService : MessageService,
+        private messageService: MessageService,
         private activatedRoute: ActivatedRoute,
-        private router : Router,
+        private router: Router,
         private dialogService: DialogService
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.activatedRoute.params.subscribe(params => {
-            const id: number = params["id"];
+            const id: string = params["id"];
             if (id) {
                 this.requisicaoService
                     .buscarPorId(id)
@@ -41,13 +41,13 @@ export class RequisicaoAtendimentoComponent implements OnInit {
         });
     }
 
-    onSubmit(formulario: NgForm): void {}
+    onSubmit(formulario: NgForm): void { }
 
     onVisualizarProduto(item: ItemRequisicao) {
         this.router.navigate([`/produtos/editar/${item.produto.id}`])
     }
 
-    onVisualizarHistoricoMovimento(item : ItemRequisicao) {
+    onVisualizarHistoricoMovimento(item: ItemRequisicao) {
         this.dialogService.open(ModalHistoricoComponent, {
             header: "Histórico de Estoque",
             width: "70%",

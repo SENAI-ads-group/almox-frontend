@@ -26,7 +26,7 @@
                     *ngIf="
                         registro &&
                         registro.status &&
-                        registro.status.type !== 'EM_ATENDIMENTO'
+                        registro.status !== 'EM_ATENDIMENTO'
                     "
                 >
                     <p-virtualScroller
@@ -117,7 +117,7 @@
                     *ngIf="
                         registro &&
                         registro.status &&
-                        registro.status.type === 'EM_ATENDIMENTO'
+                        registro.status === 'EM_ATENDIMENTO'
                     "
                 >
                     <div class="card" *ngIf="registroNoFormulario">
@@ -145,7 +145,7 @@
                         <ng-template pTemplate="content">
                             <button
                                 *ngIf="
-                                    registro.status.type ===
+                                    registro.status ===
                                     'AGUARDANDO_ATENDIMENTO'
                                 "
                                 (click)="onAtender()"
@@ -165,7 +165,7 @@
 
                             <button
                                 *ngIf="
-                                    registro.status.type === 'EM_ATENDIMENTO'
+                                    registro.status === 'EM_ATENDIMENTO'
                                 "
                                 (click)="onEntregar()"
                                 pButton
@@ -184,8 +184,8 @@
 
                             <p
                                 *ngIf="
-                                    registro.status.type === 'ENTREGUE' ||
-                                    registro.status.type === 'CANCELADA'
+                                    registro.status === 'ENTREGUE' ||
+                                    registro.status === 'CANCELADA'
                                 "
                             >
                                 Nenhuma ação permitida nesta requisição
@@ -202,8 +202,8 @@
                             pInputTextarea
                             autoResize="autoResize"
                             [disabled]="
-                                registro.status.type === 'ENTREGUE' ||
-                                registro.status.type === 'CANCELADA'
+                                registro.status === 'ENTREGUE' ||
+                                registro.status === 'CANCELADA'
                             "
                         ></textarea>
                     </p-card>
@@ -211,8 +211,8 @@
                         <ng-template pTemplate="content">
                             <button
                                 *ngIf="
-                                    registro.status.type !== 'ENTREGUE' &&
-                                    registro.status.type !== 'CANCELADA'
+                                    registro.status !== 'ENTREGUE' &&
+                                    registro.status !== 'CANCELADA'
                                 "
                                 (click)="onCancelar()"
                                 pButton
@@ -228,11 +228,11 @@
                                     font-size: 18px;
                                 "
                             ></button>
-                            <p *ngIf="registro.status.type === 'ENTREGUE'">
+                            <p *ngIf="registro.status === 'ENTREGUE'">
                                 Cancelamento não permitido (Requisições
                                 entregues não podem ser canceladas)
                             </p>
-                            <p *ngIf="registro.status.type === 'CANCELADA'">
+                            <p *ngIf="registro.status === 'CANCELADA'">
                                 Requisição Cancelada
                             </p>
                         </ng-template>

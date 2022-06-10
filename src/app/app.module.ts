@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HandleErrorHttpInterceptor } from '../config/handle-error-http-interceptor';
 import { CoreModule } from '../modules/core/core.module';
+import { PedidoStepMergeService } from 'src/modules/pedido/services/pedido-step-merge.service';
+import { RequisicaoStepMergeService } from 'src/modules/requisicao/services/requisicao-step-merge.service';
 
 @NgModule({
     imports: [
@@ -33,8 +35,10 @@ import { CoreModule } from '../modules/core/core.module';
         },
         MessageService,
         ConfirmationService,
-        DialogService
+        DialogService,
+        PedidoStepMergeService,
+        RequisicaoStepMergeService,
     ],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Pedido } from 'src/model/pedido';
+import { CriarPedido, Pedido } from 'src/model/pedido';
 
 import { PedidoStepMergeService } from '../../services/pedido-step-merge.service';
 import { PedidoService } from '../../services/pedido.service';
@@ -27,7 +27,7 @@ export class PedidoFormComponent implements OnInit {
         public stepMergeService: PedidoStepMergeService,
         public dynamicDialogRef: DynamicDialogRef,
         public configDialog: DynamicDialogConfig
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.itensStep = [
@@ -45,13 +45,19 @@ export class PedidoFormComponent implements OnInit {
     onSubmit(formulario: NgForm): void {
         this.registro = this.stepMergeService.state;
 
-        this.pedidoService.criar(this.registro).subscribe(() => {
+        const criarPedido: CriarPedido = {
+            idFornecedor: this.registro.fornecedor.id!,
+            dataPrevisaoEntrega: this.registro.dataPrevisaoEntrega!,
+            itens: this.registro.itens.map(item => ({ idProduto: item.produto.id, quantidade: item.quantidade }))
+        }
+
+        this.pedidoService.criar(criarPedido).subscribe(() => {
             this.stepMergeService.state = {};
             this.messageService.add(Mensagens.SUCESSO_REGISTRO_SALVO);
             this.dynamicDialogRef.close();
         });
     }
 
-    onLimpar(): void {}
+    onLimpar(): void { }
 
 }

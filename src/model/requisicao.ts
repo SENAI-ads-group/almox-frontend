@@ -1,6 +1,7 @@
 import OperadorModel from "./operador";
 import DepartamentoModel from "./departamento";
 import { ItemRequisicao } from "./item-requisicao";
+
 export interface Requisicao {
     produto?: any;
     id?: number;
@@ -11,4 +12,10 @@ export interface Requisicao {
     departamento?: DepartamentoModel;
     status?: any;
     itens?: ItemRequisicao[];
+}
+
+export interface CriarRequisicao {
+    idOperadorAlmoxarife: string;
+    idDepartamento: string;
+    itens: { idProduto: string; quantidade: number; }[];
 }

@@ -26,7 +26,7 @@ export abstract class CrudService<T, ID> {
         Object.keys(filtro).forEach(key => {
             if (typeof filtro[key] !== 'number' && !filtro[key]) delete filtro[key];
         });
-        return this._http.get<any>(`${this._base}`, { params: new HttpParams({ fromObject: { ...filtro } }) })
+        return this._http.get<any>(`${this._base}`, { params: new HttpParams({ fromObject: { ...filtro, size: 500 } }) })
             .pipe(map(res => res.data))
     }
 

@@ -47,16 +47,15 @@ export class PedidoBuscaComponent extends PaginaBuscaCrud<Pedido> {
 
     ngOnInit(): void {
         this.colunas = [
-            criarConfiguracaoColuna("id", "#", TipoColuna.TEXTO),
             criarConfiguracaoColuna("dataPedido", "Data Pedido", TipoColuna.DATA_HORA),
-            //criarConfiguracaoColuna("dataPrevisaoEntrega", "Previsão de Entrega", TipoColuna.DATA_HORA),
+            criarConfiguracaoColuna("dataPrevisaoEntrega", "Previsão de Entrega", TipoColuna.DATA_HORA),
             criarConfiguracaoColuna(
-                "comprador.nome",
+                "comprador.pessoa.nome",
                 "Comprador",
                 TipoColuna.TEXTO
             ),
             criarConfiguracaoColuna(
-                "fornecedor.nomeFantasia",
+                "fornecedor.pessoa.nome",
                 "Fornecedor",
                 TipoColuna.TEXTO
             ),
@@ -67,22 +66,22 @@ export class PedidoBuscaComponent extends PaginaBuscaCrud<Pedido> {
             .subscribe(resp => (this.enums = resp));
         this.compradores$ = this.operadorService.buscarOperadores();
         this.fornecedores$ = this.fornecedorService.buscarFornecedores();
-        this.onBuscar({ status: { type: "PENDENTE_ENTREGA" } });
+        this.onBuscar({ status: "PENDENTE_ENTREGA" });
     }
 
     onBuscar(filtro: any) {
         filtro.status = filtro.status
             ? filtro.status
-            : { type: 'PENDENTE_ENTREGA' };
+            : 'PENDENTE_ENTREGA';
+        const f = { ...filtro };
+        if (f.comprador)
+            f.comprador = f.comprador.id;
 
         this.carregando = true;
-        this.pedidoService.buscarTodosFiltrado(filtro).subscribe(
-            (dados: Pedido[]) => {
-                this.registros = dados;
-                this.carregando = false;
-            },
-            () => (this.carregando = false)
-        );
+        this.pedidoService.buscarPedidos(f).subscribe({
+            next: (data) => this.registros = data,
+            complete: () => this.carregando = false
+        });
     }
 
     onChangeStatus({ index }) {

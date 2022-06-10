@@ -44,19 +44,18 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
 
     ngOnInit(): void {
         this.colunas = [
-            criarConfiguracaoColuna("id", "#", TipoColuna.TEXTO),
             criarConfiguracaoColuna(
                 "dataRequisicao",
                 "Data",
                 TipoColuna.DATA_HORA
             ),
             criarConfiguracaoColuna(
-                "requisitante.nome",
+                "requisitante.pessoa.nome",
                 "Requisitante",
                 TipoColuna.TEXTO
             ),
             criarConfiguracaoColuna(
-                "almoxarife.nome",
+                "almoxarife.pessoa.nome",
                 "Almoxarife",
                 TipoColuna.TEXTO
             ),
@@ -77,12 +76,14 @@ export class RequisicaoBuscaComponent extends PaginaBuscaCrud<Requisicao> {
     }
 
     onBuscar(filtro: any) {
-        filtro.status = filtro.status
-            ? filtro.status
-            : { type: 'AGUARDANDO_ATENDIMENTO' };
+        const f = { ...filtro };
+        if (f.almoxarife)
+            f.almoxarife = f.almoxarife.id;
+        if (f.requisitante)
+            f.requisitante = f.requisitante.id;
 
         this.carregando = true;
-        this.registrosSubscription = this.requisicaoService.buscarTodosFiltrado(filtro).subscribe({
+        this.registrosSubscription = this.requisicaoService.buscarRequisicoes({ ...f }).subscribe({
             next: (data) => this.registros = data,
             complete: () => this.carregando = false
         });

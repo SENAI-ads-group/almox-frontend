@@ -1,9 +1,6 @@
 import { ItemPedido } from './item-pedido';
 import OperadorModel from './operador';
-
-import DepartamentoModel from './departamento';
 import FornecedorModel from './fornecedor';
-import { ItemRequisicao } from './item-requisicao';
 
 export interface Pedido {
     id?: number;
@@ -14,4 +11,10 @@ export interface Pedido {
     comprador?: OperadorModel;
     status?: any;
     itens?: ItemPedido[];
+}
+
+export interface CriarPedido {
+    idFornecedor: string;
+    dataPrevisaoEntrega: Date;
+    itens: { idProduto: string; quantidade: number; }[];
 }

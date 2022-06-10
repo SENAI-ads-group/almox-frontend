@@ -26,10 +26,10 @@
             <p-tabView (onChange)="onChangeStatus($event)">
                 <p-tabPanel
                     *ngFor="
-                        let status of (enums || {}).statusRequisicao;
+                        let status of (enums || {}).statusRequisicoes;
                         let i = index
                     "
-                    header="{{ status.descricao }}"
+                    header="{{ status }}"
                     [headerStyleClass]="'status ' + status.type"
                 ></p-tabPanel>
             </p-tabView>
