@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Requisicao } from 'src/model/requisicao';
+import { CriarRequisicao, Requisicao } from 'src/model/requisicao';
 
 import { RequisicaoStepMergeService } from '../../services/requisicao-step-merge.service';
 import { RequisicaoService } from '../../services/requisicao.service';
@@ -27,7 +27,7 @@ export class RequisicaoFormComponent implements OnInit {
         public stepMergeService: RequisicaoStepMergeService,
         public dynamicDialogRef: DynamicDialogRef,
         public configDialog: DynamicDialogConfig
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.itensStep = [
@@ -45,13 +45,18 @@ export class RequisicaoFormComponent implements OnInit {
     onSubmit(formulario: NgForm): void {
         this.registro = this.stepMergeService.state;
 
-        this.requisicaoService.criar(this.registro).subscribe(() => {
+        const criarRequisicao: CriarRequisicao = {
+            idDepartamento: this.registro.departamento.id,
+            idOperadorAlmoxarife: this.registro.almoxarife.id,
+            itens: this.registro.itens.map(item => ({ idProduto: item.produto.id, quantidade: item.quantidade }))
+        }
+        this.requisicaoService.criar(criarRequisicao).subscribe(() => {
             this.stepMergeService.state = {};
             this.messageService.add(Mensagens.SUCESSO_REGISTRO_SALVO);
             this.dynamicDialogRef.close();
         });
     }
 
-    onLimpar(): void {}
+    onLimpar(): void { }
 
 }

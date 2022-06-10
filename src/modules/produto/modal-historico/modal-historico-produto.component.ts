@@ -33,19 +33,19 @@ export class ModalHistoricoComponent implements OnInit {
                 "left"
             ),
             criarConfiguracaoColuna(
-                "itemMovimento.tipoDeMovimento.descricao",
+                "movimento.tipoDeMovimento.descricao",
                 "Tipo",
                 TipoColuna.TEXTO,
                 "left"
             ),
             criarConfiguracaoColuna(
-                "itemMovimento.idOrigem",
+                "movimento.idOrigem",
                 "ID Origem",
                 TipoColuna.TEXTO,
                 "left"
             ),
             criarConfiguracaoColuna(
-                "itemMovimento.tipoOrigemMovimento.descricao",
+                "movimento.tipoOrigemMovimento.descricao",
                 "Tipo Origem",
                 TipoColuna.TEXTO,
                 "left"
@@ -69,8 +69,8 @@ export class ModalHistoricoComponent implements OnInit {
                 "left"
             ),
             criarConfiguracaoColuna(
-                "operador.nome",
-                "Usuário",
+                "operador.pessoa.nome",
+                "Operador",
                 TipoColuna.TEXTO,
                 "left"
             ),

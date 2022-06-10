@@ -16,7 +16,7 @@ import { PedidoStepMergeService } from "../../../services/pedido-step-merge.serv
     styleUrls: ["./pedido-step-informacoes.component.scss"],
 })
 export class PedidoStepInformacoesComponent implements OnInit {
-    @ViewChild("formulario") formulario : NgForm;
+    @ViewChild("formulario") formulario: NgForm;
     fornecedores$: Observable<FornecedorModel[]>;
 
     constructor(
@@ -25,7 +25,7 @@ export class PedidoStepInformacoesComponent implements OnInit {
         public stepMergeService: PedidoStepMergeService,
         private departamentoService: DepartamentoService,
         private fornecedorService: FornecedorService
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.fornecedores$ = this.fornecedorService.buscarFornecedores();

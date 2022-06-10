@@ -23,7 +23,7 @@
             <div class="p-col-8">
                 <div
                     class="card"
-                    *ngIf="registro.status.type !== 'PENDENTE_ENTREGA'"
+                    *ngIf="registro.status !== 'PENDENTE_ENTREGA'"
                 >
                     <p-virtualScroller
                         [value]="registro.itens"
@@ -98,7 +98,7 @@
                                     <br />
                                     <p-badge
                                         value="{{ item.quantidade }}
-                                        {{ item.produto.unidadeMedida.type }}"
+                                        {{ item.produto.unidadeMedida }}"
                                         size="large"
                                         severity="warning"
                                     ></p-badge>
@@ -110,7 +110,7 @@
                 </div>
                 <div
                     class="card"
-                    *ngIf="registro.status.type === 'PENDENTE_ENTREGA'"
+                    *ngIf="registro.status === 'PENDENTE_ENTREGA'"
                 >
                     <p-panel
                         [header]="
@@ -150,7 +150,7 @@
                         <ng-template pTemplate="content">
                             <button
                                 *ngIf="
-                                    registro.status.type === 'PENDENTE_ENTREGA'
+                                    registro.status === 'PENDENTE_ENTREGA'
                                 "
                                 (click)="onReceber()"
                                 pButton
@@ -169,8 +169,8 @@
 
                             <p
                                 *ngIf="
-                                    registro.status.type === 'RECEBIDO' ||
-                                    registro.status.type === 'CANCELADO'
+                                    registro.status === 'RECEBIDO' ||
+                                    registro.status === 'CANCELADO'
                                 "
                             >
                                 Nenhuma ação permitida neste pedido (Pedidos
@@ -187,8 +187,8 @@
                             pInputTextarea
                             autoResize="autoResize"
                             [disabled]="
-                                registro.status.type === 'ENTREGUE' ||
-                                registro.status.type === 'CANCELADA'
+                                registro.status === 'ENTREGUE' ||
+                                registro.status === 'CANCELADA'
                             "
                         ></textarea>
                     </p-card>
@@ -196,8 +196,8 @@
                         <ng-template pTemplate="content">
                             <button
                                 *ngIf="
-                                    registro.status.type !== 'RECEBIDO' &&
-                                    registro.status.type !== 'CANCELADO'
+                                    registro.status !== 'RECEBIDO' &&
+                                    registro.status !== 'CANCELADO'
                                 "
                                 (click)="onCancelar()"
                                 pButton
@@ -213,11 +213,11 @@
                                     font-size: 18px;
                                 "
                             ></button>
-                            <p *ngIf="registro.status.type === 'RECEBIDO'">
+                            <p *ngIf="registro.status === 'RECEBIDO'">
                                 Cancelamento não permitido (Pedidos recebidos
                                 não podem ser cancelados)
                             </p>
-                            <p *ngIf="registro.status.type === 'CANCELADO'">
+                            <p *ngIf="registro.status === 'CANCELADO'">
                                 Pedido Cancelado
                             </p>
                         </ng-template>

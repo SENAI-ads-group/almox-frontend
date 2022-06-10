@@ -26,11 +26,11 @@ export class PedidoAtendimentoComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private dialogService: DialogService
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.activatedRoute.params.subscribe(params => {
-            const id: number = params["id"];
+            const id: string = params["id"];
             if (id) {
                 this.pedidoService
                     .buscarPorId(id)
@@ -41,7 +41,7 @@ export class PedidoAtendimentoComponent implements OnInit {
         });
     }
 
-    onSubmit(formulario: NgForm): void {}
+    onSubmit(formulario: NgForm): void { }
 
     onVisualizarProduto(item: ItemPedido) {
         this.router.navigate([`/produtos/editar/${item.produto.id}`]);
@@ -74,7 +74,7 @@ export class PedidoAtendimentoComponent implements OnInit {
     }
 
     onReceber() {
-        this.pedidoService.receberPedido(this.registro).subscribe(() => {
+        this.pedidoService.receberPedido(this.registro.id).subscribe(() => {
             this.ngOnInit();
             this.messageService.add(Mensagens.SUCESSO_PEDIDO_RECEBIDO);
         });
